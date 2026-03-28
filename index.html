@@ -1604,11 +1604,13 @@
   // ══════════════════════════════════════════════
   //  BOOT
   // ══════════════════════════════════════════════
-  document.fonts.ready.then(() => {
-    runSequence();
-    setInterval(runSequence, 13000);
-    frame();
-  });
+  if (window.innerWidth > 960) {
+    document.fonts.ready.then(() => {
+      runSequence();
+      setInterval(runSequence, 13000);
+      frame();
+    });
+  }
 
 })();
 </script>
