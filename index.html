@@ -711,7 +711,10 @@
     @keyframes naut-in {
       to { opacity: 0.13; }
     }
-    @media (max-width: 960px) { .nautiloid-img { opacity: 0.12 !important; } }
+    @media (max-width: 960px) {
+      .nautiloid-img { opacity: 0.15 !important; animation: naut-in 2s ease forwards !important; }
+      #wf-canvas { display: none !important; }
+    }
 
     /* ── CANVAS ── */
     #wf-canvas {
