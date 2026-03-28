@@ -1580,7 +1580,6 @@
   //  RENDER LOOP
   // ══════════════════════════════════════════════
   function frame() {
-    requestAnimationFrame(frame);
     ctx.clearRect(0, 0, W, H);
 
     // Ambient radial glow
@@ -1607,11 +1606,35 @@
   //  BOOT
   // ══════════════════════════════════════════════
   if (window.innerWidth > 960) {
-    document.fonts.ready.then(() => {
+    let seqInterval = null;
+    let rafId = null;
+    let running = false;
+
+    function start() {
+      if (running) return;
+      running = true;
+      flowParts.length = 0;
+      burstParts.length = 0;
+      NODES.forEach(n => ST[n.id] = 'idle');
       runSequence();
-      setInterval(runSequence, 13000);
-      frame();
+      seqInterval = setInterval(runSequence, 13000);
+      function loop() { frame(); rafId = requestAnimationFrame(loop); }
+      loop();
+    }
+
+    function stop() {
+      running = false;
+      clearInterval(seqInterval);
+      cancelAnimationFrame(rafId);
+      flowParts.length = 0;
+      burstParts.length = 0;
+    }
+
+    document.addEventListener('visibilitychange', () => {
+      document.hidden ? stop() : start();
     });
+
+    document.fonts.ready.then(start);
   }
 
 })();
