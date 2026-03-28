@@ -629,14 +629,48 @@
     }
     .cta-wrap .body-t { margin: 18px auto 36px; max-width: 380px; }
     .cta-meta { margin-top: 18px; font-size: 0.8125rem; color: rgba(244,241,236,0.22); font-weight: 300; }
+    .nautiloid-cta {
+      position: absolute;
+      left: -120px;
+      top: 50%;
+      transform: translateY(-50%) scaleX(-1);
+      width: 1050px;
+      height: auto;
+      pointer-events: none;
+      z-index: 0;
+      mix-blend-mode: screen;
+      opacity: 0.11;
+    }
+    @media (max-width: 960px) { .nautiloid-cta { display: none; } }
 
     /* ── FOOTER ── */
-    footer { padding: 40px 0; border-top: 1px solid var(--border); }
+    footer { padding: 60px 0 40px; border-top: 1px solid var(--border); }
+    .ft-mark { display: flex; justify-content: center; margin-bottom: 48px; }
+    .ft-mark img { width: 180px; opacity: 0.12; }
     footer .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
     .ft-logo { font-family: var(--fh); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,241,236,0.18); }
     .ft-links { display: flex; gap: 24px; list-style: none; }
     .ft-links a { font-size: 0.75rem; color: rgba(244,241,236,0.18); text-decoration: none; transition: color 0.2s; }
     .ft-links a:hover { color: var(--muted); }
+
+    /* ── NAUTILOID ── */
+    .nautiloid-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      pointer-events: none;
+      z-index: 1;
+      mix-blend-mode: screen;
+      opacity: 0;
+      animation: naut-in 3s ease 1s forwards;
+    }
+    @keyframes naut-in {
+      to { opacity: 0.13; }
+    }
+    @media (max-width: 960px) { .nautiloid-img { opacity: 0.12 !important; } }
 
     /* ── CANVAS ── */
     #wf-canvas {
@@ -661,7 +695,10 @@
 <!-- ═══ NAV ═══ -->
 <nav>
   <div class="container">
-    <div class="nav-logo">WRLZ</div>
+    <a href="#" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none">
+      <img src="wrlz_logo.svg" alt="" height="34" style="display:block">
+      <span class="nav-logo">WRLZ.AI</span>
+    </a>
     <div class="nav-right">
       <a href="#leistungen" class="nav-link">Leistungen</a>
       <a href="#ablauf" class="nav-link">Ablauf</a>
@@ -678,6 +715,8 @@
   </div>
 
   <div class="hero-overlay"></div>
+
+  <img class="nautiloid-img" src="nautiloid.png" alt="">
 
   <div class="hero-content">
     <div class="container">
@@ -1002,6 +1041,7 @@
 
 <!-- ═══ CTA ═══ -->
 <section class="bdt sp cta-section" id="demo">
+  <img class="nautiloid-cta" src="nautiloid.png" alt="">
   <div class="container">
     <div class="cta-wrap rev">
       <div class="label">Ihr nächster Schritt</div>
@@ -1018,6 +1058,9 @@
 
 <!-- ═══ FOOTER ═══ -->
 <footer>
+  <div class="ft-mark">
+    <img src="wrlz_logo.svg" alt="">
+  </div>
   <div class="container">
     <div class="ft-logo">WRLZ</div>
     <ul class="ft-links">
@@ -1260,7 +1303,7 @@
     ctx.save();
     rr(nx, ny, NS, NS, 9); ctx.clip();
     ctx.fillStyle = col;
-    ctx.globalAlpha = act ? 0.22 : dn ? 0.14 : 0.09;
+    ctx.globalAlpha = act ? 0.32 : dn ? 0.20 : 0.13;
     ctx.fillRect(nx, ny, NS, NS*0.28);
     ctx.globalAlpha = 1;
     ctx.restore();
@@ -1281,7 +1324,7 @@
     if (act) ctx.restore();
 
     // ── Label ──
-    ctx.fillStyle = act ? '#fff' : dn ? 'rgba(244,241,236,.88)' : 'rgba(244,241,236,.6)';
+    ctx.fillStyle = act ? '#fff' : dn ? 'rgba(244,241,236,.95)' : 'rgba(244,241,236,.75)';
     ctx.font = `${act?'600':'500'} ${NS*0.19}px "Space Grotesk",system-ui`;
     ctx.textAlign = 'center'; ctx.textBaseline = 'top';
     // clip long labels
