@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WRLZ — KI-Automation die verkauft</title>
+  <meta name="description" content="Vollautomatische KI-Systeme für D2C-Brands und Startups. Content, Leads, Umsatz — auf Autopilot.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:      #08080A;
+      --bg2:     #0E0E12;
+      --text:    #F4F1EC;
+      --muted:   rgba(244,241,236,0.45);
+      --faint:   rgba(244,241,236,0.15);
+      --border:  rgba(244,241,236,0.07);
+      --accent:  #FF6B2C;
+      --accent-d:#CC4A14;
+      --green:   #4ade80;
+      --fs:      'DM Serif Display', serif;
+      --fh:      'Space Grotesk', sans-serif;
+      --fb:      'Inter', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--fb);
+      font-weight: 300;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 40px;
+      position: relative;
+    }
+    @media (max-width: 640px) { .container { padding: 0 24px; } }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 28px 0;
+      transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+    }
+    nav.scrolled {
+      background: var(--accent);
+      padding: 14px 0;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.4);
+    }
+    nav.scrolled .nav-link { color: rgba(255,255,255,0.75); }
+    nav.scrolled .nav-link:hover { color: #fff; }
+    nav.scrolled .btn-nav { border-color: rgba(255,255,255,0.4); color: #fff; }
+    nav.scrolled .btn-nav:hover { border-color: #fff; }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+
+    .nav-logo {
+      font-family: var(--fh);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .nav-right { display: flex; align-items: center; gap: 32px; }
+
+    .nav-link {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--text); }
+
+    .btn-nav {
+      font-size: 0.8125rem;
+      padding: 9px 20px;
+      border: 1px solid rgba(244,241,236,0.22);
+      border-radius: 4px;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+    }
+    .btn-nav:hover { border-color: var(--accent); color: var(--accent); }
+    @media (max-width: 640px) { .nav-link { display: none; } }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    .hero-bg video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.45;
+    }
+
+    /* Animated node-workflow fallback */
+    .wf {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+    }
+
+    .wf-node {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 12px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 7px;
+      font-family: var(--fh);
+      font-size: 10px;
+      font-weight: 500;
+      color: rgba(244,241,236,0.45);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .nd { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .nd.g { background: var(--green); }
+    .nd.w { background: rgba(244,241,236,0.7); }
+
+    .f1 { animation: float1 6s ease-in-out infinite; }
+    .f2 { animation: float2 7.5s ease-in-out infinite; }
+    .f3 { animation: float1 5.5s ease-in-out infinite 1s; }
+    .f4 { animation: float2 8s ease-in-out infinite 0.5s; }
+    .f5 { animation: float1 6.5s ease-in-out infinite 2s; }
+    .f6 { animation: float2 7s ease-in-out infinite 1.5s; }
+    .f7 { animation: float1 9s ease-in-out infinite 0.8s; }
+
+    @keyframes float1 {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes float2 {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-14px); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(to bottom,
+          rgba(8,8,10,0.06) 0%,
+          rgba(8,8,10,0)    16%,
+          rgba(8,8,10,0)    62%,
+          rgba(8,8,10,0.82) 78%,
+          rgba(8,8,10,0.98) 100%
+        ),
+        linear-gradient(to right,
+          rgba(8,8,10,0.32) 0%,
+          rgba(8,8,10,0)    42%
+        );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding-bottom: 52px;
+    }
+
+    /* ── Horizontal bottom bar ── */
+    .hero-bar {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(244,241,236,0.1);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--fh);
+      font-size: 0.5625rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--accent);
+      display: block;
+    }
+
+    .hero-h1 {
+      font-family: var(--fs);
+      font-style: italic;
+      font-size: clamp(2rem, 3.8vw, 3.25rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin-bottom: 0;
+    }
+    .hero-h1 em { font-style: normal; color: var(--accent); }
+
+    .hero-bar-action {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+      padding-bottom: 4px;
+    }
+
+    .hero-bar-meta {
+      font-size: 0.75rem;
+      color: rgba(244,241,236,0.22);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-btns { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+
+    @media (max-width: 640px) {
+      .hero-bar { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .hero-bar-action { align-items: flex-start; }
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      border: none;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--accent-d); transform: translateY(-1px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s;
+      padding-bottom: 2px;
+    }
+    .btn-ghost:hover { color: var(--text); border-color: var(--faint); }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 13px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-track {
+      display: inline-flex;
+      animation: tick 28s linear infinite;
+    }
+    @keyframes tick {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .ti {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 36px;
+      font-family: var(--fh);
+      font-size: 0.625rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(244,241,236,0.2);
+    }
+    .ti-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--accent); opacity: 0.7; }
+
+    /* ── SECTIONS ── */
+    .sp { padding: 120px 0; }
+    .sp-s { padding: 80px 0; }
+    .bdt { border-top: 1px solid var(--border); }
+
+    .label {
+      font-family: var(--fh);
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .h2-serif {
+      font-family: var(--fs);
+      font-style: italic;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+
+    .h2-sans {
+      font-family: var(--fh);
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
+      margin-bottom: 20px;
+    }
+
+    .body-t {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* ── PROBLEM ── */
+    .prob-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    @media (max-width: 768px) { .prob-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+    .prob-left .body-t { margin-top: 20px; max-width: 420px; }
+
+    .pain-list { list-style: none; margin-top: 8px; }
+    .pain-item {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .pain-item:first-child { border-top: 1px solid var(--border); }
+    .pain-n {
+      font-family: var(--fh);
+      font-size: 0.5625rem;
+      letter-spacing: 0.1em;
+      color: rgba(244,241,236,0.18);
+      margin-bottom: 7px;
+    }
+    .pain-t {
+      font-family: var(--fh);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+    .pain-s {
+      font-size: 0.875rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* ── SYSTEM SPEC (Show don't tell) ── */
+    .spec-section { background: var(--bg2); }
+
+    .spec-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    @media (max-width: 768px) { .spec-wrap { grid-template-columns: 1fr; gap: 48px; } }
+
+    .spec-left .body-t { margin-top: 18px; max-width: 380px; }
+
+    .spec-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    .spec-table tr { border-bottom: 1px solid var(--border); }
+    .spec-table tr:first-child { border-top: 1px solid var(--border); }
+    .spec-table td {
+      padding: 14px 0;
+      font-size: 0.8125rem;
+      vertical-align: top;
+    }
+    .spec-table td:first-child {
+      color: rgba(244,241,236,0.28);
+      font-family: var(--fh);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      width: 44%;
+      padding-right: 16px;
+    }
+    .spec-table td:last-child {
+      color: var(--text);
+      font-family: var(--fh);
+      font-weight: 500;
+      font-size: 0.8125rem;
+    }
+    .spec-table td .spec-tag {
+      display: inline-block;
+      padding: 2px 8px;
+      background: rgba(255,107,44,0.1);
+      border: 1px solid rgba(255,107,44,0.2);
+      border-radius: 3px;
+      font-size: 0.6875rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .spec-table td .spec-green {
+      display: inline-block;
+      padding: 2px 8px;
+      background: rgba(74,222,128,0.08);
+      border: 1px solid rgba(74,222,128,0.15);
+      border-radius: 3px;
+      font-size: 0.6875rem;
+      color: #4ade80;
+      font-weight: 600;
+    }
+
+    /* ── USE CASES ── */
+    .uc-bg { background: var(--bg2); }
+    .uc-head { text-align: center; margin-bottom: 56px; }
+    .uc-head .body-t { max-width: 460px; margin: 0 auto; }
+
+    .uc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    @media (max-width: 900px) { .uc-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 480px) { .uc-grid { grid-template-columns: 1fr; } }
+
+    .uc-card {
+      background: var(--bg);
+      padding: 26px 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: background 0.2s;
+    }
+    .uc-card:hover { background: rgba(255,107,44,0.04); }
+    .uc-dot-s { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; opacity: 0.75; }
+    .uc-t { font-family: var(--fh); font-size: 0.8125rem; font-weight: 500; line-height: 1.35; }
+    .uc-s { font-size: 0.75rem; color: var(--muted); font-weight: 300; margin-top: 4px; line-height: 1.5; }
+
+    /* ── STATS ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 56px;
+    }
+    @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2,1fr); } }
+
+    .stat-b {
+      background: var(--bg);
+      padding: 52px 40px;
+    }
+    .stat-n {
+      font-family: var(--fh);
+      font-size: clamp(2.5rem, 4.5vw, 3.75rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .stat-n span { color: var(--accent); }
+    .stat-d { font-size: 0.875rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+    /* ── SPLIT SECTION ── */
+    .split-wrap { display: grid; grid-template-columns: 1fr 1fr; min-height: 620px; }
+    @media (max-width: 768px) { .split-wrap { grid-template-columns: 1fr; } }
+
+    .split-visual {
+      position: relative;
+      overflow: hidden;
+      background: #050508;
+      min-height: 400px;
+    }
+
+    .split-visual .wf { opacity: 0.75; }
+
+    .split-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 40% 55%, rgba(255,107,44,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .split-text {
+      padding: 80px 64px;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    @media (max-width: 900px) { .split-text { padding: 56px 40px; } }
+    .split-text .body-t { margin-top: 18px; margin-bottom: 40px; }
+
+    .proc-list { list-style: none; }
+    .proc-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .proc-item:first-child { border-top: 1px solid var(--border); }
+    .proc-n { font-family: var(--fh); font-size: 0.5625rem; letter-spacing: 0.1em; color: var(--accent); margin-top: 3px; width: 20px; flex-shrink: 0; }
+    .proc-t { font-family: var(--fh); font-size: 0.9375rem; font-weight: 600; margin-bottom: 4px; }
+    .proc-s { font-size: 0.875rem; color: var(--muted); font-weight: 300; line-height: 1.6; }
+
+    /* ── PACKAGES ── */
+    .pkg-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 24px; }
+    .pkg-note { font-size: 0.875rem; color: var(--muted); font-weight: 300; max-width: 260px; text-align: right; }
+    @media (max-width: 640px) { .pkg-note { text-align: left; } }
+
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    @media (max-width: 900px) { .pkg-grid { grid-template-columns: 1fr; } }
+
+    .pkg {
+      background: var(--bg);
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .pkg.feat { background: var(--bg2); }
+
+    .pkg-badge {
+      position: absolute; top: 18px; right: 18px;
+      font-family: var(--fh); font-size: 0.5625rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); padding: 4px 10px;
+      border: 1px solid rgba(255,107,44,0.3); border-radius: 100px;
+    }
+    .pkg-name { font-family: var(--fh); font-size: 0.625rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+    .pkg-price { font-family: var(--fh); font-size: 2.75rem; font-weight: 700; letter-spacing: -0.025em; line-height: 1; }
+    .pkg-note { font-size: 0.8125rem; color: var(--muted); font-weight: 300; margin-top: 5px; margin-bottom: 28px; }
+    .pkg-div { height: 1px; background: var(--border); margin: 20px 0 24px; }
+
+    .pkg-feats { list-style: none; display: flex; flex-direction: column; gap: 11px; flex: 1; margin-bottom: 32px; }
+    .pkg-feat { display: flex; align-items: flex-start; gap: 10px; font-size: 0.875rem; color: var(--muted); font-weight: 300; line-height: 1.5; }
+    .pkg-chk { width: 13px; height: 13px; flex-shrink: 0; color: var(--accent); margin-top: 2px; }
+
+    .btn-pkg {
+      display: block; width: 100%; padding: 13px;
+      text-align: center; font-size: 0.8125rem; font-weight: 400;
+      letter-spacing: 0.06em; text-decoration: none;
+      border-radius: 4px; border: 1px solid var(--border);
+      color: var(--muted); background: transparent;
+      transition: all 0.2s; cursor: pointer;
+    }
+    .btn-pkg:hover { border-color: var(--accent); color: var(--text); }
+    .btn-pkg.on { background: var(--accent); border-color: transparent; color: #fff; }
+    .btn-pkg.on:hover { background: var(--accent-d); }
+
+    /* ── CTA ── */
+    .cta-wrap {
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 500px;
+      background: radial-gradient(ellipse, rgba(255,107,44,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-wrap .body-t { margin: 18px auto 36px; max-width: 380px; }
+    .cta-meta { margin-top: 18px; font-size: 0.8125rem; color: rgba(244,241,236,0.22); font-weight: 300; }
+
+    /* ── FOOTER ── */
+    footer { padding: 40px 0; border-top: 1px solid var(--border); }
+    footer .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .ft-logo { font-family: var(--fh); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,241,236,0.18); }
+    .ft-links { display: flex; gap: 24px; list-style: none; }
+    .ft-links a { font-size: 0.75rem; color: rgba(244,241,236,0.18); text-decoration: none; transition: color 0.2s; }
+    .ft-links a:hover { color: var(--muted); }
+
+    /* ── CANVAS ── */
+    #wf-canvas {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      display: block;
+      transform: perspective(1600px) rotateX(5deg) rotateY(-2deg) scale(1.04);
+      transform-origin: 52% 48%;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .rev { opacity: 0; transform: translateY(22px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .rev.in { opacity: 1; transform: translateY(0); }
+    .rev.d1 { transition-delay: 0.1s; }
+    .rev.d2 { transition-delay: 0.2s; }
+    .rev.d3 { transition-delay: 0.3s; }
+  </style>
+</head>
+
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <div class="container">
+    <div class="nav-logo">WRLZ</div>
+    <div class="nav-right">
+      <a href="#leistungen" class="nav-link">Leistungen</a>
+      <a href="#ablauf" class="nav-link">Ablauf</a>
+      <a href="#demo" class="btn-nav">Demo buchen</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+
+  <div class="hero-bg">
+    <canvas id="wf-canvas"></canvas>
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="container">
+      <div class="hero-bar">
+        <div class="hero-bar-text">
+          <div class="hero-eyebrow">Intelligente Automation für wachsende Marken</div>
+          <h1 class="hero-h1">Systeme, die für Sie <em>arbeiten.</em></h1>
+        </div>
+        <div class="hero-bar-action">
+          <a href="#demo" class="btn-primary">
+            Demo buchen
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <span class="hero-bar-meta">Unverbindlich · 30 Minuten · Sofort buchbar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TICKER ═══ -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ti"><span class="ti-dot"></span>n8n Workflows</span>
+    <span class="ti"><span class="ti-dot"></span>Claude AI</span>
+    <span class="ti"><span class="ti-dot"></span>fal.ai Image & Video</span>
+    <span class="ti"><span class="ti-dot"></span>TikTok Shop API</span>
+    <span class="ti"><span class="ti-dot"></span>Telegram Automation</span>
+    <span class="ti"><span class="ti-dot"></span>Google Sheets</span>
+    <span class="ti"><span class="ti-dot"></span>Stripe Payments</span>
+    <span class="ti"><span class="ti-dot"></span>GitHub Pages</span>
+    <span class="ti"><span class="ti-dot"></span>Meta Ads API</span>
+    <span class="ti"><span class="ti-dot"></span>CRM Integration</span>
+    <span class="ti"><span class="ti-dot"></span>Apify Scraping</span>
+    <span class="ti"><span class="ti-dot"></span>n8n Workflows</span>
+    <span class="ti"><span class="ti-dot"></span>Claude AI</span>
+    <span class="ti"><span class="ti-dot"></span>fal.ai Image & Video</span>
+    <span class="ti"><span class="ti-dot"></span>TikTok Shop API</span>
+    <span class="ti"><span class="ti-dot"></span>Telegram Automation</span>
+    <span class="ti"><span class="ti-dot"></span>Google Sheets</span>
+    <span class="ti"><span class="ti-dot"></span>Stripe Payments</span>
+    <span class="ti"><span class="ti-dot"></span>GitHub Pages</span>
+    <span class="ti"><span class="ti-dot"></span>Meta Ads API</span>
+    <span class="ti"><span class="ti-dot"></span>CRM Integration</span>
+    <span class="ti"><span class="ti-dot"></span>Apify Scraping</span>
+  </div>
+</div>
+
+<!-- ═══ PROBLEM ═══ -->
+<section class="bdt sp rev">
+  <div class="container">
+    <div class="prob-grid">
+      <div class="prob-left">
+        <div class="label">Die Realität</div>
+        <h2 class="h2-serif">Sie führen ein Unternehmen. Nicht eine Agentur.</h2>
+        <p class="body-t">Wachstumsstarke Unternehmen investieren wertvolle Ressourcen in Aufgaben, die ein intelligentes System übernehmen könnte. Das Ergebnis: gebundenes Kapital, stagnierendes Wachstum und ein Team, das operativen Aufgaben hinterherjagt statt Strategie voranzutreiben.</p>
+      </div>
+      <div>
+        <ul class="pain-list">
+          <li class="pain-item">
+            <div class="pain-n">01</div>
+            <div class="pain-t">Content bindet operatives Kapital</div>
+            <div class="pain-s">Manuell produzierter Content ist kostspielig, inkonsistent und nicht skalierbar. Wettbewerber, die automatisieren, veröffentlichen täglich ein Vielfaches und gewinnen an Sichtbarkeit.</div>
+          </li>
+          <li class="pain-item">
+            <div class="pain-n">02</div>
+            <div class="pain-t">Kein System hinter dem Vertrieb</div>
+            <div class="pain-s">Unstrukturierte Akquise ohne intelligente Qualifizierung erzeugt hohen Aufwand bei niedrigem Ertrag. Ein System, das Leads kontinuierlich identifiziert und priorisiert, fehlt.</div>
+          </li>
+          <li class="pain-item">
+            <div class="pain-n">03</div>
+            <div class="pain-t">Werbeinvestments ohne Datenbasis</div>
+            <div class="pain-s">Kampagnen ohne automatisierten Feedback-Loop optimieren sich nicht selbst. Jede manuelle Iteration kostet Zeit und Kapital, das ein lernendes System einsparen würde.</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SYSTEM SPEC ═══ -->
+<section class="spec-section bdt sp rev">
+  <div class="container">
+    <div class="spec-wrap">
+      <div class="spec-left">
+        <div class="label">Technische Architektur</div>
+        <h2 class="h2-serif">Präzision, die messbar wirkt.</h2>
+        <p class="body-t">Keine abstrakten Versprechen. Dies ist die exakte technische Grundlage Ihres Systems, transparent und vollständig nachvollziehbar.</p>
+      </div>
+      <div>
+        <table class="spec-table">
+          <tr>
+            <td>Automation Engine</td>
+            <td>n8n (self-hosted) <span class="spec-tag">18 Nodes</span></td>
+          </tr>
+          <tr>
+            <td>KI — Branding & Copy</td>
+            <td>Claude Sonnet 4.5</td>
+          </tr>
+          <tr>
+            <td>KI — Klassifikation</td>
+            <td>Gemini 2.5 Flash</td>
+          </tr>
+          <tr>
+            <td>Image Engine</td>
+            <td>fal.ai · Flux Pro</td>
+          </tr>
+          <tr>
+            <td>Video Engine</td>
+            <td>Kling 1.5 · 5s Ambient Loop</td>
+          </tr>
+          <tr>
+            <td>Trend-Daten</td>
+            <td>Reddit · YouTube · Apify</td>
+          </tr>
+          <tr>
+            <td>Fulfillment</td>
+            <td>CJDropshipping API</td>
+          </tr>
+          <tr>
+            <td>Benachrichtigungen</td>
+            <td>Telegram Bot (Human Gate)</td>
+          </tr>
+          <tr>
+            <td>Landing Pages</td>
+            <td>GitHub Pages · Auto-Deploy</td>
+          </tr>
+          <tr>
+            <td>Kosten pro Run</td>
+            <td>~$0,35 <span class="spec-green">⬇ 80% günstiger als Agenturen</span></td>
+          </tr>
+          <tr>
+            <td>Setup-Zeit</td>
+            <td><span class="spec-green">48 Stunden</span></td>
+          </tr>
+          <tr>
+            <td>Läuft täglich um</td>
+            <td>06:00 · vollautomatisch</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ USE CASES ═══ -->
+<section class="uc-bg bdt sp" id="leistungen">
+  <div class="container">
+    <div class="uc-head rev">
+      <div class="label">Was wir für Sie bauen</div>
+      <h2 class="h2-sans">Alles, was Ihr Wachstum verlangsamt.</h2>
+      <p class="body-t">Keine Beratungsfolien. Jede Automation, die wir entwickeln, ist produktionsbereit, messbar und direkt wirksam.</p>
+    </div>
+    <div class="uc-grid rev d1">
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Content Engine</div><div class="uc-s">Bis zu 30 Inhalte täglich, vollautomatisch und markenkonsistent produziert</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Trend-Erkennung</div><div class="uc-s">Das System identifiziert virales Potenzial, bevor der Markt es erkennt</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Lead Scoring</div><div class="uc-s">Automatische Priorisierung von Interessenten nach Abschlusswahrscheinlichkeit</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">E-Mail-Sequenzen</div><div class="uc-s">Personalisierte KI-Sequenzen mit nachweisbarer Konversionsrate</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Social Media Autopilot</div><div class="uc-s">Konsistente Markenpräsenz auf allen Plattformen, ohne manuellen Aufwand</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Ad Creative AI</div><div class="uc-s">Datengestützte Werbemittel mit automatisierter Zielgruppenoptimierung</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">CRM-Integration</div><div class="uc-s">Lückenlose Datensynchronisation zwischen sämtlichen Systemen in Echtzeit</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Angebots-Automation</div><div class="uc-s">Angebote werden erstellt und versandt, bevor der Interessent nachfragt</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Kundensupport</div><div class="uc-s">80 Prozent aller Anfragen ohne Personalaufwand präzise beantwortet</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Shop Automation</div><div class="uc-s">Produkte, Listings und Fulfillment vollständig automatisiert und skalierbar</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">KI-Reporting</div><div class="uc-s">Tägliche Berichte mit konkreten, priorisierten Handlungsempfehlungen</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Und weiteres</div><div class="uc-s">Jede repetitive Aufgabe ist ein Kandidat für intelligente Automation</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section class="bdt sp rev">
+  <div class="container">
+    <div class="label">Messbare Wirkung</div>
+    <h2 class="h2-sans">Zahlen, die zählen.</h2>
+    <div class="stats-grid">
+      <div class="stat-b"><div class="stat-n">3<span>×</span></div><div class="stat-d">mehr qualifizierte Leads bereits im ersten Monat nach dem Go-live</div></div>
+      <div class="stat-b"><div class="stat-n">48<span>h</span></div><div class="stat-d">bis Ihr individuelles Automation-System vollständig betriebsbereit ist</div></div>
+      <div class="stat-b"><div class="stat-n">90<span>%</span></div><div class="stat-d">weniger operativer Aufwand für Content, Akquise und Vertrieb</div></div>
+      <div class="stat-b"><div class="stat-n">€<span>0</span></div><div class="stat-d">Content-Budget erforderlich. Das System produziert täglich eigenständig.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SPLIT: HOW IT WORKS ═══ -->
+<section class="bdt rev" id="ablauf">
+  <div class="split-wrap">
+
+    <!-- Visual left -->
+    <div class="split-visual">
+      <div class="split-glow"></div>
+      <svg class="wf" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="sg" cx="45%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FF6B2C" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#FF6B2C" stop-opacity="0"/>
+          </radialGradient>
+          <path id="sp1" d="M 130,200 L 320,340 L 510,240 L 680,360"/>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#sg)"/>
+        <line x1="18%" y1="33%" x2="44%" y2="56%" stroke="rgba(255,107,44,0.22)" stroke-width="1.5"/>
+        <line x1="44%" y1="56%" x2="70%" y2="40%" stroke="rgba(255,107,44,0.22)" stroke-width="1.5"/>
+        <line x1="70%" y1="40%" x2="92%" y2="60%" stroke="rgba(255,107,44,0.15)" stroke-width="1.5"/>
+        <line x1="44%" y1="56%" x2="57%" y2="74%" stroke="rgba(255,107,44,0.12)" stroke-width="1"/>
+        <circle cx="18%" cy="33%" r="4" fill="#FF6B2C" opacity="0.5"/>
+        <circle cx="44%" cy="56%" r="6" fill="#FF6B2C" opacity="0.9"/>
+        <circle cx="70%" cy="40%" r="5" fill="#FF6B2C" opacity="0.7"/>
+        <circle cx="92%" cy="60%" r="4" fill="#FF6B2C" opacity="0.5"/>
+        <circle cx="57%" cy="74%" r="4" fill="#4ade80" opacity="0.7"/>
+        <circle cx="44%" cy="56%" r="9" fill="none" stroke="#FF6B2C" stroke-width="1" stroke-opacity="0.4">
+          <animate attributeName="r" values="7;22;7" dur="3s" repeatCount="indefinite"/>
+          <animate attributeName="stroke-opacity" values="0.5;0;0.5" dur="3s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="2.5" fill="#FF6B2C" opacity="0.85">
+          <animateMotion dur="2.6s" repeatCount="indefinite"><mpath href="#sp1"/></animateMotion>
+        </circle>
+        <circle r="2.5" fill="#FF6B2C" opacity="0.85">
+          <animateMotion dur="2.6s" repeatCount="indefinite" begin="1.3s"><mpath href="#sp1"/></animateMotion>
+        </circle>
+      </svg>
+
+      <div class="wf-node f1" style="top:26%;left:8%"><div class="nd"></div>Schedule: 06:00</div>
+      <div class="wf-node f2" style="top:49%;left:36%"><div class="nd"></div>Trend Scout</div>
+      <div class="wf-node f3" style="top:34%;left:60%"><div class="nd w"></div>Claude AI</div>
+      <div class="wf-node f4" style="top:53%;left:79%"><div class="nd"></div>Deploy</div>
+      <div class="wf-node f5" style="top:67%;left:48%"><div class="nd g"></div>✓ Live</div>
+    </div>
+
+    <!-- Text right -->
+    <div class="split-text">
+      <div class="label">Der Prozess</div>
+      <h2 class="h2-serif">Betriebsbereit in 48 Stunden.</h2>
+      <p class="body-t">Kein monatelanger Onboarding-Prozess. Nach einem strukturierten Erstgespräch entwickeln wir das System, das präzise zu Ihren Anforderungen passt.</p>
+
+      <ul class="proc-list">
+        <li class="proc-item">
+          <div class="proc-n">01</div>
+          <div>
+            <div class="proc-t">Strategiegespräch</div>
+            <div class="proc-s">Ein fokussiertes Gespräch über Ihr Unternehmen, Ihre Engpässe und das konkrete Automatisierungspotenzial. Live demonstriert, mit echten Zahlen.</div>
+          </div>
+        </li>
+        <li class="proc-item">
+          <div class="proc-n">02</div>
+          <div>
+            <div class="proc-t">Entwicklung und Konfiguration</div>
+            <div class="proc-s">In 48 Stunden entsteht Ihr individuelles System: Workflows, KI-Modelle und Integrationen, vollständig konfiguriert und getestet.</div>
+          </div>
+        </li>
+        <li class="proc-item">
+          <div class="proc-n">03</div>
+          <div>
+            <div class="proc-t">Das System arbeitet</div>
+            <div class="proc-s">Ab dem ersten Tag liefert das System Reports, optimiert sich kontinuierlich und arbeitet. Sie konzentrieren sich auf Ihr Unternehmen.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ PACKAGES ═══ -->
+<section class="bdt sp rev" id="pakete">
+  <div class="container">
+    <div class="pkg-head">
+      <div>
+        <div class="label">Pakete</div>
+        <h2 class="h2-sans">Wähle dein System.</h2>
+      </div>
+      <p class="pkg-note">Jedes System wird individuell entwickelt. Betriebsbereit in 48 Stunden. Ohne Mindestlaufzeit.</p>
+    </div>
+
+    <div class="pkg-grid">
+      <div class="pkg">
+        <div class="pkg-name">Content &amp; Sichtbarkeit</div>
+        <div class="pkg-price">€1.500</div>
+        <div class="pkg-note">monatlich · Setup inklusive</div>
+        <div class="pkg-div"></div>
+        <ul class="pkg-feats">
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>30 KI-generierte Videos monatlich</li>
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Vollautomatisierte Social-Media-Präsenz</li>
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Trendbasiertes Content-System</li>
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Monatlicher Performance-Bericht</li>
+        </ul>
+        <a href="#demo" class="btn-pkg">Demo buchen</a>
+      </div>
+
+      <div class="pkg feat">
+        <div class="pkg-badge">Meistgewählt</div>
+        <div class="pkg-name">Lead Engine</div>
+        <div class="pkg-price">€2.000</div>
+        <div class="pkg-note">monatlich · €1.500 Setup einmalig</div>
+        <div class="pkg-div"></div>
+        <ul class="pkg-feats">
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Alles aus Content &amp; Sichtbarkeit</li>
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Automatische Lead-Qualifizierung</li>
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>KI-gestützte E-Mail-Sequenzen</li>
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>CRM-Integration</li>
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Wöchentliche Strategy-Calls</li>
+        </ul>
+        <a href="#demo" class="btn-pkg on">Demo buchen</a>
+      </div>
+
+      <div class="pkg">
+        <div class="pkg-name">Full System</div>
+        <div class="pkg-price">€500</div>
+        <div class="pkg-note">monatlich · €3.500 Setup einmalig</div>
+        <div class="pkg-div"></div>
+        <ul class="pkg-feats">
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Alles aus Lead Engine</li>
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Vollständige Custom-Automation-Architektur</li>
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>KI-gesteuerte Werbeanzeigen</li>
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Dedizierter Support</li>
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Das System gehört Ihnen nach dem Setup</li>
+        </ul>
+        <a href="#demo" class="btn-pkg">Demo buchen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="bdt sp cta-section" id="demo">
+  <div class="container">
+    <div class="cta-wrap rev">
+      <div class="label">Ihr nächster Schritt</div>
+      <h2 class="h2-serif">Bereit für ein System, das arbeitet?</h2>
+      <p class="body-t">30 Minuten, unverbindlich. Sie erleben live, was intelligente Automation für Ihr Unternehmen bedeutet. Konkrete Zahlen, echte Demo, kein Pitch.</p>
+      <a href="https://calendly.com/pasco1280/30min" class="btn-primary" style="display:inline-flex">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Gespräch vereinbaren
+      </a>
+      <p class="cta-meta">Oder schreiben Sie uns: pascal@wrlz.de</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="ft-logo">WRLZ</div>
+    <ul class="ft-links">
+      <li><a href="#">Impressum</a></li>
+      <li><a href="#">Datenschutz</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // ── Nav scroll bg ──
+  const navEl = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    navEl.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ── Scroll reveal ──
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.rev').forEach(el => obs.observe(el));
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  // ══════════════════════════════════════════════
+  //  WORKFLOW DEFINITION  (based on real Trend Radar n8n)
+  // ══════════════════════════════════════════════
+  const NODES = [
+    { id:'sched',    label:'Täglich 06:00',          sub:'Schedule Trigger',           type:'trigger', rx:.06, ry:.40 },
+    { id:'kw',       label:'Keywords & Nischen',      sub:'Code Node · manual',         type:'code',    rx:.17, ry:.40 },
+    { id:'trends',   label:'Google Trends',           sub:'GET api.dataforseo.com',     type:'http',    rx:.29, ry:.18 },
+    { id:'keepa',    label:'Amazon BSR via Keepa',    sub:'GET api.keepa.com',          type:'http',    rx:.29, ry:.36 },
+    { id:'yt',       label:'YouTube Trending DE',     sub:'GET googleapis.com',         type:'http',    rx:.29, ry:.54 },
+    { id:'reddit',   label:'Reddit Hot Posts',        sub:'GET reddit.com',             type:'http',    rx:.29, ry:.72 },
+    { id:'perp',     label:'Perplexity Research',     sub:'POST api.perplexity.ai',     type:'http',    rx:.38, ry:.72 },
+    { id:'merge',    label:'Alle Quellen',            sub:'zusammenführen · append',    type:'merge',   rx:.46, ry:.48 },
+    { id:'norm',     label:'Daten normalisieren',     sub:'Code Node',                  type:'code',    rx:.57, ry:.36 },
+    { id:'gemini',   label:'Gemini Flash',            sub:'POST generativelang...',     type:'http',    rx:.67, ry:.48 },
+    { id:'parse',    label:'Gemini Output parsen',    sub:'Code Node',                  type:'code',    rx:.75, ry:.60 },
+    { id:'claude',   label:'Claude Sonnet',           sub:'POST api.anthropic.com',     type:'claude',  rx:.82, ry:.36 },
+    { id:'final',    label:'Report finalisieren',     sub:'Code Node',                  type:'code',    rx:.88, ry:.22 },
+    { id:'sheets',   label:'Google Sheets',           sub:'append: sheet',              type:'sheets',  rx:.93, ry:.36 },
+    { id:'gmail',    label:'Gmail — Report senden',   sub:'send: message',              type:'gmail',   rx:.93, ry:.54 },
+  ];
+
+  const EDGES = [
+    ['sched','kw'],
+    ['kw','trends'],['kw','keepa'],['kw','yt'],['kw','reddit'],
+    ['reddit','perp'],
+    ['trends','merge'],['keepa','merge'],['yt','merge'],['perp','merge'],
+    ['merge','norm'],
+    ['norm','gemini'],
+    ['gemini','parse'],
+    ['parse','claude'],
+    ['claude','final'],
+    ['final','sheets'],['final','gmail'],
+  ];
+
+  // ══════════════════════════════════════════════
+  //  NODE TYPE VISUAL CONFIG
+  // ══════════════════════════════════════════════
+  const T = {
+    trigger: { color:'#f97316' },
+    code:    { color:'#f97316' },
+    http:    { color:'#818cf8' },
+    merge:   { color:'#818cf8' },
+    claude:  { color:'#FF6B2C' },
+    sheets:  { color:'#22c55e' },
+    gmail:   { color:'#ef4444' },
+  };
+
+  // ══════════════════════════════════════════════
+  //  CANVAS SETUP
+  // ══════════════════════════════════════════════
+  const C = document.getElementById('wf-canvas');
+  if (!C) return;
+  const ctx = C.getContext('2d');
+
+  const NM = {}; NODES.forEach(n => NM[n.id] = n);
+  const ST = {}; NODES.forEach(n => ST[n.id] = 'idle');
+  const flowParts = [];   // particles along edges
+  const burstParts = [];  // explosion particles
+
+  let W, H, NS; // canvas size, node size
+
+  function resize() {
+    C.width  = W = window.innerWidth;
+    C.height = H = window.innerHeight;
+    NS = Math.max(50, Math.min(62, W * 0.038));
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // ══════════════════════════════════════════════
+  //  GEOMETRY HELPERS
+  // ══════════════════════════════════════════════
+  function npos(n) { return { x: n.rx * W, y: n.ry * H }; }
+
+  function rr(x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x+r, y);
+    ctx.arcTo(x+w,y,   x+w,y+h, r);
+    ctx.arcTo(x+w,y+h, x,  y+h, r);
+    ctx.arcTo(x,  y+h, x,  y,   r);
+    ctx.arcTo(x,  y,   x+r,y,   r);
+    ctx.closePath();
+  }
+
+  function bpt(e, t) {
+    const m = 1-t;
+    return {
+      x: m*m*m*e.x1 + 3*m*m*t*e.cx1 + 3*m*t*t*e.cx2 + t*t*t*e.x2,
+      y: m*m*m*e.y1 + 3*m*m*t*e.cy1 + 3*m*t*t*e.cy2 + t*t*t*e.y2,
+    };
+  }
+
+  function epts(aid, bid) {
+    const f = npos(NM[aid]), t = npos(NM[bid]), hs = NS/2;
+    const x1=f.x+hs, y1=f.y, x2=t.x-hs, y2=t.y;
+    const dx = (x2-x1)*0.5;
+    return { x1, y1, cx1:x1+dx, cy1:y1, cx2:x2-dx, cy2:y2, x2, y2 };
+  }
+
+  // ══════════════════════════════════════════════
+  //  ICON DRAWING (n8n style)
+  // ══════════════════════════════════════════════
+  function drawIcon(type, cx, cy, col, sz) {
+    const s = sz * 0.22;
+    ctx.save();
+    ctx.strokeStyle = col; ctx.fillStyle = col; ctx.lineWidth = 1.4;
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+
+    switch (type) {
+      case 'trigger':
+        // Lightning bolt ⚡
+        ctx.beginPath();
+        ctx.moveTo(cx+s*.4, cy-s);
+        ctx.lineTo(cx-s*.5, cy+s*.1);
+        ctx.lineTo(cx+s*.1, cy+s*.1);
+        ctx.lineTo(cx-s*.4, cy+s);
+        ctx.lineTo(cx+s*.6, cy-s*.1);
+        ctx.lineTo(cx, cy-s*.1);
+        ctx.closePath(); ctx.fill();
+        break;
+
+      case 'http':
+        // Globe
+        ctx.beginPath(); ctx.arc(cx, cy, s, 0, Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(cx-s, cy); ctx.lineTo(cx+s, cy); ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(cx, cy-s);
+        ctx.bezierCurveTo(cx+s*.6, cy-s*.5, cx+s*.6, cy+s*.5, cx, cy+s);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(cx, cy-s);
+        ctx.bezierCurveTo(cx-s*.6, cy-s*.5, cx-s*.6, cy+s*.5, cx, cy+s);
+        ctx.stroke();
+        break;
+
+      case 'code':
+        // { }
+        ctx.font = `bold ${sz*0.34}px "Space Grotesk",monospace`;
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('{}', cx, cy+1);
+        break;
+
+      case 'merge':
+        // Branch icon →
+        ctx.beginPath();
+        ctx.moveTo(cx-s, cy-s*.5); ctx.lineTo(cx, cy); ctx.lineTo(cx-s, cy+s*.5);
+        ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx+s, cy); ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(cx+s*.4, cy-s*.4); ctx.lineTo(cx+s, cy); ctx.lineTo(cx+s*.4, cy+s*.4);
+        ctx.stroke();
+        break;
+
+      case 'claude':
+        // ◈ Diamond/Claude symbol
+        ctx.beginPath();
+        ctx.moveTo(cx, cy-s); ctx.lineTo(cx+s*.7, cy);
+        ctx.lineTo(cx, cy+s); ctx.lineTo(cx-s*.7, cy);
+        ctx.closePath(); ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(cx, cy-s*.45); ctx.lineTo(cx+s*.32, cy);
+        ctx.lineTo(cx, cy+s*.45); ctx.lineTo(cx-s*.32, cy);
+        ctx.closePath(); ctx.fillStyle = col; ctx.fill();
+        break;
+
+      case 'sheets':
+        // Grid
+        ctx.strokeRect(cx-s, cy-s, s*2, s*2);
+        ctx.beginPath();
+        ctx.moveTo(cx-s*.2, cy-s); ctx.lineTo(cx-s*.2, cy+s);
+        ctx.moveTo(cx+s*.4, cy-s); ctx.lineTo(cx+s*.4, cy+s);
+        ctx.moveTo(cx-s, cy-s*.2); ctx.lineTo(cx+s, cy-s*.2);
+        ctx.moveTo(cx-s, cy+s*.4); ctx.lineTo(cx+s, cy+s*.4);
+        ctx.stroke();
+        break;
+
+      case 'gmail':
+        // M envelope
+        ctx.strokeRect(cx-s, cy-s*.65, s*2, s*1.3);
+        ctx.beginPath();
+        ctx.moveTo(cx-s, cy-s*.65); ctx.lineTo(cx, cy); ctx.lineTo(cx+s, cy-s*.65);
+        ctx.stroke();
+        break;
+    }
+    ctx.restore();
+  }
+
+  // ══════════════════════════════════════════════
+  //  DRAW NODE
+  // ══════════════════════════════════════════════
+  function drawNode(node) {
+    const p = npos(node);
+    const st = ST[node.id];
+    const act = st === 'running', dn = st === 'done';
+    const cfg = T[node.type];
+    const col = cfg.color;
+    const nx = p.x - NS/2, ny = p.y - NS/2;
+
+    // ── Glow ──
+    if (act) {
+      ctx.save();
+      ctx.shadowColor = col;
+      ctx.shadowBlur = 36;
+    }
+
+    // ── Background ──
+    ctx.fillStyle = act ? 'rgba(30,24,18,.98)' : dn ? 'rgba(20,28,20,.95)' : 'rgba(22,22,30,.92)';
+    rr(nx, ny, NS, NS, 9); ctx.fill();
+
+    if (act) ctx.restore();
+
+    // ── Top color band (like n8n node header) ──
+    ctx.save();
+    rr(nx, ny, NS, NS, 9); ctx.clip();
+    ctx.fillStyle = col;
+    ctx.globalAlpha = act ? 0.22 : dn ? 0.14 : 0.09;
+    ctx.fillRect(nx, ny, NS, NS*0.28);
+    ctx.globalAlpha = 1;
+    ctx.restore();
+
+    // ── Border ──
+    ctx.strokeStyle = act ? col : dn ? 'rgba(74,222,128,.3)' : 'rgba(255,255,255,.09)';
+    ctx.lineWidth = act ? 1.5 : 1;
+    rr(nx, ny, NS, NS, 9); ctx.stroke();
+
+    // ── Icon ──
+    const icol = act ? col : dn ? '#4ade80' : 'rgba(255,255,255,.52)';
+    drawIcon(node.type, p.x, p.y, icol, NS);
+
+    // ── Status dot ──
+    if (act) { ctx.save(); ctx.shadowColor = col; ctx.shadowBlur = 10; }
+    ctx.fillStyle = dn ? '#4ade80' : act ? col : 'rgba(255,255,255,.1)';
+    ctx.beginPath(); ctx.arc(nx+NS-8, ny+8, 4, 0, Math.PI*2); ctx.fill();
+    if (act) ctx.restore();
+
+    // ── Label ──
+    ctx.fillStyle = act ? '#fff' : dn ? 'rgba(244,241,236,.88)' : 'rgba(244,241,236,.6)';
+    ctx.font = `${act?'600':'500'} ${NS*0.19}px "Space Grotesk",system-ui`;
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    // clip long labels
+    let lbl = node.label;
+    if (lbl.length > 18) lbl = lbl.slice(0,17) + '…';
+    ctx.fillText(lbl, p.x, ny + NS + NS*0.1);
+
+    // ── Sub ──
+    ctx.fillStyle = 'rgba(244,241,236,.2)';
+    ctx.font = `300 ${NS*0.155}px "Inter",system-ui`;
+    let sub = node.sub;
+    if (sub.length > 22) sub = sub.slice(0,21)+'…';
+    ctx.fillText(sub, p.x, ny + NS + NS*0.1 + NS*0.22);
+
+    // ── Port dots ──
+    ctx.fillStyle = act ? 'rgba(255,255,255,.35)' : 'rgba(255,255,255,.16)';
+    ctx.strokeStyle = act ? 'rgba(255,255,255,.25)' : 'rgba(255,255,255,.1)';
+    ctx.lineWidth = 1;
+    [nx, nx+NS].forEach(px => {
+      ctx.beginPath(); ctx.arc(px, p.y, 4, 0, Math.PI*2);
+      ctx.fill(); ctx.stroke();
+    });
+  }
+
+  // ══════════════════════════════════════════════
+  //  DRAW EDGE
+  // ══════════════════════════════════════════════
+  function drawEdge(aid, bid) {
+    const e = epts(aid, bid);
+    const st = ST[aid];
+    const hot = st === 'running' || st === 'done';
+    ctx.strokeStyle = hot ? 'rgba(255,107,44,.26)' : 'rgba(255,255,255,.07)';
+    ctx.lineWidth = 1.5; ctx.setLineDash([]);
+    ctx.beginPath();
+    ctx.moveTo(e.x1, e.y1);
+    ctx.bezierCurveTo(e.cx1, e.cy1, e.cx2, e.cy2, e.x2, e.y2);
+    ctx.stroke();
+    // Arrowhead
+    const pp = bpt(e, 0.96);
+    const dx = e.x2-pp.x, dy = e.y2-pp.y, ln = Math.hypot(dx,dy);
+    if (ln > 0) {
+      const ux=dx/ln, uy=dy/ln;
+      ctx.fillStyle = hot ? 'rgba(255,107,44,.38)' : 'rgba(255,255,255,.1)';
+      ctx.beginPath();
+      ctx.moveTo(e.x2, e.y2);
+      ctx.lineTo(e.x2 - ux*7 + uy*3.5, e.y2 - uy*7 - ux*3.5);
+      ctx.lineTo(e.x2 - ux*7 - uy*3.5, e.y2 - uy*7 + ux*3.5);
+      ctx.closePath(); ctx.fill();
+    }
+  }
+
+  // ══════════════════════════════════════════════
+  //  FLOW PARTICLES  (along edges)
+  // ══════════════════════════════════════════════
+  function spawnFlow(aid, bid, count) {
+    const e = epts(aid, bid);
+    for (let i = 0; i < count; i++) {
+      flowParts.push({ e, t: -i*0.30, sp: 0.008 + Math.random()*0.005, sz: 2.4+Math.random() });
+    }
+  }
+
+  function tickFlow() {
+    for (let i = flowParts.length-1; i >= 0; i--) {
+      flowParts[i].t += flowParts[i].sp;
+      if (flowParts[i].t > 1.2) flowParts.splice(i, 1);
+    }
+  }
+
+  function drawFlow() {
+    flowParts.forEach(p => {
+      const t = Math.max(0, Math.min(1, p.t)); if (t <= 0) return;
+      const pos = bpt(p.e, t);
+      ctx.save();
+      ctx.shadowColor = '#FF6B2C'; ctx.shadowBlur = 12;
+      ctx.fillStyle = '#FF6B2C'; ctx.globalAlpha = 0.88;
+      ctx.beginPath(); ctx.arc(pos.x, pos.y, p.sz, 0, Math.PI*2); ctx.fill();
+      ctx.restore();
+    });
+  }
+
+  // ══════════════════════════════════════════════
+  //  BURST PARTICLES  (node explosion)
+  // ══════════════════════════════════════════════
+  function spawnBurst(nodeId, count) {
+    const pos = npos(NM[nodeId]);
+    const col = T[NM[nodeId].type].color;
+    for (let i = 0; i < count; i++) {
+      const a = (Math.PI*2*i/count) + Math.random()*0.4;
+      const sp = 1.8 + Math.random()*3.5;
+      burstParts.push({
+        x: pos.x, y: pos.y, vx: Math.cos(a)*sp, vy: Math.sin(a)*sp,
+        life: 1, decay: 0.016+Math.random()*0.01,
+        sz: 1.5+Math.random()*2.5, col,
+      });
+    }
+  }
+
+  function tickBurst() {
+    for (let i = burstParts.length-1; i >= 0; i--) {
+      const p = burstParts[i];
+      p.x += p.vx; p.y += p.vy;
+      p.vx *= 0.94; p.vy *= 0.94;
+      p.life -= p.decay;
+      if (p.life <= 0) burstParts.splice(i, 1);
+    }
+  }
+
+  function drawBurst() {
+    burstParts.forEach(p => {
+      ctx.save();
+      ctx.shadowColor = p.col; ctx.shadowBlur = 8;
+      ctx.fillStyle = p.col; ctx.globalAlpha = p.life * 0.8;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.sz*p.life, 0, Math.PI*2); ctx.fill();
+      ctx.restore();
+    });
+  }
+
+  // ══════════════════════════════════════════════
+  //  EXECUTION SEQUENCE
+  // ══════════════════════════════════════════════
+  function dl(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  async function runSequence() {
+    NODES.forEach(n => ST[n.id] = 'idle');
+    flowParts.length = 0;
+
+    await dl(600);
+
+    // Schedule fires
+    ST['sched'] = 'running'; await dl(650);
+    spawnBurst('sched', 12);
+    ST['sched'] = 'done';
+
+    // → Keywords
+    spawnFlow('sched','kw', 3);
+    await dl(380); ST['kw'] = 'running'; await dl(750);
+    spawnBurst('kw', 10);
+    ST['kw'] = 'done';
+
+    // → 4 data sources in parallel
+    spawnFlow('kw','trends', 2); spawnFlow('kw','keepa', 2);
+    spawnFlow('kw','yt', 2);     spawnFlow('kw','reddit', 2);
+    await dl(300); ST['trends']='running';
+    await dl(200); ST['keepa']='running';
+    await dl(150); ST['yt']='running';
+    await dl(150); ST['reddit']='running';
+    await dl(900);
+    spawnBurst('trends', 8); spawnBurst('keepa', 8);
+    spawnBurst('yt', 8);     spawnBurst('reddit', 8);
+    ST['trends']='done'; ST['keepa']='done'; ST['yt']='done'; ST['reddit']='done';
+
+    // Reddit → Perplexity
+    spawnFlow('reddit','perp', 2);
+    await dl(250); ST['perp']='running'; await dl(700);
+    spawnBurst('perp', 10);
+    ST['perp']='done';
+
+    // → Merge
+    spawnFlow('trends','merge',2); spawnFlow('keepa','merge',2);
+    spawnFlow('yt','merge',2);     spawnFlow('perp','merge',2);
+    await dl(450); ST['merge']='running'; await dl(700);
+    spawnBurst('merge', 14);
+    ST['merge']='done';
+
+    // → Normalize
+    spawnFlow('merge','norm', 3);
+    await dl(400); ST['norm']='running'; await dl(650);
+    spawnBurst('norm', 10);
+    ST['norm']='done';
+
+    // → Gemini
+    spawnFlow('norm','gemini', 3);
+    await dl(400); ST['gemini']='running'; await dl(1100);
+    spawnBurst('gemini', 12);
+    ST['gemini']='done';
+
+    // → Parse
+    spawnFlow('gemini','parse', 3);
+    await dl(380); ST['parse']='running'; await dl(600);
+    spawnBurst('parse', 10);
+    ST['parse']='done';
+
+    // → Claude (BIG burst — main node)
+    spawnFlow('parse','claude', 4);
+    await dl(450); ST['claude']='running'; await dl(1400);
+    spawnBurst('claude', 28); // biggest burst
+    ST['claude']='done';
+
+    // → Finalize
+    spawnFlow('claude','final', 3);
+    await dl(350); ST['final']='running'; await dl(600);
+    spawnBurst('final', 10);
+    ST['final']='done';
+
+    // → Sheets + Gmail in parallel
+    spawnFlow('final','sheets', 2); spawnFlow('final','gmail', 2);
+    await dl(350);
+    ST['sheets']='running'; ST['gmail']='running';
+    await dl(700);
+    spawnBurst('sheets', 12); spawnBurst('gmail', 12);
+    ST['sheets']='done'; ST['gmail']='done';
+
+    await dl(3500); // hold complete state
+  }
+
+  // ══════════════════════════════════════════════
+  //  RENDER LOOP
+  // ══════════════════════════════════════════════
+  function frame() {
+    requestAnimationFrame(frame);
+    ctx.clearRect(0, 0, W, H);
+
+    // Ambient radial glow
+    const gd = ctx.createRadialGradient(W*.44,H*.43, 0, W*.44,H*.43, W*.42);
+    gd.addColorStop(0,   'rgba(255,107,44,.055)');
+    gd.addColorStop(0.5, 'rgba(99,102,241,.025)');
+    gd.addColorStop(1,   'rgba(0,0,0,0)');
+    ctx.fillStyle = gd; ctx.fillRect(0,0,W,H);
+
+    // Edges (behind everything)
+    EDGES.forEach(([a,b]) => drawEdge(a,b));
+
+    // Flow particles
+    tickFlow(); drawFlow();
+
+    // Burst particles
+    tickBurst(); drawBurst();
+
+    // Nodes on top
+    NODES.forEach(n => drawNode(n));
+  }
+
+  // ══════════════════════════════════════════════
+  //  BOOT
+  // ══════════════════════════════════════════════
+  document.fonts.ready.then(() => {
+    runSequence();
+    setInterval(runSequence, 13000);
+    frame();
+  });
+
+})();
+</script>
+
+</body>
+</html>
