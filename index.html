@@ -667,6 +667,31 @@
     .proc-t { font-family: var(--fh); font-size: 0.9375rem; font-weight: 600; margin-bottom: 4px; }
     .proc-s { font-size: 0.875rem; color: var(--muted); font-weight: 300; line-height: 1.6; }
 
+    /* ── FAQ ── */
+    .faq-list { list-style: none; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 24px 0; cursor: pointer; gap: 24px;
+      font-family: var(--fh); font-size: 1rem; font-weight: 500;
+      color: var(--fg); user-select: none;
+    }
+    .faq-q:hover { color: var(--accent); }
+    .faq-icon { flex-shrink: 0; width: 20px; height: 20px; position: relative; }
+    .faq-icon::before, .faq-icon::after {
+      content: ''; position: absolute; background: currentColor;
+      border-radius: 2px; transition: transform 0.25s, opacity 0.25s;
+    }
+    .faq-icon::before { width: 12px; height: 1.5px; top: 9px; left: 4px; }
+    .faq-icon::after { width: 1.5px; height: 12px; top: 4px; left: 9px; }
+    .faq-item.open .faq-icon::after { transform: rotate(90deg); opacity: 0; }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s;
+      font-size: 0.9375rem; color: var(--muted); line-height: 1.75; font-weight: 300;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 24px; }
+
     /* ── PACKAGES ── */
     .pkg-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 24px; }
     .pkg-note { font-size: 0.875rem; color: var(--muted); font-weight: 300; max-width: 260px; text-align: right; }
@@ -1185,6 +1210,42 @@
         </ul>
         <a href="#demo" class="btn-pkg">Demo buchen</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="bdt sp rev">
+  <div class="container">
+    <div style="max-width:720px;margin:0 auto;">
+      <div class="label" style="text-align:center;">Häufige Fragen</div>
+      <h2 class="h2-sans" style="text-align:center;margin-bottom:48px;">Was Sie wissen wollen.</h2>
+      <ul class="faq-list">
+        <li class="faq-item">
+          <div class="faq-q">Wie lange dauert die Umsetzung wirklich?<span class="faq-icon"></span></div>
+          <div class="faq-a">48 Stunden von Erstgespräch bis Go-live — das ist kein Marketing-Versprechen. Die Systeme basieren auf bewährten Komponenten, die ich für Ihr spezifisches Setup konfiguriere. Keine monatelange Agentur-Bürokratie.</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-q">Was passiert, wenn das System ausfällt?<span class="faq-icon"></span></div>
+          <div class="faq-a">Sie erhalten sofort eine Benachrichtigung — noch bevor Sie es bemerken. Alle Systeme haben eingebaute Fehler-Alerts. Im Wartungspaket ist schnelle Behebung inklusive. Bei kritischen Ausfällen: direkte Reaktion, kein Ticket-System.</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-q">Muss ich technisches Wissen mitbringen?<span class="faq-icon"></span></div>
+          <div class="faq-a">Nein. Sie sehen ein Dashboard, Reports und Ergebnisse — keine Code-Zeile. Das System arbeitet im Hintergrund. Ich erkläre im Erstgespräch live, was passiert und warum. Danach: Sie entscheiden, das System arbeitet.</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-q">Gehört das System mir oder bin ich abhängig von WRLZ?<span class="faq-icon"></span></div>
+          <div class="faq-a">Das System gehört Ihnen. Sie bekommen alle Zugänge, alle Workflows, alle Konfigurationen. Wenn Sie das Wartungspaket nicht verlängern, läuft alles weiter — Sie sind nie in einer Abhängigkeit.</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-q">Was kostet es wirklich — gibt es versteckte Kosten?<span class="faq-icon"></span></div>
+          <div class="faq-a">Setup-Fee einmalig, dann monatliche Wartung. Dazu kommen API-Kosten der eingesetzten KI-Dienste (typisch €30–80/Monat je nach Volumen). Das rechnen wir im Erstgespräch konkret durch — keine Überraschungen.</div>
+        </li>
+        <li class="faq-item">
+          <div class="faq-q">Für welche Unternehmensgröße ist das sinnvoll?<span class="faq-icon"></span></div>
+          <div class="faq-a">Ab dem Punkt, wo repetitive Aufgaben Zeit kosten die besser in Strategie fließen sollte. Das ist bei D2C-Brands oft ab €500k Jahresumsatz der Fall — aber auch früher wenn Content oder Lead-Akquise ein Flaschenhals sind.</div>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
@@ -1742,6 +1803,16 @@
   }
 
 })();
+
+// FAQ Accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
 </script>
 
 </body>
