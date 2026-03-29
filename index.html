@@ -770,8 +770,11 @@
       background: radial-gradient(ellipse, rgba(255,107,44,0.07) 0%, transparent 70%);
       pointer-events: none;
     }
-    .cta-wrap .body-t { margin: 18px auto 36px; max-width: 380px; }
+    .cta-wrap .body-t { margin: 14px auto 36px; max-width: 380px; }
     .cta-meta { margin-top: 18px; font-size: 0.8125rem; color: rgba(244,241,236,0.22); font-weight: 300; }
+    .cta-slots { display:inline-flex; align-items:center; gap:8px; margin:16px auto 0; font-size:0.8125rem; color:var(--accent); font-weight:500; letter-spacing:0.01em; }
+    .slots-dot { display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--accent); box-shadow:0 0 6px var(--accent); animation:pulse-dot 1.8s ease-in-out infinite; }
+    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.75)} }
     .nautiloid-cta {
       position: absolute;
       left: -120px;
@@ -1315,6 +1318,7 @@
     <div class="cta-wrap rev">
       <div class="label">Ihr nächster Schritt</div>
       <h2 class="h2-serif">Bereit für ein System, das arbeitet?</h2>
+      <p class="cta-slots"><span class="slots-dot"></span>Noch <strong>3 Onboarding-Slots</strong> im April verfügbar</p>
       <p class="body-t">30 Minuten, unverbindlich. Sie erleben live, was intelligente Automation für Ihr Unternehmen bedeutet. Konkrete Zahlen, echte Demo, kein Pitch.</p>
       <a href="https://calendly.com/pasco1280/30min" class="btn-primary" style="display:inline-flex">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
