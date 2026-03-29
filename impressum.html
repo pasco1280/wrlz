@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum — WRLZ.AI</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #08080A;
+      --bg2: #0E0E12;
+      --text: #F4F1EC;
+      --muted: rgba(244,241,236,.45);
+      --accent: #f97316;
+      --border: rgba(244,241,236,.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      line-height: 1.7; min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(8,8,10,.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo-wrap {
+      display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    }
+    .nav-logo-wrap img { display: block; height: 28px; }
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--text);
+    }
+    .back-link {
+      font-size: .68rem; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted); text-decoration: none;
+      display: flex; align-items: center; gap: .4rem;
+      transition: color .2s;
+    }
+    .back-link:hover { color: var(--text); }
+
+    main { flex: 1; }
+    .legal-page {
+      max-width: 680px; margin: 0 auto;
+      padding: 5rem 2.5rem 7rem;
+    }
+    .legal-eyebrow {
+      font-size: .58rem; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1rem; display: block; opacity: .8;
+    }
+    .legal-page h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-style: italic; font-weight: 400;
+      color: var(--text); line-height: 1.2; margin-bottom: 3rem;
+    }
+
+    .legal-section { margin-bottom: 2.5rem; }
+    .legal-section h2 {
+      font-size: .58rem; font-weight: 600; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--accent); opacity: .7;
+      margin-bottom: .6rem;
+    }
+    .legal-section p {
+      font-size: .9rem; color: var(--muted); line-height: 1.8;
+      margin-bottom: .5rem;
+    }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section a {
+      color: var(--accent); text-underline-offset: 3px;
+      text-decoration: underline;
+      text-decoration-color: rgba(249,115,22,.3);
+      transition: text-decoration-color .2s;
+    }
+    .legal-section a:hover { text-decoration-color: var(--accent); }
+
+    .legal-notice {
+      margin-top: 3rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: .72rem; color: var(--muted); line-height: 1.7;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: .8rem;
+    }
+    .ft-name { font-size: .68rem; font-weight: 500; letter-spacing: .1em; color: var(--muted); }
+    .ft-links { display: flex; gap: 1.4rem; list-style: none; }
+    .ft-links a {
+      font-size: .61rem; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted); opacity: .5;
+      text-decoration: none; transition: opacity .2s;
+    }
+    .ft-links a:hover, .ft-links a.active { opacity: 1; color: var(--accent); }
+
+    @media (max-width: 680px) {
+      .legal-page { padding: 3rem 1.4rem 5rem; }
+      nav { padding: 0 20px; }
+      footer { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo-wrap">
+    <img src="wrlz_logo.svg" alt="">
+    <span class="nav-logo">WRLZ.AI</span>
+  </a>
+  <a href="index.html" class="back-link">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Zurück
+  </a>
+</nav>
+
+<main>
+  <div class="legal-page">
+    <span class="legal-eyebrow">Rechtliches</span>
+    <h1>Impressum.</h1>
+
+    <div class="legal-section">
+      <h2>Angaben gemäß § 5 TMG</h2>
+      <p>
+        Pascal Jäger<br>
+        Turnerstr. 121<br>
+        69126 Heidelberg<br>
+        Deutschland
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Kontakt</h2>
+      <p>E-Mail: <a href="mailto:pascal@wrlz.ai">pascal@wrlz.ai</a></p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Umsatzsteuer</h2>
+      <p>
+        Als Kleinunternehmer im Sinne von § 19 Abs. 1 UStG wird keine
+        Umsatzsteuer berechnet und ausgewiesen.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Berufliche Tätigkeit</h2>
+      <p>
+        KI-Automation und digitale Systemarchitektur für wachsende Marken.<br>
+        Tätigkeitsschwerpunkt: Aufbau vollautomatischer Marketing- und Lead-Systeme auf Basis künstlicher Intelligenz.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Haftungsausschluss</h2>
+      <p>
+        Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt.
+        Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann
+        keine Gewähr übernommen werden.
+      </p>
+      <p>
+        Als Diensteanbieter bin ich gemäß § 7 Abs. 1 TMG für eigene Inhalte
+        auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+        Nach §§ 8 bis 10 TMG bin ich nicht verpflichtet, übermittelte oder
+        gespeicherte fremde Informationen zu überwachen.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>Urheberrecht</h2>
+      <p>
+        Die durch den Seitenbetreiber erstellten Inhalte und Werke auf dieser
+        Website unterliegen dem deutschen Urheberrecht. Die Vervielfältigung,
+        Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der
+        Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung
+        des Autors.
+      </p>
+    </div>
+
+    <p class="legal-notice">
+      Stand: März 2026 · Diese Seite ersetzt keine Rechtsberatung.
+    </p>
+  </div>
+</main>
+
+<footer>
+  <span class="ft-name">WRLZ.AI — Heidelberg</span>
+  <ul class="ft-links">
+    <li><a href="impressum.html" class="active">Impressum</a></li>
+    <li><a href="datenschutz.html">Datenschutz</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
