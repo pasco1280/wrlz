@@ -51,7 +51,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -66,7 +66,7 @@
       --green:   #4ade80;
       --fs:      'DM Serif Display', serif;
       --fh:      'Space Grotesk', sans-serif;
-      --fb:      'Inter', sans-serif;
+      --fb:      'Space Grotesk', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -667,6 +667,10 @@
     .proc-t { font-family: var(--fh); font-size: 0.9375rem; font-weight: 600; margin-bottom: 4px; }
     .proc-s { font-size: 0.875rem; color: var(--muted); font-weight: 300; line-height: 1.6; }
 
+    /* ── PROOF CARDS ── */
+    .proof-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+    @media (max-width:900px) { .proof-grid { grid-template-columns:1fr; } }
+
     /* ── FAQ ── */
     .faq-list { list-style: none; border-top: 1px solid var(--border); }
     .faq-item { border-bottom: 1px solid var(--border); }
@@ -1034,6 +1038,60 @@
       <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">KI-Reporting</div><div class="uc-s">Tägliche Berichte mit konkreten, priorisierten Handlungsempfehlungen</div></div></div>
       <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Und weiteres</div><div class="uc-s">Jede repetitive Aufgabe ist ein Kandidat für intelligente Automation</div></div></div>
     </div>
+  </div>
+</section>
+
+<!-- ═══ SOCIAL PROOF ═══ -->
+<section class="bdt sp">
+  <div class="container">
+    <div class="label">Aus der Praxis</div>
+    <h2 class="h2-sans" style="margin-bottom:48px;">Was wir bereits gebaut haben.</h2>
+    <div class="proof-grid">
+
+      <div style="background:var(--bg2);padding:40px 32px;display:flex;flex-direction:column;gap:20px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(255,107,44,0.12);display:flex;align-items:center;justify-content:center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B2C" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <div>
+          <div style="font-size:0.625rem;font-family:var(--fh);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Content Engine · D2C Health-Brand</div>
+          <p style="font-size:0.9375rem;line-height:1.7;color:var(--text);">Vollautomatische Content-Produktion: 25 markenkonforme Posts pro Woche — ohne eine Stunde manuellen Aufwand.</p>
+        </div>
+        <div style="margin-top:auto;padding-top:20px;border-top:1px solid var(--border);">
+          <span style="font-family:var(--fh);font-size:1.75rem;font-weight:700;color:var(--accent);">–80%</span>
+          <span style="font-size:0.8125rem;color:var(--muted);margin-left:8px;">Zeitaufwand Social Media</span>
+        </div>
+      </div>
+
+      <div style="background:var(--bg);padding:40px 32px;display:flex;flex-direction:column;gap:20px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(255,107,44,0.12);display:flex;align-items:center;justify-content:center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B2C" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div>
+          <div style="font-size:0.625rem;font-family:var(--fh);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Lead Engine · SaaS-Startup, DACH</div>
+          <p style="font-size:0.9375rem;line-height:1.7;color:var(--text);">KI-personalisierte Outreach-Sequenz: automatisch qualifiziert, priorisiert und versendet — täglich ohne Eingriff.</p>
+        </div>
+        <div style="margin-top:auto;padding-top:20px;border-top:1px solid var(--border);">
+          <span style="font-family:var(--fh);font-size:1.75rem;font-weight:700;color:var(--accent);">3×</span>
+          <span style="font-size:0.8125rem;color:var(--muted);margin-left:8px;">mehr qualifizierte Gespräche</span>
+        </div>
+      </div>
+
+      <div style="background:var(--bg2);padding:40px 32px;display:flex;flex-direction:column;gap:20px;">
+        <div style="width:36px;height:36px;border-radius:8px;background:rgba(255,107,44,0.12);display:flex;align-items:center;justify-content:center;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF6B2C" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div>
+          <div style="font-size:0.625rem;font-family:var(--fh);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Reporting System · E-Commerce, AT</div>
+          <p style="font-size:0.9375rem;line-height:1.7;color:var(--text);">Tägliches KI-Reporting: Trends, Performance-Metriken und priorisierte Handlungsempfehlungen — automatisch um 06:00.</p>
+        </div>
+        <div style="margin-top:auto;padding-top:20px;border-top:1px solid var(--border);">
+          <span style="font-family:var(--fh);font-size:1.75rem;font-weight:700;color:var(--accent);">48h</span>
+          <span style="font-size:0.8125rem;color:var(--muted);margin-left:8px;">von Briefing bis Go-live</span>
+        </div>
+      </div>
+
+    </div>
+    <p style="margin-top:16px;font-size:0.72rem;color:var(--muted);opacity:0.5;">* Kundendaten anonymisiert</p>
   </div>
 </section>
 
