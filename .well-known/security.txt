@@ -1,0 +1,4 @@
+Contact: mailto:pascal@wrlz.ai
+Expires: 2027-04-17T00:00:00Z
+Preferred-Languages: de, en
+Canonical: https://wrlz.ai/.well-known/security.txt

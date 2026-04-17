@@ -32,28 +32,134 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "WRLZ.AI",
-    "url": "https://wrlz.ai",
-    "logo": "https://wrlz.ai/wrlz_logo.svg",
-    "description": "Vollautomatische KI-Systeme für D2C-Brands und Startups. Content, Leads, Umsatz — auf Autopilot.",
-    "areaServed": ["DE", "AT", "CH"],
-    "availableLanguage": "German",
-    "priceRange": "€€",
-    "serviceType": "KI-Automation, Marketing-Automation, Lead-Generierung",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "email": "pascal@wrlz.ai",
-      "contactType": "sales"
-    }
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://wrlz.ai/#org",
+        "name": "WRLZ.AI",
+        "alternateName": "WRLZ",
+        "url": "https://wrlz.ai",
+        "logo": "https://wrlz.ai/wrlz_logo.svg",
+        "image": "https://wrlz.ai/og.png",
+        "description": "KI-Automation-Agentur in Heidelberg. n8n- und Claude-basierte Content-, Lead- und Compliance-Pipelines für DACH-Unternehmen.",
+        "founder": { "@type": "Person", "name": "Pascal Jäger", "email": "pascal@wrlz.ai" },
+        "areaServed": ["DE", "AT", "CH"],
+        "availableLanguage": ["de", "en"],
+        "priceRange": "€€",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Heidelberg",
+          "addressRegion": "Baden-Württemberg",
+          "addressCountry": "DE"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "pascal@wrlz.ai",
+          "contactType": "sales",
+          "availableLanguage": ["de", "en"]
+        },
+        "sameAs": [
+          "https://github.com/pasco1280",
+          "https://www.linkedin.com/in/pascal-jäger-0a1a3b1b8/"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "WRLZ Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Content-Automation",
+                "description": "Newsletter-to-Instagram Pipelines mit KI-Bildgenerierung, Multi-Plattform-Scheduling und regulatorischen Guards (HWG, LMIV).",
+                "provider": { "@id": "https://wrlz.ai/#org" },
+                "areaServed": "DACH"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Lead-Engine",
+                "description": "Deutsche B2B-Kontaktdaten-Pipeline mit Cold-Outreach-Sequenzen und CRM-Integration (Pipedrive, HubSpot, Supabase).",
+                "provider": { "@id": "https://wrlz.ai/#org" },
+                "areaServed": "DACH"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Regulatorische KI",
+                "description": "Familienrecht-Chatbots, HWG-konforme Produkttexte, §9-HWG-Audit-Logs, DSGVO-konform.",
+                "provider": { "@id": "https://wrlz.ai/#org" },
+                "areaServed": "DACH"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Infra-Setup",
+                "description": "Hetzner-Server, Caddy-Reverse-Proxy, n8n self-hosted, Backup, Monitoring, TLS, Security-Header.",
+                "provider": { "@id": "https://wrlz.ai/#org" },
+                "areaServed": "DACH"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://wrlz.ai/#website",
+        "url": "https://wrlz.ai",
+        "name": "WRLZ.AI",
+        "publisher": { "@id": "https://wrlz.ai/#org" },
+        "inLanguage": "de-DE"
+      }
+    ]
   }
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="fonts/dm-serif-regular-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/dm-serif-italic-latin.woff2"  as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/space-grotesk-latin.woff2"    as="font" type="font/woff2" crossorigin>
 
   <style>
+    /* ── Self-hosted Google Fonts (GDPR-safe, no third-party requests) ── */
+    /* DM Serif Display — 400 regular + italic */
+    @font-face {
+      font-family: 'DM Serif Display'; font-style: normal; font-weight: 400; font-display: swap;
+      src: url('fonts/dm-serif-regular-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'DM Serif Display'; font-style: normal; font-weight: 400; font-display: swap;
+      src: url('fonts/dm-serif-regular-latext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    @font-face {
+      font-family: 'DM Serif Display'; font-style: italic; font-weight: 400; font-display: swap;
+      src: url('fonts/dm-serif-italic-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'DM Serif Display'; font-style: italic; font-weight: 400; font-display: swap;
+      src: url('fonts/dm-serif-italic-latext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+    /* Space Grotesk — 300-700 (same file, synthesised weights) */
+    @font-face {
+      font-family: 'Space Grotesk'; font-style: normal; font-weight: 300 700; font-display: swap;
+      src: url('fonts/space-grotesk-latin.woff2') format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Space Grotesk'; font-style: normal; font-weight: 300 700; font-display: swap;
+      src: url('fonts/space-grotesk-latext.woff2') format('woff2');
+      unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
     :root {
       --bg:      #08080A;
       --bg2:     #0E0E12;
@@ -596,6 +702,88 @@
     .uc-t { font-family: var(--fh); font-size: 0.8125rem; font-weight: 500; line-height: 1.35; }
     .uc-s { font-size: 0.75rem; color: var(--muted); font-weight: 300; margin-top: 4px; line-height: 1.5; }
 
+    /* ── TRIO (3 Product Lines) ── */
+    .trio-wrap { background: var(--bg); }
+    .trio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    @media (max-width: 900px) { .trio { grid-template-columns: 1fr; } }
+    .trio-cell {
+      background: var(--bg);
+      padding: 44px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s;
+      position: relative;
+      min-height: 260px;
+    }
+    .trio-cell:hover { background: rgba(255,107,44,0.04); }
+    .trio-cell::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 10%, var(--accent) 50%, transparent 90%);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .trio-cell:hover::after { opacity: 0.5; }
+    .trio-kicker {
+      font-family: var(--fh);
+      font-size: 0.6875rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .trio-kicker::before {
+      content: '';
+      width: 22px; height: 1px;
+      background: var(--accent);
+      opacity: 0.6;
+      display: block;
+    }
+    .trio-title {
+      font-family: var(--fs);
+      font-style: italic;
+      font-size: clamp(1.3rem, 1.9vw, 1.625rem);
+      line-height: 1.15;
+      color: var(--text);
+      font-weight: 400;
+    }
+    .trio-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.65;
+      font-weight: 300;
+      max-width: 360px;
+    }
+    .trio-arrow {
+      margin-top: auto;
+      padding-top: 20px;
+      font-family: var(--fh);
+      font-size: 0.75rem;
+      color: var(--text);
+      letter-spacing: 0.04em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.7;
+      transition: opacity 0.2s, gap 0.2s;
+    }
+    .trio-cell:hover .trio-arrow { opacity: 1; gap: 12px; }
+
     /* ── STATS ── */
     .stats-grid {
       display: grid;
@@ -799,7 +987,7 @@
     .ft-links a { font-size: 0.75rem; color: rgba(244,241,236,0.18); text-decoration: none; transition: color 0.2s; }
     .ft-links a:hover { color: var(--muted); }
 
-    /* ── NAUTILOID ── */
+    /* ── NAUTILOID (Hero + CTA) ── */
     .nautiloid-img {
       position: absolute;
       inset: 0;
@@ -818,16 +1006,129 @@
     }
     @media (max-width: 960px) {
       .nautiloid-img { opacity: 0.15 !important; animation: naut-in 2s ease forwards !important; }
-      #wf-canvas { display: none !important; }
     }
 
-    /* ── CANVAS ── */
+    /* ── LIVE GRAPH (workflow canvas, framed) ── */
+    .live-wrap { background: var(--bg); }
+    .live-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 32px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .live-head .label { margin-bottom: 12px; }
+    .live-head .h2-serif { margin-bottom: 0; }
+    .live-head-right {
+      font-family: var(--fh);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: right;
+      line-height: 1.9;
+    }
+    .live-head-right b { color: var(--text); font-weight: 500; letter-spacing: 0.04em; }
+
+    .live-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 21/9;
+      max-height: 620px;
+      min-height: 320px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 25% 30%, rgba(255,107,44,0.08), transparent 58%),
+        radial-gradient(ellipse at 78% 82%, rgba(74,222,128,0.06), transparent 55%),
+        linear-gradient(180deg, #0b0b0e 0%, #08080a 100%);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.03),
+        0 40px 120px -30px rgba(0,0,0,0.75),
+        0 0 0 1px rgba(255,107,44,0.06);
+    }
+    .live-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background:
+        linear-gradient(to bottom, rgba(8,8,10,0) 0%, rgba(8,8,10,0) 62%, rgba(8,8,10,0.85) 100%),
+        radial-gradient(ellipse at center, rgba(8,8,10,0) 60%, rgba(8,8,10,0.5) 100%);
+    }
+    .live-frame::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background-image:
+        linear-gradient(rgba(244,241,236,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(244,241,236,0.018) 1px, transparent 1px);
+      background-size: 48px 48px, 48px 48px;
+      mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 75%);
+    }
     #wf-canvas {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       display: block;
-      transform: perspective(1600px) rotateX(5deg) rotateY(-2deg) scale(1.04);
-      transform-origin: 52% 48%;
+      z-index: 1;
+    }
+    .live-badge {
+      position: absolute;
+      top: 16px; left: 18px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 13px 7px 11px;
+      background: rgba(8,8,10,0.75);
+      border: 1px solid rgba(74,222,128,0.28);
+      border-radius: 999px;
+      font-family: var(--fh);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(244,241,236,0.78);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .live-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 0 rgba(74,222,128,0.6);
+      animation: live-pulse 1.8s ease-out infinite;
+    }
+    @keyframes live-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(74,222,128,0.55); }
+      70%  { box-shadow: 0 0 0 10px rgba(74,222,128,0); }
+      100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+    }
+    .live-corner {
+      position: absolute;
+      z-index: 3;
+      font-family: var(--fh);
+      font-size: 0.56rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(244,241,236,0.32);
+    }
+    .live-corner.tr { top: 18px; right: 18px; }
+    .live-corner.bl { bottom: 18px; left: 18px; }
+    .live-corner.br { bottom: 18px; right: 18px; }
+    .live-corner.br b { color: var(--accent); font-weight: 600; letter-spacing: 0.08em; }
+
+    @media (max-width: 820px) {
+      .live-frame { aspect-ratio: 4/3; border-radius: 10px; }
+      .live-head { flex-direction: column; align-items: flex-start; }
+      .live-head-right { text-align: left; }
+      .live-corner { font-size: 0.5rem; }
     }
 
     /* ── SCROLL REVEAL ── */
@@ -864,9 +1165,7 @@
 <!-- ═══ HERO ═══ -->
 <section class="hero" aria-label="Hero">
 
-  <div class="hero-bg">
-    <canvas id="wf-canvas"></canvas>
-  </div>
+  <div class="hero-bg"></div>
 
   <div class="hero-overlay"></div>
 
@@ -876,8 +1175,8 @@
     <div class="container">
       <div class="hero-bar">
         <div class="hero-bar-text">
-          <div class="hero-eyebrow">Intelligente Automation für wachsende Marken</div>
-          <h1 class="hero-h1">KI-Automation, die für Sie <em>arbeitet.</em></h1>
+          <div class="hero-eyebrow">Die faulste Agentur der Welt. Aus Prinzip.</div>
+          <h1 class="hero-h1">Einmal gebaut. <em>Läuft ohne dich.</em></h1>
         </div>
         <div class="hero-bar-action">
           <a href="#demo" class="btn-primary">
@@ -885,10 +1184,34 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="#leistungen" class="btn-secondary" style="display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:1px solid rgba(244,241,236,0.15);border-radius:6px;color:var(--muted);font-size:0.875rem;text-decoration:none;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='rgba(244,241,236,0.35)';this.style.color='var(--fg)'" onmouseout="this.style.borderColor='rgba(244,241,236,0.15)';this.style.color='var(--muted)'">Was wir bauen →</a>
-          <span class="hero-bar-meta">Unverbindlich · 30 Minuten · Sofort buchbar</span>
+          <span class="hero-bar-meta">48h Setup · Festpreis · Kein Abo, kein Retainer</span>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ═══ TRIO: PRODUCT LINES ═══ -->
+<section class="trio-wrap" aria-label="Produktlinien">
+  <div class="trio">
+    <a class="trio-cell" href="#leistungen">
+      <div class="trio-kicker">WRLZ // Automation</div>
+      <div class="trio-title">Systeme, die für dich arbeiten.</div>
+      <div class="trio-desc">n8n · Claude · Supabase. Content, Leads, Reports — täglich autonom. Unser Flagship.</div>
+      <div class="trio-arrow">Was wir bauen →</div>
+    </a>
+    <a class="trio-cell" href="https://shop.wrlz.ai" target="_blank" rel="noopener">
+      <div class="trio-kicker">WRLZ // Shop</div>
+      <div class="trio-title">42 Tools. Ab 1 €.</div>
+      <div class="trio-desc">Ein Problem, ein Tool, 15 Sekunden Ergebnis. Self-Service. Kein Account. Kein Abo.</div>
+      <div class="trio-arrow">shop.wrlz.ai →</div>
+    </a>
+    <a class="trio-cell" href="#demo">
+      <div class="trio-kicker">WRLZ // Studio</div>
+      <div class="trio-title">Websites, die wie Produkte arbeiten.</div>
+      <div class="trio-desc">Custom AI-Frontends. Dark-mode default. Von der Landing bis zur Operator-UI.</div>
+      <div class="trio-arrow">Projekt starten →</div>
+    </a>
   </div>
 </section>
 
@@ -1019,6 +1342,30 @@
           </tr>
         </table>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LIVE GRAPH ═══ -->
+<section class="live-wrap bdt sp rev" aria-label="Live Workflow">
+  <div class="container">
+    <div class="live-head">
+      <div>
+        <div class="label">Live · Sample Pipeline</div>
+        <h2 class="h2-serif">Ein Ausschnitt dessen, <em style="font-style:italic;color:var(--accent)">was für Sie arbeitet.</em></h2>
+      </div>
+      <div class="live-head-right">
+        <b>Trigger → Fetch → Parse → Claude → Ship</b><br>
+        ø 14 s · autonom · täglich 06:00
+      </div>
+    </div>
+
+    <div class="live-frame">
+      <div class="live-badge"><span class="live-dot"></span>Live</div>
+      <div class="live-corner tr">wf-sample · n8n</div>
+      <div class="live-corner bl">t = auto · fps 60</div>
+      <div class="live-corner br"><b>●</b> running</div>
+      <canvas id="wf-canvas"></canvas>
     </div>
   </div>
 </section>
@@ -1428,10 +1775,18 @@
 
   let W, H, NS; // canvas size, node size
 
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
   function resize() {
-    C.width  = W = window.innerWidth;
-    C.height = H = window.innerHeight;
-    NS = Math.max(50, Math.min(62, W * 0.038));
+    // CSS sets canvas to fill .live-frame (width/height: 100%) — use parent as truth
+    const host = C.parentElement || C;
+    const cw = host.clientWidth || 800;
+    const ch = host.clientHeight || 450;
+    W = Math.max(320, Math.floor(cw));
+    H = Math.max(200, Math.floor(ch));
+    C.width  = W * DPR;
+    C.height = H * DPR;
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    NS = Math.max(34, Math.min(56, W * 0.055));
   }
   resize();
   window.addEventListener('resize', resize);
@@ -1838,7 +2193,7 @@
   // ══════════════════════════════════════════════
   //  BOOT
   // ══════════════════════════════════════════════
-  if (window.innerWidth > 960) {
+  {
     let seqInterval = null;
     let rafId = null;
     let running = false;
@@ -1867,7 +2222,19 @@
       document.hidden ? stop() : start();
     });
 
-    document.fonts.ready.then(start);
+    // Only animate when frame is visible (saves CPU while user is elsewhere)
+    const frameEl = C.parentElement;
+    if ('IntersectionObserver' in window && frameEl) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting && !document.hidden) start();
+          else stop();
+        });
+      }, { threshold: 0.15 });
+      io.observe(frameEl);
+    } else {
+      document.fonts.ready.then(start);
+    }
   }
 
 })();
