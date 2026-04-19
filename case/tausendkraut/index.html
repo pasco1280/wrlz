@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tausendkraut — Content Engine · WRLZ.AI</title>
+<title>Tausendkraut · Content Engine · WRLZ.AI</title>
 <meta name="description" content="Wie wir den Newsletter von Tausendkraut in eine autonome Instagram-Pipeline verwandelt haben. Mit Claude, n8n, Supabase und einer HWG-Compliance-Engine, die keine Heilversprechen durchrutschen lässt.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://wrlz.ai/case/tausendkraut/">
 <link rel="icon" href="../../favicon.png">
 
 <!-- Open Graph -->
-<meta property="og:title" content="Tausendkraut — Content Engine · WRLZ.AI">
+<meta property="og:title" content="Tausendkraut · Content Engine · WRLZ.AI">
 <meta property="og:description" content="Newsletter → Instagram, autonom. Mit Claude + HWG-Backstop. Case-Study.">
 <meta property="og:image" content="https://wrlz.ai/og.png">
 <meta property="og:url" content="https://wrlz.ai/case/tausendkraut/">
@@ -32,7 +32,7 @@
     },
     {
       "@type": "Article",
-      "headline": "Tausendkraut — Content Engine",
+      "headline": "Tausendkraut · Content Engine",
       "description": "Newsletter-to-Instagram Pipeline mit Claude, n8n und HWG-Compliance-Guard. Acht Nodes, ein Wächter, 0 manueller Aufwand.",
       "inLanguage": "de-DE",
       "datePublished": "2026-04-17",
@@ -560,7 +560,23 @@
     background:
       radial-gradient(ellipse at 50% 30%, rgba(255,107,44,0.08), transparent 60%),
       var(--bg);
+    position: relative;
+    overflow: hidden;
   }
+  .cta-case .nautiloid-cta {
+    position: absolute;
+    left: -120px;
+    top: 50%;
+    transform: translateY(-50%) scaleX(-1);
+    width: 1050px;
+    height: auto;
+    pointer-events: none;
+    z-index: 0;
+    mix-blend-mode: screen;
+    opacity: 0.11;
+  }
+  .cta-case .container { position: relative; z-index: 1; }
+  @media (max-width: 960px) { .cta-case .nautiloid-cta { display: none; } }
   .cta-case h2 {
     font-family: var(--fs);
     font-style: italic;
@@ -648,12 +664,12 @@
       <span class="cur">Tausendkraut</span>
     </div>
 
-    <div class="eyebrow">Case · Content Engine · 2025–2026</div>
+    <div class="eyebrow">Case · Content Engine · 2025/2026</div>
 
     <h1 class="h1">Der Newsletter schreibt sich. <em>Instagram auch.</em></h1>
 
     <p class="lead">
-      Tausendkraut hat einen Newsletter, den die Leute wirklich lesen. Und einen Instagram-Account, der drei Wochen lang nichts zu sagen hatte. Die Pipeline, die wir gebaut haben, ändert genau das — autonom, compliance-safe, und ohne einen zweiten Publikationszyklus für den Gründer.
+      Tausendkraut hat einen Newsletter, den die Leute wirklich lesen. Und einen Instagram-Account, der drei Wochen lang nichts zu sagen hatte. Die Pipeline, die wir gebaut haben, ändert genau das: autonom, compliance-safe, und ohne einen zweiten Publikationszyklus für den Gründer.
     </p>
 
     <div class="meta-grid">
@@ -683,7 +699,7 @@
     <div class="label">01 · Ausgangslage</div>
     <h2 class="h2">Drei Baustellen, die sich <em>gegenseitig blockieren.</em></h2>
     <p class="body" style="max-width:720px;">
-      Tausendkraut ist eine Naturkost-Brand mit engagierter Zielgruppe. Der Newsletter läuft wie eine Uhr — Josh schreibt, die Leute lesen. Alles darüber hinaus hakt, weil die Mechanik dahinter fehlt.
+      Tausendkraut ist eine Naturkost-Brand mit engagierter Zielgruppe. Der Newsletter läuft wie eine Uhr. Josh schreibt, die Leute lesen. Alles darüber hinaus hakt, weil die Mechanik dahinter fehlt.
     </p>
 
     <div class="situ">
@@ -695,7 +711,7 @@
       <div class="situ-card">
         <div class="situ-n">02</div>
         <div class="situ-t">Instagram war dauerhaft still.</div>
-        <div class="situ-d">Wochenlang keine Posts. Der Kanal existiert, nur niemand betreut ihn — weil ein zweiter Publikationszyklus für einen Solo-Gründer realistisch nicht drin ist.</div>
+        <div class="situ-d">Wochenlang keine Posts. Der Kanal existiert, nur niemand betreut ihn. Ein zweiter Publikationszyklus ist für einen Solo-Gründer realistisch nicht drin.</div>
       </div>
       <div class="situ-card">
         <div class="situ-n">03</div>
@@ -712,10 +728,10 @@
     <div class="label">02 · Das Problem hinter dem Problem</div>
     <h2 class="h2">Nicht <em>»mehr Content«.</em> Sondern: das, was schon da ist, zweimal nutzen.</h2>
     <p class="body">
-      Die naive Lösung wäre gewesen, einen Social-Media-Manager einzustellen oder ein Tool zu kaufen, das Instagram-Captions »automatisch« generiert. Beides hätte nicht funktioniert. Ein Freelancer erzeugt denselben Kostendruck nur an einer anderen Stelle. Ein generisches KI-Tool schreibt formelhafte Captions, die für eine Brand wie Tausendkraut wie ein Stock im Weizenfeld wirken — und es hat keine Ahnung, was das Heilmittelwerbegesetz ist.
+      Die naive Lösung wäre gewesen, einen Social-Media-Manager einzustellen oder ein Tool zu kaufen, das Instagram-Captions »automatisch« generiert. Beides hätte nicht funktioniert. Ein Freelancer erzeugt denselben Kostendruck nur an einer anderen Stelle. Ein generisches KI-Tool schreibt formelhafte Captions, die für eine Brand wie Tausendkraut wie ein Stock im Weizenfeld wirken. Und es hat keine Ahnung, was das Heilmittelwerbegesetz ist.
     </p>
     <p class="body">
-      Die richtige Frage war also eine andere: <strong>wie wird der Newsletter — den Josh ohnehin schreibt — zu einem zweiten Distributionskanal, ohne dass Josh einen zweiten Zyklus manuell trägt, und ohne dass wir versehentlich rechtlich angreifbar werden?</strong>
+      Die richtige Frage war also eine andere: <strong>wie wird der Newsletter, den Josh ohnehin schreibt, zu einem zweiten Distributionskanal, ohne dass Josh einen zweiten Zyklus manuell trägt, und ohne dass wir versehentlich rechtlich angreifbar werden?</strong>
     </p>
     <p class="body">
       Antwort: eine Pipeline, die die Newsletter-Inhalte abgreift, in ein IG-Format übersetzt, auf Compliance prüft, Josh per Telegram zur Freigabe vorlegt und dann selbstständig publiziert. Claude schreibt die Captions, n8n orchestriert, Supabase ist das Gedächtnis, Meta Graph publiziert, ein Regex-Backstop fängt ab, was das Prompt vielleicht durchlässt.
@@ -727,7 +743,7 @@
 <section>
   <div class="narrow pull">
     <q>In Systeme reingehen. Das Problem hinter dem Problem finden. Dann erst bauen.</q>
-    <div class="attrib">Pascal — Gründer, WRLZ.AI</div>
+    <div class="attrib">Pascal · Gründer, WRLZ.AI</div>
   </div>
 </section>
 
@@ -737,7 +753,7 @@
     <div class="label">03 · Architektur</div>
     <h2 class="h2">Acht Nodes im Kreislauf. <em>Plus ein Wächter.</em></h2>
     <p class="body" style="max-width:720px;">
-      Jeder Newsletter-Versand startet die Pipeline. Sie läuft ohne menschlichen Eingriff — außer an einer Stelle: der Telegram-Freigabe. Das ist Absicht.
+      Jeder Newsletter-Versand startet die Pipeline. Sie läuft ohne menschlichen Eingriff. Außer an einer Stelle: der Telegram-Freigabe. Das ist Absicht.
     </p>
 
     <div class="flow">
@@ -798,49 +814,49 @@
 
     <table class="nodes">
       <tr>
-        <td>TK — Newsletter Webhook</td>
+        <td>TK ·Newsletter Webhook</td>
         <td>Trigger</td>
         <td>Empfängt das Sende-Event des Newsletter-Providers. Liefert Betreff, Body, Versandzeitpunkt.</td>
       </tr>
       <tr>
-        <td>TK — Response parsen</td>
+        <td>TK ·Response parsen</td>
         <td>Transform</td>
-        <td>Extrahiert den relevanten Block aus dem Newsletter-HTML. Berechnet den nächsten Berlin-Publikations-Slot via <code>Intl.DateTimeFormat</code> mit Timezone-Shortoffset — funktioniert DST-sicher ohne Hardcoding.</td>
+        <td>Extrahiert den relevanten Block aus dem Newsletter-HTML. Berechnet den nächsten Berlin-Publikations-Slot via <code>Intl.DateTimeFormat</code> mit Timezone-Shortoffset. Funktioniert DST-sicher ohne Hardcoding.</td>
       </tr>
       <tr>
-        <td>Claude — Caption + Compliance</td>
+        <td>Claude · Caption + Compliance</td>
         <td>LLM</td>
         <td>Generiert eine markenkonforme IG-Caption aus dem Newsletter-Inhalt. Prompt enthält explizite HWG-Regeln: keine Heilversprechen, keine medizinischen Funktionsclaims, keine Hildegard-Mystik.</td>
       </tr>
       <tr>
-        <td>TK — HWG Regex Backstop</td>
+        <td>TK ·HWG Regex Backstop</td>
         <td>Validate</td>
-        <td>14 Regex-Pattern gegen Claude&#39;s Output — das Fangnetz, falls das Modell kreativ wird. Matches: <code>heilt</code>, <code>lindert</code>, <code>schützt vor</code>, <code>hilft gegen [X]</code>, <code>Hildegard.*heil</code>, einzelne Krankheitsnamen.</td>
+        <td>14 Regex-Pattern gegen Claude&#39;s Output. Das Fangnetz, falls das Modell kreativ wird. Matches: <code>heilt</code>, <code>lindert</code>, <code>schützt vor</code>, <code>hilft gegen [X]</code>, <code>Hildegard.*heil</code>, einzelne Krankheitsnamen.</td>
       </tr>
       <tr>
-        <td>TK — Queue Insert</td>
+        <td>TK ·Queue Insert</td>
         <td>DB</td>
-        <td>Schreibt den Draft in <code>content_queue</code> (Supabase). Status wird dynamisch gesetzt: <code>approved</code> wenn clean, <code>needs_legal_review</code> wenn geflaggt — inkl. der gefundenen <code>flagged_terms</code>.</td>
+        <td>Schreibt den Draft in <code>content_queue</code> (Supabase). Status wird dynamisch gesetzt: <code>approved</code> wenn clean, <code>needs_legal_review</code> wenn geflaggt, inkl. der gefundenen <code>flagged_terms</code>.</td>
       </tr>
       <tr>
-        <td>TK — Approval-Gate (Telegram)</td>
+        <td>TK ·Approval-Gate (Telegram)</td>
         <td>Human</td>
         <td>Schickt Josh den Draft als Telegram-Nachricht mit Bild-Link + Caption + Reply-Buttons. Ein Tap auf ✓ setzt <code>approved_at = now()</code>, ein Tap auf ✗ setzt <code>rejected_at</code>.</td>
       </tr>
       <tr>
-        <td>WRLZ — Publisher</td>
+        <td>WRLZ ·Publisher</td>
         <td>Schedule</td>
         <td>Cron <code>0 9,18 * * *</code> in <code>Europe/Berlin</code>. Zieht den nächsten Eintrag mit <code>status=approved</code> und <code>scheduled_for ≤ now</code>. Catch-up-Cron <code>*/30 * * * *</code> fängt verpasste Slots ab.</td>
       </tr>
       <tr>
-        <td>Meta — Graph Post</td>
+        <td>Meta ·Graph Post</td>
         <td>API</td>
         <td>Publisht via Instagram Graph API. Long-lived Token, automatischer Container-Upload bei Carousel-Posts, Error-Retry bei 429.</td>
       </tr>
       <tr>
-        <td>WRLZ — Error Handler</td>
+        <td>WRLZ ·Error Handler</td>
         <td>Monitor</td>
-        <td>Globaler errorTrigger-Workflow — fängt jede ungelöste Exception, schreibt in Telegram-Admin-Channel mit Workflow-Name und Stack-Trace-Fragment.</td>
+        <td>Globaler errorTrigger-Workflow. Fängt jede ungelöste Exception, schreibt in Telegram-Admin-Channel mit Workflow-Name und Stack-Trace-Fragment.</td>
       </tr>
     </table>
   </div>
@@ -852,14 +868,14 @@
     <div class="label">05 · Deep-Dive · HWG-Compliance</div>
     <h2 class="h2">Zwei Schichten, <em>weil das Modell Fehler macht.</em></h2>
     <p class="body">
-      Das Heilmittelwerbegesetz (HWG) verbietet in der Werbung für Lebensmittel und Nahrungsergänzungsmittel bestimmte Claims — allen voran alles, was nach medizinischer Wirkung klingt. Für eine Naturkost-Brand ist das keine Grauzone, sondern Abmahngefahr. Ein Social-Media-Post, der »hilft gegen Erkältung« sagt, kostet leicht <strong>2 000 bis 5 000 €</strong>.
+      Das Heilmittelwerbegesetz (HWG) verbietet in der Werbung für Lebensmittel und Nahrungsergänzungsmittel bestimmte Claims. Allen voran alles, was nach medizinischer Wirkung klingt. Für eine Naturkost-Brand ist das keine Grauzone, sondern Abmahngefahr. Ein Social-Media-Post, der »hilft gegen Erkältung« sagt, kostet leicht <strong>2 000 bis 5 000 €</strong>.
     </p>
     <p class="body">
-      Claude ist gut, aber nicht perfekt. Ein reiner Prompt-Filter genügt nicht: Modelle können kreativ werden, besonders wenn der Quelltext emotional oder poetisch formuliert ist. Wir brauchen einen <strong>Backstop</strong> — deterministisch, schnell, transparent.
+      Claude ist gut, aber nicht perfekt. Ein reiner Prompt-Filter genügt nicht: Modelle können kreativ werden, besonders wenn der Quelltext emotional oder poetisch formuliert ist. Wir brauchen einen <strong>Backstop</strong>: deterministisch, schnell, transparent.
     </p>
 
     <h3 class="h3" style="margin-top:36px;">Die 14 Regex-Pattern</h3>
-    <pre class="code">// Auszug aus <em>TK — HWG Regex Backstop</em>
+    <pre class="code">// Auszug aus <em>TK ·HWG Regex Backstop</em>
 const HWG_PATTERNS = [
   /\b<b>heilt\b/i, /\b<b>heilend\b/i, /\b<b>heilung\b/i,
   /\b<b>lindert\b/i, /\bschützt\s+vor\b/i,
@@ -883,7 +899,7 @@ const HWG_PATTERNS = [
 
     <h3 class="h3" style="margin-top:36px;">Als Open-Source veröffentlicht</h3>
     <p class="body">
-      Die 14 Patterns, eine n8n-Code-Node-Integration und 12 Tests liegen als MIT-lizenziertes npm-Modul auf GitHub: <a href="https://github.com/pasco1280/hwg-guard" rel="noopener">github.com/pasco1280/hwg-guard</a>. Wer selbst eine DACH-Naturkost-Brand automatisiert und einen Backstop braucht, kann das Teil einfach einbauen — <code>npm i hwg-guard</code>, Claude davorschalten, fertig.
+      Die 14 Patterns, eine n8n-Code-Node-Integration und 12 Tests liegen als MIT-lizenziertes npm-Modul auf GitHub: <a href="https://github.com/pasco1280/hwg-guard" rel="noopener">github.com/pasco1280/hwg-guard</a>. Wer selbst eine DACH-Naturkost-Brand automatisiert und einen Backstop braucht, kann das Teil einfach einbauen: <code>npm i hwg-guard</code>, Claude davorschalten, fertig.
     </p>
   </div>
 </section>
@@ -897,11 +913,11 @@ const HWG_PATTERNS = [
     <div class="metrics">
       <div class="m-cell">
         <div class="m-v">~<b>14</b><small>/Monat</small></div>
-        <div class="m-k">IG-Posts autonom publiziert — vorher 0–2/Monat manuell, sporadisch.</div>
+        <div class="m-k">IG-Posts autonom publiziert. Vorher 0 bis 2/Monat manuell, sporadisch.</div>
       </div>
       <div class="m-cell">
         <div class="m-v"><b>3</b><small>min/Tag</small></div>
-        <div class="m-k">Josh&#39;s Aufwand für Approval — vorher ~90 min für manuelle Übertragung.</div>
+        <div class="m-k">Josh&#39;s Aufwand für Approval. Vorher ~90 min für manuelle Übertragung.</div>
       </div>
       <div class="m-cell">
         <div class="m-v"><b>0</b></div>
@@ -909,7 +925,7 @@ const HWG_PATTERNS = [
       </div>
       <div class="m-cell">
         <div class="m-v">DST<small>-safe</small></div>
-        <div class="m-k">Timezone-Handling via Intl.DateTimeFormat — keine Sommerzeit-Überraschungen.</div>
+        <div class="m-k">Timezone-Handling via Intl.DateTimeFormat. Keine Sommerzeit-Überraschungen.</div>
       </div>
     </div>
 
@@ -925,10 +941,10 @@ const HWG_PATTERNS = [
     <div class="label">07 · Was wir gelernt haben</div>
     <h2 class="h2">Ein KI-System ist <em>nur so gut wie sein Fangnetz.</em></h2>
     <p class="body">
-      Der wichtigste Satz beim Bauen war nicht »wie bringen wir Claude dazu, bessere Captions zu schreiben?« — sondern »wie fangen wir ab, wenn Claude sich vertut?«. Jeder automatisierte Workflow, der juristisch oder finanziell relevant wird, braucht eine deterministische Kontrollschicht. Prompt Engineering reicht nicht.
+      Der wichtigste Satz beim Bauen war nicht »wie bringen wir Claude dazu, bessere Captions zu schreiben?«, sondern »wie fangen wir ab, wenn Claude sich vertut?«. Jeder automatisierte Workflow, der juristisch oder finanziell relevant wird, braucht eine deterministische Kontrollschicht. Prompt Engineering reicht nicht.
     </p>
     <p class="body">
-      Der zweite Satz: <strong>Menschen behalten die letzte Zustimmung.</strong> Das Telegram-Approval ist kein Bug, sondern Feature. Es ist der Punkt, an dem der Mensch die Richtung der Marke schützt. Dauert drei Minuten am Tag — und genau deshalb funktioniert es.
+      Der zweite Satz: <strong>Menschen behalten die letzte Zustimmung.</strong> Das Telegram-Approval ist kein Bug, sondern Feature. Es ist der Punkt, an dem der Mensch die Richtung der Marke schützt. Dauert drei Minuten am Tag. Und genau deshalb funktioniert es.
     </p>
     <p class="body">
       Der dritte: <strong>Architektur vor Features.</strong> Wir hätten zwei Monate in Bild-Generierung und Video-Cutting investieren können, bevor der Basis-Kreislauf lief. Das wäre falsch gewesen. Erst muss die Pipeline stabil Newsletter-in-Post-out liefern, dann können wir den Anhang erweitern.
@@ -955,6 +971,7 @@ const HWG_PATTERNS = [
 
 <!-- ═══ CTA ═══ -->
 <section class="cta-case">
+  <img class="nautiloid-cta" src="../../nautiloid.png" alt="">
   <div class="container">
     <h2>Du hast auch einen Newsletter, <em>der nur in einem Kanal lebt?</em></h2>
     <p>48 Stunden Setup, Festpreis, kein Abo. Lass uns sprechen.</p>

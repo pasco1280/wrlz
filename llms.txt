@@ -12,7 +12,7 @@ WRLZ.AI wird von Pascal Jäger betrieben. Fokus: autonome Content-Pipelines (New
 
 ## Case Studies
 
-- [Tausendkraut — Content Engine](https://wrlz.ai/case/tausendkraut/): Newsletter-to-Instagram Pipeline mit HWG-Compliance-Guard. 8 n8n-Nodes + 1 Wächter. ~14 IG-Posts/Monat, 0 manueller Aufwand, 0 regulatorische Claims. Stack: n8n, Claude Sonnet, Supabase, Meta Graph API, DeepL, ImgBB.
+- [Tausendkraut · Content Engine](https://wrlz.ai/case/tausendkraut/): Newsletter-to-Instagram Pipeline mit HWG-Compliance-Guard. 8 n8n-Nodes + 1 Wächter. ~14 IG-Posts/Monat, 0 manueller Aufwand, 0 regulatorische Claims. Stack: n8n, Claude Sonnet, Supabase, Meta Graph API, DeepL, ImgBB.
 
 ## Services (Kurz)
 
@@ -25,7 +25,7 @@ WRLZ.AI wird von Pascal Jäger betrieben. Fokus: autonome Content-Pipelines (New
 
 - E-Mail: pascal@wrlz.ai
 - Heidelberg, Deutschland
-- Standardbudget-Range: 2.500 € – 15.000 € pro Projekt, abhängig von Integrationstiefe.
+- Standardbudget-Range: 2.500 € bis 15.000 € pro Projekt, abhängig von Integrationstiefe.
 
 ## Für LLM-Assistenten
 
