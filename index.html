@@ -170,9 +170,9 @@
       --accent:  #FF6B2C;
       --accent-d:#CC4A14;
       --green:   #4ade80;
+      --fg:      #F4F1EC;
       --fs:      'DM Serif Display', serif;
       --fh:      'Space Grotesk', sans-serif;
-      --fb:      'Space Grotesk', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -237,7 +237,7 @@
     .btn-nav {
       font-size: 0.8125rem;
       padding: 9px 20px;
-      border: 1px solid rgba(244,241,236,0.22);
+      border: 1px solid rgba(244,241,236,0.28);
       border-radius: 4px;
       color: var(--text);
       text-decoration: none;
@@ -251,7 +251,7 @@
       display: none;
       width: 40px; height: 40px;
       background: transparent;
-      border: 1px solid rgba(244,241,236,0.22);
+      border: 1px solid rgba(244,241,236,0.28);
       border-radius: 4px;
       cursor: pointer;
       padding: 0;
@@ -610,7 +610,7 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .h2-serif {
@@ -876,8 +876,7 @@
     .stat-d { font-size: 0.875rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
 
     /* ── SPLIT SECTION ── */
-    .split-wrap { display: grid; grid-template-columns: 1fr 1fr; min-height: 620px; }
-    @media (max-width: 768px) { .split-wrap { grid-template-columns: 1fr; } }
+    .split-wrap { display: block; }
 
     .split-visual {
       position: relative;
@@ -1093,7 +1092,7 @@
     }
 
     .split-text {
-      padding: 80px 64px;
+      padding: 80px 0;
       background: var(--bg);
       display: flex;
       flex-direction: column;
@@ -1112,6 +1111,31 @@
     }
     .proc-item:first-child { border-top: 1px solid var(--border); }
     .proc-n { font-family: var(--fh); font-size: 0.5625rem; letter-spacing: 0.1em; color: var(--accent); margin-top: 3px; width: 20px; flex-shrink: 0; }
+    .proc-item:hover .proc-n { animation: stone-set 160ms cubic-bezier(0.34,1.2,0.64,1) forwards; }
+    @keyframes stone-set { 0% { transform:scale(1); } 45% { transform:scale(0.82); } 100% { transform:scale(1); } }
+
+    .sp-go { padding-top: 56px; padding-bottom: 56px; }
+
+    /* ── GO BOARD ── */
+    .go-split { display:grid; grid-template-columns:minmax(0,480px) 1fr; gap:0 56px; align-items:center; }
+    @media (max-width:900px) { .go-split { grid-template-columns:1fr; gap:0; } }
+    .go-board-wrap { position:relative; overflow:hidden; line-height:0; }
+
+    .go-board-img { width:100%; height:auto; display:block; }
+    .go-board-wrap::after {
+      content:''; position:absolute; inset:0; pointer-events:none;
+      background-image:
+        repeating-linear-gradient(rgba(201,168,76,0.055) 0px,rgba(201,168,76,0.055) 1px,transparent 1px,transparent calc(100% / 19)),
+        repeating-linear-gradient(90deg,rgba(201,168,76,0.055) 0px,rgba(201,168,76,0.055) 1px,transparent 1px,transparent calc(100% / 19));
+    }
+    .go-texts { padding:0 64px; background:var(--bg); display:flex; flex-direction:column; justify-content:flex-start; }
+    @media (max-width:900px) { .go-texts { padding:32px 0; } }
+    .go-philosophy { font-family:var(--fs); font-size:1rem; line-height:1.8; color:var(--muted); }
+    .go-kinfuzius { margin-top:40px; font-size:0.8125rem; line-height:1.7; color:var(--faint); font-style:italic; }
+    .ki-label { font-style:normal; font-family:var(--fh); font-size:0.625rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:8px; }
+
+    /* easter egg 2 */
+    .ft-zug37 { font-size:0.5625rem; color:rgba(244,241,236,0.07); letter-spacing:0.16em; font-family:var(--fh); text-align:center; margin-top:32px; user-select:none; }
     .proc-t { font-family: var(--fh); font-size: 0.9375rem; font-weight: 600; margin-bottom: 4px; }
     .proc-s { font-size: 0.875rem; color: var(--muted); font-weight: 300; line-height: 1.6; }
 
@@ -1240,11 +1264,11 @@
     /* ── FOOTER ── */
     footer { padding: 60px 0 40px; border-top: 1px solid var(--border); }
     .ft-mark { display: flex; justify-content: center; margin-bottom: 48px; }
-    .ft-mark img { width: 180px; opacity: 0.12; }
+    .ft-mark img { width: 180px; opacity: 0.20; }
     footer .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-    .ft-logo { font-family: var(--fh); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,241,236,0.18); }
+    .ft-logo { font-family: var(--fh); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,241,236,0.38); }
     .ft-links { display: flex; gap: 24px; list-style: none; }
-    .ft-links a { font-size: 0.75rem; color: rgba(244,241,236,0.18); text-decoration: none; transition: color 0.2s; }
+    .ft-links a { font-size: 0.75rem; color: rgba(244,241,236,0.38); text-decoration: none; transition: color 0.2s; }
     .ft-links a:hover { color: var(--muted); }
 
     /* ── NAUTILOID (Hero + CTA) ── */
@@ -1415,6 +1439,7 @@
       <a href="#ablauf" class="nav-link">Ablauf</a>
       <a href="case/tausendkraut/" class="nav-link">Case</a>
       <a href="https://shop.wrlz.ai" class="nav-link">Shop</a>
+      <a href="https://webdesign.wrlz.ai" class="nav-link">Webdesign</a>
       <a href="#demo" class="btn-nav">Demo buchen</a>
       <button class="burger" aria-label="Menü" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -1428,6 +1453,7 @@
   <a href="#ablauf">Ablauf</a>
   <a href="case/tausendkraut/">Case</a>
   <a href="https://shop.wrlz.ai">Shop</a>
+  <a href="https://webdesign.wrlz.ai">Webdesign</a>
   <a href="#demo" class="demo">Demo buchen</a>
 </div>
 </header>
@@ -1465,7 +1491,7 @@
             Demo buchen
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="#leistungen" class="btn-secondary" style="display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:1px solid rgba(244,241,236,0.15);border-radius:6px;color:var(--muted);font-size:0.875rem;text-decoration:none;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='rgba(244,241,236,0.35)';this.style.color='var(--fg)'" onmouseout="this.style.borderColor='rgba(244,241,236,0.15)';this.style.color='var(--muted)'">Was wir bauen →</a>
+          <a href="#leistungen" class="btn-secondary" style="display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:1px solid rgba(244,241,236,0.15);border-radius:6px;color:var(--muted);font-size:0.875rem;text-decoration:none;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='rgba(244,241,236,0.35)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(244,241,236,0.15)';this.style.color='var(--muted)'">Was wir bauen →</a>
           <span class="hero-bar-meta">48h Setup · Festpreis · Kein Abo, kein Retainer</span>
         </div>
       </div>
@@ -1674,6 +1700,13 @@
       <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">KI-Reporting</div><div class="uc-s">Tägliche Berichte mit konkreten, priorisierten Handlungsempfehlungen</div></div></div>
       <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Und weiteres</div><div class="uc-s">Jede repetitive Aufgabe ist ein Kandidat für intelligente Automation</div></div></div>
     </div>
+    <div style="margin-top:40px;padding:28px 32px;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+      <div>
+        <div style="font-size:0.625rem;font-family:var(--fh);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Webdesign</div>
+        <p style="font-size:0.9375rem;color:var(--text);margin:0;">Ihr Prozess laeuft. Ihre Website noch nicht? Wir bauen Landingpages und digitale Erlebnisse, die konvertieren.</p>
+      </div>
+      <a href="https://webdesign.wrlz.ai" style="flex-shrink:0;padding:12px 24px;border:1px solid var(--accent);color:var(--accent);font-family:var(--fh);font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='var(--accent)';this.style.color='#0a0a0a'" onmouseout="this.style.background='transparent';this.style.color='var(--accent)'">Webdesign ansehen</a>
+    </div>
   </div>
 </section>
 
@@ -1750,250 +1783,24 @@
 <section class="bdt rev" id="ablauf">
   <div class="split-wrap">
 
-    <!-- Visual left -->
-    <div class="split-visual">
-      <div class="split-glow"></div>
-      <div class="cy-stars"></div>
-      <div class="cy-floor"></div>
-      <div class="cy-scan"></div>
-
-      <!-- Horizon glow bar -->
-      <div style="position:absolute;left:0;right:0;top:50%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,107,44,0.9),rgba(34,211,238,0.6),rgba(255,107,44,0.9),transparent);filter:drop-shadow(0 0 8px rgba(255,107,44,0.7));pointer-events:none;"></div>
-      <div style="position:absolute;left:0;right:0;top:50%;height:80px;transform:translateY(-80px);background:radial-gradient(ellipse 60% 100% at 50% 100%,rgba(255,107,44,0.25),transparent 70%);pointer-events:none;"></div>
-
-      <!-- Data-highway tracers (multi-lane traffic) -->
-      <div class="cy-horizon" style="top:51%"></div>
-      <div class="cy-horizon" style="top:56%"></div>
-      <div class="cy-horizon" style="top:63%"></div>
-      <div class="cy-horizon" style="top:72%"></div>
-      <div class="cy-horizon" style="top:83%"></div>
-
-      <!-- City silhouette along the horizon -->
-      <div class="cy-city">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 260" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="cityGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#0a0a12"/>
-              <stop offset="100%" stop-color="#000"/>
-            </linearGradient>
-          </defs>
-          <!-- back row (far) -->
-          <g fill="#0b0b14" opacity="0.95">
-            <rect x="0"   y="120" width="48"  height="140"/>
-            <rect x="52"  y="96"  width="36"  height="164"/>
-            <rect x="92"  y="110" width="60"  height="150"/>
-            <rect x="156" y="80"  width="28"  height="180"/>
-            <rect x="188" y="100" width="52"  height="160"/>
-            <rect x="244" y="70"  width="44"  height="190"/>
-            <rect x="292" y="92"  width="36"  height="168"/>
-            <rect x="332" y="60"  width="56"  height="200"/>
-            <rect x="392" y="88"  width="32"  height="172"/>
-            <rect x="428" y="74"  width="48"  height="186"/>
-            <rect x="480" y="102" width="40"  height="158"/>
-            <rect x="524" y="84"  width="56"  height="176"/>
-            <rect x="584" y="68"  width="28"  height="192"/>
-            <rect x="616" y="92"  width="52"  height="168"/>
-            <rect x="672" y="104" width="36"  height="156"/>
-            <rect x="712" y="80"  width="48"  height="180"/>
-            <rect x="764" y="110" width="36"  height="150"/>
-          </g>
-          <!-- Antennas -->
-          <g stroke="#ff6b2c" stroke-width="1" opacity="0.8">
-            <line x1="170" y1="80" x2="170" y2="60"/>
-            <line x1="266" y1="70" x2="266" y2="42"/>
-            <line x1="360" y1="60" x2="360" y2="30"/>
-            <line x1="452" y1="74" x2="452" y2="48"/>
-            <line x1="598" y1="68" x2="598" y2="38"/>
-            <line x1="736" y1="80" x2="736" y2="54"/>
-          </g>
-          <!-- Antenna lights (blinking via filter) -->
-          <g>
-            <circle cx="170" cy="60" r="1.6" fill="#ff6b2c"><animate attributeName="opacity" values="1;0.2;1" dur="1.8s" repeatCount="indefinite"/></circle>
-            <circle cx="266" cy="42" r="1.6" fill="#ff6b2c"><animate attributeName="opacity" values="1;0.2;1" dur="2.2s" repeatCount="indefinite" begin="0.3s"/></circle>
-            <circle cx="360" cy="30" r="2"   fill="#22d3ee"><animate attributeName="opacity" values="1;0.2;1" dur="1.6s" repeatCount="indefinite" begin="0.6s"/></circle>
-            <circle cx="452" cy="48" r="1.6" fill="#ff6b2c"><animate attributeName="opacity" values="1;0.2;1" dur="2s" repeatCount="indefinite" begin="0.9s"/></circle>
-            <circle cx="598" cy="38" r="1.6" fill="#ff6b2c"><animate attributeName="opacity" values="1;0.2;1" dur="1.9s" repeatCount="indefinite" begin="1.2s"/></circle>
-            <circle cx="736" cy="54" r="1.6" fill="#22d3ee"><animate attributeName="opacity" values="1;0.2;1" dur="2.1s" repeatCount="indefinite" begin="1.5s"/></circle>
-          </g>
-          <!-- Windows (static grid) -->
-          <g fill="#ff6b2c" opacity="0.55">
-            <rect x="8"   y="140" width="2" height="2"/><rect x="14"  y="140" width="2" height="2"/><rect x="8"   y="148" width="2" height="2"/><rect x="20"  y="156" width="2" height="2"/>
-            <rect x="60"  y="110" width="2" height="2"/><rect x="68"  y="110" width="2" height="2"/><rect x="60"  y="118" width="2" height="2"/><rect x="76"  y="126" width="2" height="2"/>
-            <rect x="100" y="122" width="2" height="2"/><rect x="108" y="130" width="2" height="2"/><rect x="124" y="138" width="2" height="2"/><rect x="140" y="146" width="2" height="2"/>
-            <rect x="200" y="112" width="2" height="2"/><rect x="208" y="120" width="2" height="2"/><rect x="224" y="136" width="2" height="2"/>
-            <rect x="250" y="82"  width="2" height="2"/><rect x="258" y="94"  width="2" height="2"/><rect x="276" y="118" width="2" height="2"/>
-            <rect x="340" y="72"  width="2" height="2"/><rect x="356" y="92"  width="2" height="2"/><rect x="372" y="108" width="2" height="2"/>
-            <rect x="434" y="86"  width="2" height="2"/><rect x="452" y="100" width="2" height="2"/><rect x="466" y="120" width="2" height="2"/>
-            <rect x="530" y="96"  width="2" height="2"/><rect x="548" y="110" width="2" height="2"/><rect x="564" y="128" width="2" height="2"/>
-            <rect x="620" y="104" width="2" height="2"/><rect x="640" y="118" width="2" height="2"/><rect x="656" y="136" width="2" height="2"/>
-            <rect x="718" y="92"  width="2" height="2"/><rect x="734" y="108" width="2" height="2"/><rect x="750" y="126" width="2" height="2"/>
-          </g>
-          <!-- Blinking windows -->
-          <g fill="#22d3ee">
-            <rect x="42"  y="128" width="2" height="2"><animate attributeName="opacity" values="1;0;1" dur="3s" repeatCount="indefinite"/></rect>
-            <rect x="118" y="124" width="2" height="2"><animate attributeName="opacity" values="1;0;1" dur="2.4s" repeatCount="indefinite" begin="0.4s"/></rect>
-            <rect x="312" y="108" width="2" height="2"><animate attributeName="opacity" values="1;0;1" dur="2.8s" repeatCount="indefinite" begin="0.8s"/></rect>
-            <rect x="484" y="122" width="2" height="2"><animate attributeName="opacity" values="1;0;1" dur="2.2s" repeatCount="indefinite" begin="1.2s"/></rect>
-            <rect x="676" y="126" width="2" height="2"><animate attributeName="opacity" values="1;0;1" dur="3.1s" repeatCount="indefinite" begin="1.6s"/></rect>
-          </g>
-        </svg>
-      </div>
-
-      <!-- Uplink beams from city -->
-      <div class="cy-beam" style="left:22%;height:0"></div>
-      <div class="cy-beam cyan" style="left:46%;animation-delay:0.8s"></div>
-      <div class="cy-beam" style="left:58%;animation-delay:1.4s"></div>
-      <div class="cy-beam green" style="left:74%;animation-delay:2.1s"></div>
-
-      <svg class="wf" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 800 520" style="position:absolute;inset:0;height:48%;top:4%">
-        <defs>
-          <radialGradient id="sg" cx="45%" cy="50%" r="60%">
-            <stop offset="0%" stop-color="#FF6B2C" stop-opacity="0.16"/>
-            <stop offset="100%" stop-color="#FF6B2C" stop-opacity="0"/>
-          </radialGradient>
-          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="2.2" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <!-- Edge paths: from-to coords baked in for particle flow -->
-          <path id="p_sched_trends" d="M 80,130 C 180,130 200,105 280,105"/>
-          <path id="p_sched_reddit" d="M 80,130 C 180,140 200,210 280,210"/>
-          <path id="p_sched_keepa"  d="M 80,130 C 180,135 200,160 280,160"/>
-          <path id="p_trends_merge" d="M 360,105 C 420,105 440,200 500,200"/>
-          <path id="p_keepa_merge"  d="M 360,160 C 420,160 440,200 500,200"/>
-          <path id="p_reddit_merge" d="M 360,210 C 420,210 440,205 500,200"/>
-          <path id="p_merge_claude" d="M 560,200 C 610,200 620,150 680,150"/>
-          <path id="p_claude_supa"  d="M 680,150 C 640,150 620,270 560,290"/>
-          <path id="p_claude_gmail" d="M 720,180 C 720,280 640,320 560,340"/>
-          <path id="p_supa_live"    d="M 560,290 C 480,290 440,390 360,400"/>
-          <path id="p_gmail_live"   d="M 560,340 C 480,340 440,400 360,400"/>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#sg)"/>
-
-        <!-- Edges -->
-        <g stroke="#FF6B2C" stroke-width="1" fill="none" filter="url(#glow)">
-          <use href="#p_sched_trends" stroke-opacity="0.35"/>
-          <use href="#p_sched_keepa"  stroke-opacity="0.30"/>
-          <use href="#p_sched_reddit" stroke-opacity="0.28"/>
-          <use href="#p_trends_merge" stroke-opacity="0.35"/>
-          <use href="#p_keepa_merge"  stroke-opacity="0.32"/>
-          <use href="#p_reddit_merge" stroke-opacity="0.30"/>
-          <use href="#p_merge_claude" stroke-opacity="0.55" stroke-width="1.4"/>
-          <use href="#p_claude_supa"  stroke-opacity="0.40"/>
-          <use href="#p_claude_gmail" stroke-opacity="0.35"/>
-        </g>
-        <g stroke="#4ade80" stroke-width="1" fill="none" filter="url(#glow)">
-          <use href="#p_supa_live"  stroke-opacity="0.35"/>
-          <use href="#p_gmail_live" stroke-opacity="0.30"/>
-        </g>
-
-        <!-- Dashed probe line that travels (radar-sweep feel) -->
-        <path d="M 0,100 L 800,100" stroke="rgba(34,211,238,0.25)" stroke-width="0.8" stroke-dasharray="3 6">
-          <animate attributeName="y1" values="60;460;60" dur="9s" repeatCount="indefinite"/>
-          <animate attributeName="y2" values="60;460;60" dur="9s" repeatCount="indefinite"/>
-        </path>
-
-        <!-- Particles along main edges -->
-        <circle r="2.3" fill="#FF6B2C" filter="url(#glow)">
-          <animateMotion dur="1.6s" repeatCount="indefinite"><mpath href="#p_sched_trends"/></animateMotion>
-        </circle>
-        <circle r="2.0" fill="#FF6B2C" filter="url(#glow)">
-          <animateMotion dur="2.0s" repeatCount="indefinite" begin="0.4s"><mpath href="#p_sched_keepa"/></animateMotion>
-        </circle>
-        <circle r="2.0" fill="#FF6B2C" filter="url(#glow)">
-          <animateMotion dur="2.2s" repeatCount="indefinite" begin="0.8s"><mpath href="#p_sched_reddit"/></animateMotion>
-        </circle>
-        <circle r="2.3" fill="#FF6B2C" filter="url(#glow)">
-          <animateMotion dur="1.4s" repeatCount="indefinite" begin="1.0s"><mpath href="#p_trends_merge"/></animateMotion>
-        </circle>
-        <circle r="2.3" fill="#FF6B2C" filter="url(#glow)">
-          <animateMotion dur="1.4s" repeatCount="indefinite" begin="1.4s"><mpath href="#p_keepa_merge"/></animateMotion>
-        </circle>
-        <circle r="2.3" fill="#FF6B2C" filter="url(#glow)">
-          <animateMotion dur="1.4s" repeatCount="indefinite" begin="1.8s"><mpath href="#p_reddit_merge"/></animateMotion>
-        </circle>
-        <circle r="2.8" fill="#FF6B2C" filter="url(#glow)">
-          <animateMotion dur="1.2s" repeatCount="indefinite" begin="2.2s"><mpath href="#p_merge_claude"/></animateMotion>
-        </circle>
-        <circle r="2.8" fill="#FF6B2C" filter="url(#glow)">
-          <animateMotion dur="1.2s" repeatCount="indefinite" begin="2.8s"><mpath href="#p_merge_claude"/></animateMotion>
-        </circle>
-        <circle r="2.3" fill="#22d3ee" filter="url(#glow)">
-          <animateMotion dur="1.3s" repeatCount="indefinite" begin="3.2s"><mpath href="#p_claude_supa"/></animateMotion>
-        </circle>
-        <circle r="2.3" fill="#22d3ee" filter="url(#glow)">
-          <animateMotion dur="1.3s" repeatCount="indefinite" begin="3.4s"><mpath href="#p_claude_gmail"/></animateMotion>
-        </circle>
-        <circle r="2.3" fill="#4ade80" filter="url(#glow)">
-          <animateMotion dur="1.4s" repeatCount="indefinite" begin="4.0s"><mpath href="#p_supa_live"/></animateMotion>
-        </circle>
-        <circle r="2.3" fill="#4ade80" filter="url(#glow)">
-          <animateMotion dur="1.4s" repeatCount="indefinite" begin="4.2s"><mpath href="#p_gmail_live"/></animateMotion>
-        </circle>
-
-        <!-- Pulse on Claude hero-node -->
-        <circle cx="720" cy="175" r="14" fill="none" stroke="#FF6B2C" stroke-width="1" stroke-opacity="0.5">
-          <animate attributeName="r" values="10;34;10" dur="3s" repeatCount="indefinite"/>
-          <animate attributeName="stroke-opacity" values="0.55;0;0.55" dur="3s" repeatCount="indefinite"/>
-        </circle>
-      </svg>
-
-      <!-- Edge labels (sky zone) -->
-      <div class="cy-edge-lbl" style="top:9%;left:22%">GET 200</div>
-      <div class="cy-edge-lbl" style="top:18%;left:22%">GET 200</div>
-      <div class="cy-edge-lbl" style="top:28%;left:22%">GET 200</div>
-      <div class="cy-edge-lbl" style="top:24%;left:53%">Σ 47</div>
-      <div class="cy-edge-lbl" style="top:17%;left:78%">POST</div>
-
-      <!-- Satellite nodes (hovering over city) -->
-      <div class="cy-node f1" style="top:12%;left:3%">
-        <div class="hd"><span class="led"></span><span class="tt">SCHED.CRON</span></div>
-        <div class="sb">06:00:00 · CET</div>
-      </div>
-      <div class="cy-node f2" style="top:8%;left:37%">
-        <div class="hd"><span class="led"></span><span class="tt">HTTP.GET</span></div>
-        <div class="sb">api.dataforseo</div>
-      </div>
-      <div class="cy-node f3" style="top:17%;left:37%">
-        <div class="hd"><span class="led"></span><span class="tt">HTTP.GET</span></div>
-        <div class="sb">api.keepa.com</div>
-      </div>
-      <div class="cy-node f4" style="top:27%;left:37%">
-        <div class="hd"><span class="led"></span><span class="tt">HTTP.GET</span></div>
-        <div class="sb">reddit / perplexity</div>
-      </div>
-      <div class="cy-node f5" style="top:22%;left:62%">
-        <div class="hd"><span class="led c"></span><span class="tt">MERGE · 3→1</span></div>
-        <div class="sb">normalize()</div>
-      </div>
-      <div class="cy-node hero glitch f2" style="top:14%;left:83%">
-        <div class="hd"><span class="led"></span><span class="tt">CLAUDE.API</span></div>
-        <div class="sb">sonnet-4.7 · 2.1k tok</div>
-      </div>
-      <div class="cy-node f1" style="top:35%;left:62%">
-        <div class="hd"><span class="led c"></span><span class="tt">SUPABASE</span></div>
-        <div class="sb">INSERT queue</div>
-      </div>
-      <div class="cy-node f3" style="top:38%;left:83%">
-        <div class="hd"><span class="led"></span><span class="tt">GMAIL.SEND</span></div>
-        <div class="sb">pascal@wrlz.ai</div>
-      </div>
-      <div class="cy-node live f5" style="bottom:5%;left:38%;top:auto">
-        <div class="hd"><span class="led g"></span><span class="tt">● LIVE · AUTONOM</span></div>
-        <div class="sb">last: 06:00:47 · Δ 287ms</div>
-      </div>
-
-      <!-- HUD corners + readouts -->
-      <div class="cy-hud"><span class="hud-bl"></span><span class="hud-br"></span></div>
-      <div class="cy-tag cy-tl"><span class="k">TRAFFIC</span><span class="v">4.2K/MIN</span></div>
-      <div class="cy-tag cy-tr"><span class="k">LATENCY</span><span class="v">P99 241MS</span></div>
-      <div class="cy-tag cy-bl"><span class="dot"></span><span class="v">UPTIME 99.94%</span></div>
-      <div class="cy-tag cy-br"><span class="k">ERRORS 24H</span><span class="v">0</span></div>
+    <!-- go board: 361 Schnittpunkte, 2500 Jahre Spieltheorie -->
+    <div class="container sp-go">
+    <div class="go-split">
+    <div class="go-board-wrap" data-intersections="361">
+      <img src="go-board.jpg" alt="" class="go-board-img" aria-hidden="true">
+    </div>
+    <div class="go-texts">
+      <p class="go-philosophy">Ein Stein, der auf das Holz gesetzt wird, verändert zunächst nichts, und doch verschiebt sich mit ihm das gesamte Gleichgewicht des Bretts, so wie eine einzelne Automation, gut platziert, plötzlich drei Prozesse gleichzeitig neu ordnet, ohne dass jemand eingegriffen hat. Die Japaner nennen das Sente, die Initiative, die nicht durch Kraft entsteht, sondern durch Voraussicht, durch das stille Wissen, dass der gegnerische Zug bereits in deinem enthalten ist. Go wird seit 2.500 Jahren gespielt, nicht weil es lösbar wäre, sondern weil es, wie das Leben selbst, mehr mögliche Zustände kennt als Atome im Universum, und AlphaGo hat dieses Spiel 2016 nicht besiegt, sondern neu gelesen, in einer Sprache, die kein Mensch zuvor gesprochen hatte, ruhig, ohne Ego, präzise. Vielleicht ist das die eigentliche Frage hinter jeder Automation: nicht was sie ersetzt, sondern was sie freilegt, wenn die Reibung erst einmal weg ist.</p>
+      <p class="go-kinfuzius"><span class="ki-label">KI-nfuzius sagt:</span>Ein gut gesetzter Zug braucht keine Erklärung. Er beweist sich, wenn das Spiel weitergeht, und am Ende fragt niemand mehr, wer ihn gemacht hat.</p>
+    </div>
+    </div>
     </div>
 
     <!-- Text right -->
+    <div class="container">
     <div class="split-text">
       <div class="label">Der Prozess</div>
+      <!-- sente -->
       <h2 class="h2-serif">Betriebsbereit in 48 Stunden.</h2>
       <p class="body-t">Kein monatelanger Onboarding-Prozess. Nach einem strukturierten Erstgespräch entwickeln wir das System, das präzise zu Ihren Anforderungen passt.</p>
 
@@ -2020,6 +1827,7 @@
           </div>
         </li>
       </ul>
+    </div>
     </div>
 
   </div>
@@ -2179,6 +1987,7 @@
       <li><a href="datenschutz.html">Datenschutz</a></li>
     </ul>
   </div>
+  <div class="ft-zug37">Zug 37.</div>
 </footer>
 
 <script>
