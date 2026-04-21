@@ -201,12 +201,11 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 200;
-      padding: 28px 0;
-      transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+      padding: 14px 0;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
     nav.scrolled {
       background: var(--accent);
-      padding: 14px 0;
       box-shadow: 0 2px 24px rgba(0,0,0,0.4);
     }
     nav.scrolled .nav-link { color: rgba(255,255,255,0.75); }
@@ -1434,9 +1433,8 @@
 <header>
 <nav>
   <div class="container">
-    <a href="#" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none">
-      <img src="wrlz_logo.svg" alt="WRLZ.AI" height="34" style="display:block">
-      <span class="nav-logo">WRLZ.AI</span>
+    <a href="#" class="nav-logo-link" aria-label="wrlz.ai">
+      <img src="wrlz_logo_final.svg" alt="wrlz.ai" height="30" class="nav-logo-img">
     </a>
     <div class="nav-right">
       <a href="#leistungen" class="nav-link">Leistungen</a>
