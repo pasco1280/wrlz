@@ -164,7 +164,7 @@
       --bg:      #08080A;
       --bg2:     #0E0E12;
       --text:    #F4F1EC;
-      --muted:   rgba(244,241,236,0.45);
+      --muted:   rgba(244,241,236,0.65);
       --faint:   rgba(244,241,236,0.15);
       --border:  rgba(244,241,236,0.07);
       --accent:  #FF6B2C;
@@ -181,7 +181,7 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: var(--fb);
+      font-family: var(--fh);
       font-weight: 300;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
@@ -217,7 +217,7 @@
 
     .nav-logo {
       font-family: var(--fh);
-      font-size: 0.875rem;
+      font-size: 1rem;
       font-weight: 700;
       letter-spacing: 0.22em;
       text-transform: uppercase;
@@ -226,7 +226,9 @@
     .nav-right { display: flex; align-items: center; gap: 32px; }
 
     .nav-link {
-      font-size: 0.8125rem;
+      font-family: var(--fh);
+      font-size: 0.9375rem;
+      font-weight: 500;
       color: var(--muted);
       text-decoration: none;
       letter-spacing: 0.02em;
@@ -235,8 +237,10 @@
     .nav-link:hover { color: var(--text); }
 
     .btn-nav {
-      font-size: 0.8125rem;
-      padding: 9px 20px;
+      font-family: var(--fh);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      padding: 10px 22px;
       border: 1px solid rgba(244,241,236,0.28);
       border-radius: 4px;
       color: var(--text);
@@ -1431,7 +1435,7 @@
 <nav>
   <div class="container">
     <a href="#" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none">
-      <img src="wrlz_logo.svg" alt="" height="34" style="display:block">
+      <img src="wrlz_logo.svg" alt="WRLZ.AI" height="34" style="display:block">
       <span class="nav-logo">WRLZ.AI</span>
     </a>
     <div class="nav-right">
@@ -1957,7 +1961,7 @@
 
 <!-- ═══ CTA ═══ -->
 <section class="bdt sp cta-section" id="demo">
-  <img class="nautiloid-cta" src="nautiloid.png" alt="">
+  <img class="nautiloid-cta" src="nautiloid.png" alt="" aria-hidden="true">
   <div class="container">
     <div class="cta-wrap rev">
       <div class="label">Ihr nächster Schritt</div>
@@ -1978,7 +1982,7 @@
 <!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="ft-mark">
-    <img src="wrlz_logo.svg" alt="">
+    <img src="wrlz_logo.svg" alt="WRLZ.AI">
   </div>
   <div class="container">
     <div class="ft-logo">WRLZ</div>
