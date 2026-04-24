@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGB · Terms of Service · WRLZ.ai</title>
+  <meta name="description" content="Allgemeine Geschäftsbedingungen / Terms of Service for WRLZ.ai">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #08080A;
+      --bg2: #0E0E12;
+      --text: #F4F1EC;
+      --muted: rgba(244,241,236,.65);
+      --accent: #f97316;
+      --border: rgba(244,241,236,.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      line-height: 1.7; min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(8,8,10,.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo-wrap {
+      display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+    }
+    .nav-logo-wrap img { display: block; height: 28px; }
+    .back-link {
+      font-size: .68rem; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted); text-decoration: none;
+      display: flex; align-items: center; gap: .4rem;
+      transition: color .2s;
+    }
+    .back-link:hover { color: var(--text); }
+
+    main { flex: 1; }
+    .legal-page {
+      max-width: 680px; margin: 0 auto;
+      padding: 5rem 2.5rem 7rem;
+    }
+    .legal-eyebrow {
+      font-size: .58rem; font-weight: 600; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1rem; display: block; opacity: .8;
+    }
+    .legal-page h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-style: italic; font-weight: 400;
+      color: var(--text); line-height: 1.2; margin-bottom: 3rem;
+    }
+    .lang-divider {
+      margin: 4rem 0 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem; font-style: italic;
+      color: var(--text);
+    }
+
+    .legal-section { margin-bottom: 2.5rem; }
+    .legal-section h2 {
+      font-size: .58rem; font-weight: 600; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--accent); opacity: .7;
+      margin-bottom: .6rem;
+    }
+    .legal-section p {
+      font-size: .9rem; color: var(--muted); line-height: 1.8;
+      margin-bottom: .5rem;
+    }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section a {
+      color: var(--accent); text-underline-offset: 3px;
+      text-decoration: underline;
+      text-decoration-color: rgba(249,115,22,.3);
+      transition: text-decoration-color .2s;
+    }
+    .legal-section a:hover { text-decoration-color: var(--accent); }
+
+    .legal-notice {
+      margin-top: 3rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: .72rem; color: var(--muted); line-height: 1.7;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: .8rem;
+    }
+    .ft-name { font-size: .68rem; font-weight: 500; letter-spacing: .1em; color: var(--muted); }
+    .ft-links { display: flex; gap: 1.4rem; list-style: none; }
+    .ft-links a {
+      font-size: .61rem; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted); opacity: .5;
+      text-decoration: none; transition: opacity .2s;
+    }
+    .ft-links a:hover, .ft-links a.active { opacity: 1; color: var(--accent); }
+
+    @media (max-width: 680px) {
+      .legal-page { padding: 3rem 1.4rem 5rem; }
+      nav { padding: 0 20px; }
+      footer { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo-wrap">
+    <img src="wrlz_logo_final.svg" alt="wrlz.ai" height="28">
+  </a>
+  <a href="index.html" class="back-link">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Zurück
+  </a>
+</nav>
+
+<main>
+  <div class="legal-page">
+
+    <span class="legal-eyebrow">Terms of Service · AGB</span>
+    <h1>Terms of Service.</h1>
+
+    <div class="legal-section">
+      <h2>1. Provider</h2>
+      <p>
+        WRLZ.ai is operated by Pascal Jäger, Turnerstr. 121, 69126 Heidelberg, Germany.<br>
+        Contact: <a href="mailto:pascal@wrlz.ai">pascal@wrlz.ai</a><br>
+        Small business under § 19 UStG (no VAT charged).<br>
+        Full legal information: <a href="impressum.html">Imprint</a>
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>2. Scope of services</h2>
+      <p>
+        WRLZ.ai provides AI-driven automation services, including but not limited to:
+        marketing automation, lead generation, content generation pipelines, and integrations
+        with third-party APIs (e.g., TikTok, Meta/Instagram, Supabase, n8n).
+        The website wrlz.ai serves as a public showcase and contact point.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>3. Use of third-party platforms</h2>
+      <p>
+        WRLZ.ai integrates with third-party platforms via their official APIs, including
+        TikTok for Developers, Meta Graph API, Google Calendar, and others.
+        Use of these platforms through WRLZ.ai is subject to the respective platform's own
+        terms of service. Users are responsible for complying with those terms.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>4. User content &amp; ownership</h2>
+      <p>
+        Content generated through WRLZ.ai automations on behalf of a client (text, images,
+        video) belongs to that client. WRLZ.ai claims no ownership over generated content.
+        Clients are responsible for ensuring their content complies with the rules of the
+        platforms it is published to.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>5. Acceptable use</h2>
+      <p>
+        WRLZ.ai must not be used to generate or distribute content that is illegal,
+        defamatory, deceptive, infringes third-party rights, or violates the terms of
+        connected platforms (e.g., TikTok Community Guidelines, Meta Platform Terms).
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>6. Liability</h2>
+      <p>
+        WRLZ.ai is provided "as is". To the extent permitted by law, the provider's
+        liability is limited to intent and gross negligence. The provider is not liable
+        for indirect or consequential damages, including loss of revenue, profit, data,
+        or goodwill.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>7. Privacy</h2>
+      <p>
+        Personal data is processed in accordance with the
+        <a href="datenschutz.html">Privacy Policy</a>.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>8. Changes</h2>
+      <p>
+        These terms may be updated from time to time. The current version is always
+        available at this URL. Continued use of WRLZ.ai constitutes acceptance of the
+        updated terms.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>9. Governing law</h2>
+      <p>
+        These terms are governed by the laws of the Federal Republic of Germany.
+        Place of jurisdiction is Heidelberg, Germany, where permitted by law.
+      </p>
+    </div>
+
+    <h2 class="lang-divider">Allgemeine Geschäftsbedingungen.</h2>
+
+    <div class="legal-section">
+      <h2>1. Anbieter</h2>
+      <p>
+        WRLZ.ai wird betrieben von Pascal Jäger, Turnerstr. 121, 69126 Heidelberg.<br>
+        Kontakt: <a href="mailto:pascal@wrlz.ai">pascal@wrlz.ai</a><br>
+        Kleinunternehmer gemäß § 19 UStG (keine Umsatzsteuer).
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>2. Leistungsumfang</h2>
+      <p>
+        WRLZ.ai bietet KI-gestützte Automatisierungs-Dienstleistungen, insbesondere
+        Marketing-Automation, Lead-Generierung, Content-Pipelines sowie Integrationen
+        mit Drittanbieter-APIs (z. B. TikTok, Meta/Instagram, Supabase, n8n).
+        Die Website wrlz.ai dient als öffentliche Darstellung und Kontaktpunkt.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>3. Nutzung von Drittplattformen</h2>
+      <p>
+        Über WRLZ.ai werden offizielle APIs von Drittplattformen angesprochen.
+        Die Nutzung dieser Plattformen unterliegt den jeweiligen Nutzungsbedingungen
+        der Plattformbetreiber. Kunden tragen die Verantwortung für die Einhaltung
+        dieser Bedingungen.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>4. Inhalte &amp; Rechte</h2>
+      <p>
+        Im Auftrag eines Kunden über WRLZ.ai-Automationen erzeugte Inhalte (Text, Bild,
+        Video) gehören diesem Kunden. WRLZ.ai erhebt keine Eigentumsansprüche an
+        generierten Inhalten. Die Verantwortung für die Plattform-Konformität
+        veröffentlichter Inhalte liegt beim Kunden.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>5. Zulässige Nutzung</h2>
+      <p>
+        WRLZ.ai darf nicht verwendet werden, um illegale, irreführende, ehrverletzende
+        oder die Rechte Dritter verletzende Inhalte zu erzeugen oder zu verbreiten,
+        oder um die Bedingungen verbundener Plattformen zu umgehen.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>6. Haftung</h2>
+      <p>
+        WRLZ.ai wird "wie besehen" bereitgestellt. Die Haftung des Anbieters ist im
+        gesetzlich zulässigen Rahmen auf Vorsatz und grobe Fahrlässigkeit beschränkt.
+        Eine Haftung für mittelbare Schäden, insbesondere entgangenen Gewinn oder
+        Datenverlust, ist ausgeschlossen.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>7. Datenschutz</h2>
+      <p>
+        Personenbezogene Daten werden gemäß der
+        <a href="datenschutz.html">Datenschutzerklärung</a> verarbeitet.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>8. Änderungen</h2>
+      <p>
+        Diese Bedingungen können fortlaufend angepasst werden. Die jeweils gültige
+        Fassung steht unter dieser URL. Mit der weiteren Nutzung von WRLZ.ai gelten
+        die aktualisierten Bedingungen als anerkannt.
+      </p>
+    </div>
+
+    <div class="legal-section">
+      <h2>9. Anwendbares Recht</h2>
+      <p>
+        Es gilt deutsches Recht. Gerichtsstand ist, soweit gesetzlich zulässig,
+        Heidelberg.
+      </p>
+    </div>
+
+    <p class="legal-notice">
+      Stand · Last updated: April 2026 · Diese Seite ersetzt keine Rechtsberatung. ·
+      This page does not constitute legal advice.
+    </p>
+  </div>
+</main>
+
+<footer>
+  <span class="ft-name">WRLZ.ai · Heidelberg</span>
+  <ul class="ft-links">
+    <li><a href="impressum.html">Impressum</a></li>
+    <li><a href="datenschutz.html">Datenschutz · Privacy</a></li>
+    <li><a href="agb.html" class="active">AGB · Terms</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
