@@ -463,6 +463,14 @@
       letter-spacing: 0.04em;
     }
 
+    .hero-sub {
+      margin-top: 14px;
+      font-size: clamp(0.9rem, 1.3vw, 1.0625rem);
+      font-weight: 300;
+      color: rgba(244,241,236,0.62);
+      line-height: 1.6;
+      max-width: 480px;
+    }
     .hero-btns { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
 
     @media (max-width: 640px) {
@@ -502,36 +510,6 @@
     }
     .btn-ghost:hover { color: var(--text); border-color: var(--faint); }
 
-    /* ── TICKER ── */
-    .ticker {
-      background: var(--bg2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 13px 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .ticker-track {
-      display: inline-flex;
-      animation: tick 28s linear infinite;
-    }
-    @keyframes tick {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-    .ti {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 0 36px;
-      font-family: var(--fh);
-      font-size: 0.625rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(244,241,236,0.2);
-    }
-    .ti-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--accent); opacity: 0.7; }
 
     /* ── ABOUT ── */
     .about-inner {
@@ -881,217 +859,8 @@
     /* ── SPLIT SECTION ── */
     .split-wrap { display: block; }
 
-    .split-visual {
-      position: relative;
-      overflow: hidden;
-      background: radial-gradient(ellipse 100% 60% at 50% 100%, #1a0a05 0%, #060608 55%, #020204 100%);
-      min-height: 620px;
-      font-family: var(--fh);
-    }
-
-    .split-visual .wf { opacity: 0.95; }
-
-    .split-glow {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 30% at 50% 100%, rgba(255,107,44,0.28), transparent 70%),
-        radial-gradient(ellipse 50% 40% at 20% 85%, rgba(236,72,153,0.10), transparent 70%),
-        radial-gradient(ellipse 50% 40% at 80% 85%, rgba(34,211,238,0.10), transparent 70%);
-      pointer-events: none;
-    }
-
-    /* Perspective grid floor */
-    .cy-floor {
-      position: absolute; left: 0; right: 0; bottom: 0; height: 50%;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,107,44,0.18) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,107,44,0.18) 1px, transparent 1px);
-      background-size: 44px 32px;
-      transform: perspective(600px) rotateX(62deg);
-      transform-origin: 50% 100%;
-      mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 75%, transparent 100%);
-      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%, #000 75%, transparent 100%);
-      opacity: 0.65;
-      animation: cy-floor-move 6s linear infinite;
-    }
-    @keyframes cy-floor-move {
-      0% { background-position: 0 0, 0 0; }
-      100% { background-position: 0 32px, 0 0; }
-    }
-
-    /* Starfield / data-points */
-    .cy-stars {
-      position: absolute; inset: 0; pointer-events: none; opacity: 0.7;
-      background-image:
-        radial-gradient(1px 1px at 12% 18%, #fff 50%, transparent),
-        radial-gradient(1px 1px at 28% 8%, rgba(255,107,44,0.9) 50%, transparent),
-        radial-gradient(1px 1px at 42% 22%, #fff 50%, transparent),
-        radial-gradient(1.5px 1.5px at 55% 12%, rgba(34,211,238,0.9) 50%, transparent),
-        radial-gradient(1px 1px at 68% 28%, #fff 50%, transparent),
-        radial-gradient(1px 1px at 78% 9%, rgba(255,107,44,0.8) 50%, transparent),
-        radial-gradient(1px 1px at 88% 24%, #fff 50%, transparent),
-        radial-gradient(1px 1px at 6% 32%, rgba(34,211,238,0.8) 50%, transparent),
-        radial-gradient(1px 1px at 34% 38%, #fff 50%, transparent),
-        radial-gradient(1px 1px at 62% 35%, rgba(255,107,44,0.8) 50%, transparent),
-        radial-gradient(1px 1px at 92% 16%, #fff 50%, transparent),
-        radial-gradient(1px 1px at 48% 5%, #fff 50%, transparent);
-    }
-    .cy-stars::after {
-      content: ''; position: absolute; inset: 0;
-      background-image:
-        radial-gradient(2px 2px at 20% 14%, rgba(255,255,255,0.9), transparent 60%),
-        radial-gradient(2px 2px at 72% 18%, rgba(255,107,44,0.8), transparent 60%);
-      animation: cy-twinkle 2.4s ease-in-out infinite;
-    }
-    @keyframes cy-twinkle { 0%,100% { opacity: 1; } 50% { opacity: 0.15; } }
-
-    /* City skyline */
-    .cy-city {
-      position: absolute; left: 0; right: 0; bottom: 0; height: 38%;
-      pointer-events: none;
-    }
-    .cy-city svg { width: 100%; height: 100%; display: block; }
-
-    /* Uplink beams */
-    .cy-beam {
-      position: absolute; bottom: 10%; width: 2px;
-      background: linear-gradient(180deg, transparent, rgba(255,107,44,0.9) 40%, rgba(255,107,44,0) 100%);
-      transform-origin: 50% 100%;
-      pointer-events: none;
-      filter: drop-shadow(0 0 6px rgba(255,107,44,0.7));
-      animation: cy-beam 3.2s ease-out infinite;
-    }
-    .cy-beam.cyan { background: linear-gradient(180deg, transparent, rgba(34,211,238,0.9) 40%, rgba(34,211,238,0) 100%); filter: drop-shadow(0 0 6px rgba(34,211,238,0.7)); }
-    .cy-beam.green { background: linear-gradient(180deg, transparent, rgba(74,222,128,0.9) 40%, rgba(74,222,128,0) 100%); filter: drop-shadow(0 0 6px rgba(74,222,128,0.7)); }
-    @keyframes cy-beam {
-      0% { height: 0; opacity: 0; }
-      25% { opacity: 1; }
-      100% { height: 55%; opacity: 0; }
-    }
-
-    /* Horizon data-tracers */
-    .cy-horizon {
-      position: absolute; left: 0; right: 0; bottom: 32%; height: 2px;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .cy-horizon::before, .cy-horizon::after {
-      content: ''; position: absolute; top: 0; left: -20%; width: 20%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,107,44,0.9), transparent);
-      filter: drop-shadow(0 0 4px rgba(255,107,44,0.7));
-      animation: cy-tracer 4s linear infinite;
-    }
-    .cy-horizon::after { animation-delay: 2s; background: linear-gradient(90deg, transparent, rgba(34,211,238,0.8), transparent); filter: drop-shadow(0 0 4px rgba(34,211,238,0.7)); }
-    @keyframes cy-tracer { to { left: 120%; } }
-
-    /* Old grid alias remains for fallback; hide if city active */
-    .cy-grid { display: none; }
-
-    /* Scanlines */
-    .cy-scan {
-      position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
-      background: repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 3px);
-      mix-blend-mode: overlay;
-    }
-    .cy-scan::after {
-      content: '';
-      position: absolute; left: 0; right: 0; height: 120px; top: 0;
-      background: linear-gradient(180deg, transparent, rgba(255,107,44,0.08), transparent);
-      animation: cy-scan-move 7s linear infinite;
-    }
-    @keyframes cy-scan-move { 0% { transform: translateY(-100%); } 100% { transform: translateY(620px); } }
-
-    /* HUD corners */
-    .cy-hud { position: absolute; inset: 0; pointer-events: none; }
-    .cy-hud::before, .cy-hud::after,
-    .cy-hud .hud-br, .cy-hud .hud-bl {
-      content: ''; position: absolute; width: 18px; height: 18px;
-      border: 1px solid rgba(255,107,44,0.65);
-    }
-    .cy-hud::before { top: 14px; left: 14px; border-right: none; border-bottom: none; }
-    .cy-hud::after  { top: 14px; right: 14px; border-left: none; border-bottom: none; }
-    .cy-hud .hud-bl { bottom: 14px; left: 14px; border-right: none; border-top: none; }
-    .cy-hud .hud-br { bottom: 14px; right: 14px; border-left: none; border-top: none; }
-
-    /* HUD readouts */
-    .cy-tag {
-      position: absolute;
-      font-family: var(--fh);
-      font-size: 8.5px;
-      letter-spacing: 0.18em;
-      color: rgba(244,241,236,0.55);
-      text-transform: uppercase;
-      pointer-events: none;
-    }
-    .cy-tag .k { color: rgba(255,107,44,0.85); margin-right: 6px; }
-    .cy-tag .v { color: rgba(244,241,236,0.85); font-weight: 600; }
-    .cy-tag .dot { display:inline-block; width:5px; height:5px; border-radius:50%; background:var(--green); box-shadow:0 0 6px var(--green); margin-right:5px; vertical-align: middle; animation: cy-blink 1.6s ease-in-out infinite; }
-    @keyframes cy-blink { 0%,100% { opacity:1 } 50% { opacity:0.35 } }
-    .cy-tl { top: 40px; left: 40px; }
-    .cy-tr { top: 40px; right: 40px; text-align: right; }
-    .cy-bl { bottom: 40px; left: 40px; }
-    .cy-br { bottom: 40px; right: 40px; text-align: right; }
-
-    /* Cyberpunk node */
-    .cy-node {
-      position: absolute;
-      display: inline-flex;
-      flex-direction: column;
-      padding: 7px 10px 6px;
-      background: rgba(8,8,12,0.75);
-      border: 1px solid rgba(255,107,44,0.30);
-      border-radius: 3px;
-      font-family: var(--fh);
-      font-size: 9.5px;
-      color: rgba(244,241,236,0.85);
-      white-space: nowrap;
-      pointer-events: none;
-      letter-spacing: 0.06em;
-      box-shadow: 0 0 18px rgba(255,107,44,0.08), inset 0 0 0 1px rgba(255,107,44,0.08);
-      backdrop-filter: blur(3px);
-    }
-    .cy-node .hd { display: flex; align-items: center; gap: 6px; }
-    .cy-node .tt { font-weight: 600; }
-    .cy-node .sb { font-size: 8px; color: rgba(244,241,236,0.42); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 2px; }
-    .cy-node .led {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 8px var(--accent);
-      animation: cy-blink 1.8s ease-in-out infinite;
-    }
-    .cy-node .led.g { background: var(--green); box-shadow: 0 0 8px var(--green); }
-    .cy-node .led.c { background: #22d3ee; box-shadow: 0 0 8px #22d3ee; }
-    .cy-node.hero { border-color: rgba(255,107,44,0.70); box-shadow: 0 0 30px rgba(255,107,44,0.25), inset 0 0 0 1px rgba(255,107,44,0.15); }
-    .cy-node.live { border-color: rgba(74,222,128,0.55); box-shadow: 0 0 20px rgba(74,222,128,0.18); }
-    .cy-node.glitch .tt { position: relative; animation: cy-glitch 4.2s steps(1) infinite; }
-    @keyframes cy-glitch {
-      0%, 92%, 100% { text-shadow: none; transform: translate(0,0); }
-      93% { text-shadow: 1px 0 #22d3ee, -1px 0 #ff6b2c; transform: translate(-0.5px, 0); }
-      94% { text-shadow: -1px 0 #22d3ee, 1px 0 #ff6b2c; transform: translate(0.5px, 0); }
-      95% { text-shadow: none; transform: translate(0, 0); }
-    }
-
-    /* Edge labels */
-    .cy-edge-lbl {
-      position: absolute;
-      font-family: var(--fh);
-      font-size: 7.5px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(255,107,44,0.75);
-      padding: 2px 5px;
-      background: rgba(8,8,12,0.85);
-      border: 1px solid rgba(255,107,44,0.2);
-      border-radius: 2px;
-      pointer-events: none;
-    }
-
     @media (max-width: 900px) {
       .split-visual { min-height: 440px; }
-      .cy-tag { font-size: 7.5px; }
-      .cy-node { font-size: 8.5px; }
     }
 
     .split-text {
@@ -1485,8 +1254,9 @@
     <div class="container">
       <div class="hero-bar">
         <div class="hero-bar-text">
-          <div class="hero-eyebrow">Zeit sparen für Wichtigeres.</div>
-          <h1 class="hero-h1">Einmal gebaut. <em>Läuft ohne dich.</em></h1>
+          <div class="hero-eyebrow">KI-Automation · Webdesign · Heidelberg</div>
+          <h1 class="hero-h1">Dein Team ist gut.</h1>
+          <p class="hero-sub">Trotzdem sitzt jemand jeden Montag an Aufgaben, die kein Mensch mehr erledigen müsste.</p>
         </div>
         <div class="hero-bar-action">
           <a href="#demo" class="btn-primary">
@@ -1494,7 +1264,7 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="#leistungen" class="btn-secondary" style="display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:1px solid rgba(244,241,236,0.15);border-radius:6px;color:var(--muted);font-size:0.875rem;text-decoration:none;transition:border-color 0.2s,color 0.2s;" onmouseover="this.style.borderColor='rgba(244,241,236,0.35)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='rgba(244,241,236,0.15)';this.style.color='var(--muted)'">Was wir bauen →</a>
-          <span class="hero-bar-meta">Festpreis · Kein Abo · Kein Retainer</span>
+          <span class="hero-bar-meta">Setup einmalig · Wartung monatlich kündbar · System gehört dir</span>
         </div>
       </div>
     </div>
@@ -1512,7 +1282,7 @@
     </a>
     <a class="trio-cell" href="https://shop.wrlz.ai" target="_blank" rel="noopener">
       <div class="trio-kicker">WRLZ // Shop</div>
-      <div class="trio-title">42 Tools. Ab 1 €.</div>
+      <div class="trio-title">43 Tools. Ab 1 €.</div>
       <div class="trio-desc">Ein Problem, ein Tool, 15 Sekunden Ergebnis. Self-Service. Kein Account. Kein Abo.</div>
       <div class="trio-arrow">shop.wrlz.ai →</div>
     </a>
@@ -1525,39 +1295,14 @@
   </div>
 </section>
 
-<!-- ═══ TICKER ═══ -->
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="ti"><span class="ti-dot"></span>Automatisierter Content</span>
-    <span class="ti"><span class="ti-dot"></span>Qualifizierte Leads</span>
-    <span class="ti"><span class="ti-dot"></span>Trendbasiertes Marketing</span>
-    <span class="ti"><span class="ti-dot"></span>KI-gestützte Werbeanzeigen</span>
-    <span class="ti"><span class="ti-dot"></span>Vollautomatische Reports</span>
-    <span class="ti"><span class="ti-dot"></span>CRM-Synchronisation</span>
-    <span class="ti"><span class="ti-dot"></span>Personalisierte E-Mail-Sequenzen</span>
-    <span class="ti"><span class="ti-dot"></span>Kein manueller Aufwand</span>
-    <span class="ti"><span class="ti-dot"></span>Skalierbar ohne Headcount</span>
-    <span class="ti"><span class="ti-dot"></span>Automatisierter Content</span>
-    <span class="ti"><span class="ti-dot"></span>Qualifizierte Leads</span>
-    <span class="ti"><span class="ti-dot"></span>Trendbasiertes Marketing</span>
-    <span class="ti"><span class="ti-dot"></span>KI-gestützte Werbeanzeigen</span>
-    <span class="ti"><span class="ti-dot"></span>Vollautomatische Reports</span>
-    <span class="ti"><span class="ti-dot"></span>CRM-Synchronisation</span>
-    <span class="ti"><span class="ti-dot"></span>Personalisierte E-Mail-Sequenzen</span>
-    <span class="ti"><span class="ti-dot"></span>Kein manueller Aufwand</span>
-    <span class="ti"><span class="ti-dot"></span>Skalierbar ohne Headcount</span>
-  </div>
-</div>
 
 <!-- ═══ LOGO TRUST BAR ═══ --><section class="logo-bar" aria-label="Kunden und Partner">
   <div class="container">
-    <p class="logo-bar-label">Aus dem Portfolio</p>
+    <p class="logo-bar-label">Kunden</p>
     <div class="logo-bar-logos">
       <img src="logos/eurhof.png" alt="Europäischer Hof Heidelberg">
       <img src="logos/matchachin.png" alt="Matchachin">
       <img src="logos/tausendkraut.png" alt="Tausendkraut">
-      <img src="logos/numark.png" alt="Numark">
-      <img src="logos/akai.png" alt="AKAI Professional">
       <img src="logos/hntz.svg" alt="HNTZ">
     </div>
   </div>
@@ -1568,26 +1313,26 @@
   <div class="container">
     <div class="prob-grid">
       <div class="prob-left">
-        <div class="label">Die Realität</div>
-        <h2 class="h2-serif">Sie führen ein Unternehmen. Nicht eine Agentur.</h2>
-        <p class="body-t">Wachstumsstarke Unternehmen investieren wertvolle Ressourcen in Aufgaben, die ein intelligentes System übernehmen könnte. Das Ergebnis: gebundenes Kapital, stagnierendes Wachstum und ein Team, das operativen Aufgaben hinterherjagt statt Strategie voranzutreiben.</p>
+        <div class="label">Letzte Woche.</div>
+        <h2 class="h2-serif">Du weißt, was es kostet. Du hast es nur noch nicht aufgeschrieben.</h2>
+        <p class="body-t">Kein Unternehmen verliert auf einmal. Es verliert in Stunden. Jeden Montag ein bisschen. Jeden Dienstag etwas mehr. Irgendwann fragt man sich, warum das Team beschäftigt, aber nichts vorankommt.</p>
       </div>
       <div>
         <ul class="pain-list">
           <li class="pain-item">
             <div class="pain-n">01</div>
-            <div class="pain-t">Content bindet operatives Kapital</div>
-            <div class="pain-s">Manuell produzierter Content ist kostspielig, inkonsistent und nicht skalierbar. Wettbewerber, die automatisieren, veröffentlichen täglich ein Vielfaches und gewinnen an Sichtbarkeit.</div>
+            <div class="pain-t">Letzte Woche Dienstag.</div>
+            <div class="pain-s">Jemand in deinem Team hat eine Stunde gebraucht, um einen Post zu schreiben, den du hättest in zehn Minuten automatisieren lassen können. Das ist keine Kritik. Das ist eine Beschreibung dessen, was ohne System normal ist.</div>
           </li>
           <li class="pain-item">
             <div class="pain-n">02</div>
-            <div class="pain-t">Kein System hinter dem Vertrieb</div>
-            <div class="pain-s">Unstrukturierte Akquise ohne intelligente Qualifizierung erzeugt hohen Aufwand bei niedrigem Ertrag. Ein System, das Leads kontinuierlich identifiziert und priorisiert, fehlt.</div>
+            <div class="pain-t">Dein letzter Lead-Report.</div>
+            <div class="pain-s">Hat dir gezeigt, wer sich angemeldet hat. Nicht wer kauft. Nicht wer gerade in der Phase ist, in der ein Anruf etwas bewirkt. Der Unterschied zwischen Daten und einem System, das daraus eine Entscheidung macht.</div>
           </li>
           <li class="pain-item">
             <div class="pain-n">03</div>
-            <div class="pain-t">Werbeinvestments ohne Datenbasis</div>
-            <div class="pain-s">Kampagnen ohne automatisierten Feedback-Loop optimieren sich nicht selbst. Jede manuelle Iteration kostet Zeit und Kapital, das ein lernendes System einsparen würde.</div>
+            <div class="pain-t">Deine Website.</div>
+            <div class="pain-s">Du weißt, dass sie nicht optimal ist. Du hast das Angebot der Agentur gesehen. Du hast das Angebot des Freelancers gesehen. Beides hat sich falsch angefühlt. Zu teuer, zu langsam, oder beides.</div>
           </li>
         </ul>
       </div>
@@ -1601,8 +1346,8 @@
     <div class="spec-wrap">
       <div class="spec-left">
         <div class="label">Technische Architektur</div>
-        <h2 class="h2-serif">Präzision, die messbar wirkt.</h2>
-        <p class="body-t">Keine abstrakten Versprechen. Dies ist die exakte technische Grundlage Ihres Systems, transparent und vollständig nachvollziehbar.</p>
+        <h2 class="h2-serif">Was unter der Haube läuft.</h2>
+        <p class="body-t">Keine abstrakten Versprechen. Das hier ist die exakte technische Grundlage deines Systems, transparent und vollständig in deinem Besitz.</p>
       </div>
       <div>
         <table class="spec-table">
@@ -1612,7 +1357,7 @@
           </tr>
           <tr>
             <td>Texte & Inhalte</td>
-            <td>Fortschrittlichste KI am Markt</td>
+            <td>Claude Sonnet 4.6 · Anthropic</td>
           </tr>
           <tr>
             <td>Trend-Erkennung</td>
@@ -1632,7 +1377,7 @@
           </tr>
           <tr>
             <td>Benachrichtigungen</td>
-            <td>Sie entscheiden, System wartet</td>
+            <td>Du entscheidest, System wartet</td>
           </tr>
           <tr>
             <td>Kosten pro Run</td>
@@ -1650,7 +1395,7 @@
     <div class="live-head">
       <div>
         <div class="label">Live · Sample Pipeline</div>
-        <h2 class="h2-serif">Ein Ausschnitt dessen, <em style="font-style:italic;color:var(--accent)">was für Sie arbeitet.</em></h2>
+        <h2 class="h2-serif">Ein Ausschnitt dessen, <em style="font-style:italic;color:var(--accent)">was für dich arbeitet.</em></h2>
       </div>
       <div class="live-head-right">
         <b>Trigger → Fetch → Parse → Claude → Ship</b><br>
@@ -1672,30 +1417,31 @@
 <section class="uc-bg bdt sp" id="leistungen">
   <div class="container">
     <div class="uc-head rev">
-      <div class="label">Was wir für Sie bauen</div>
-      <h2 class="h2-sans">Alles, was Ihr Wachstum verlangsamt.</h2>
-      <p class="body-t">Keine Beratungsfolien. Jede Automation, die wir entwickeln, ist produktionsbereit, messbar und direkt wirksam.</p>
+      <div class="label">Was wir bauen</div>
+      <h2 class="h2-sans">Alles, was dich aufhält.</h2>
+      <p class="body-t">Keine Beratungsfolien. Jede Automation, die wir entwickeln, ist produktionsbereit und direkt wirksam.</p>
     </div>
     <div class="uc-grid rev d1">
-      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Content Engine</div><div class="uc-s">Markenkonsistenter Content, nach Ihrem Zeitplan und Ihrem Ton.</div></div></div>
-      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Trend-Erkennung</div><div class="uc-s">Das System identifiziert virales Potenzial, bevor der Markt es erkennt</div></div></div>
-      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Lead Scoring</div><div class="uc-s">Automatische Priorisierung von Interessenten nach Abschlusswahrscheinlichkeit</div></div></div>
-      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">E-Mail-Sequenzen</div><div class="uc-s">Personalisierte KI-Sequenzen mit nachweisbarer Konversionsrate</div></div></div>
-      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Social Media Autopilot</div><div class="uc-s">Konsistente Markenpräsenz auf allen Plattformen, die läuft.</div></div></div>
-      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Ad Creative AI</div><div class="uc-s">Datengestützte Werbemittel mit automatisierter Zielgruppenoptimierung</div></div></div>
-      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">CRM-Integration</div><div class="uc-s">Lückenlose Datensynchronisation zwischen sämtlichen Systemen in Echtzeit</div></div></div>
-      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Angebots-Automation</div><div class="uc-s">Angebote werden erstellt und versandt, bevor der Interessent nachfragt</div></div></div>
-      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Kundensupport</div><div class="uc-s">80 Prozent aller Anfragen ohne Personalaufwand präzise beantwortet</div></div></div>
-      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Shop Automation</div><div class="uc-s">Produkte, Listings und Fulfillment vollständig automatisiert und skalierbar</div></div></div>
-      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">KI-Reporting</div><div class="uc-s">Tägliche Berichte mit konkreten, priorisierten Handlungsempfehlungen</div></div></div>
-      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Und weiteres</div><div class="uc-s">Jede repetitive Aufgabe ist ein Kandidat für intelligente Automation</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Content Engine</div><div class="uc-s">Markenkonsistenter Content nach deinem Zeitplan und deinem Ton.</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Trend-Erkennung</div><div class="uc-s">Das System beobachtet, was in deiner Nische gerade zieht.</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Lead Scoring</div><div class="uc-s">Wer kauft wann? Das System priorisiert, du rufst an.</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">E-Mail-Sequenzen</div><div class="uc-s">Personalisierte Sequenzen, die sich nach Verhalten anpassen.</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Social Media</div><div class="uc-s">Konsistente Präsenz auf allen Plattformen. Läuft ohne dich.</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Ad Creative</div><div class="uc-s">Werbemittel, die aus echten Daten entstehen, nicht aus Bauchgefühl.</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">CRM-Integration</div><div class="uc-s">Alle Systeme reden miteinander. Keine manuelle Datenpflege mehr.</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Angebots-Automation</div><div class="uc-s">Angebot raus, bevor der Interessent nochmal nachdenkt.</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Kundensupport</div><div class="uc-s">Die häufigen Fragen beantwortet das System. Du kümmerst dich um den Rest.</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Shop Automation</div><div class="uc-s">Listings, Fulfillment, Nachbestellungen. Läuft.</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">KI-Reporting</div><div class="uc-s">Jeden Morgen im Postfach: was läuft, was nicht, was als nächstes.</div></div></div>
+      <div class="uc-card"><div class="uc-dot-s"></div><div><div class="uc-t">Und mehr</div><div class="uc-s">Wenn eine Aufgabe sich wiederholt, ist sie ein Kandidat.</div></div></div>
     </div>
-    <div style="margin-top:40px;padding:28px 32px;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
-      <div>
-        <div style="font-size:0.625rem;font-family:var(--fh);letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Webdesign</div>
-        <p style="font-size:0.9375rem;color:var(--text);margin:0;">Ihr Prozess laeuft. Ihre Website noch nicht? Wir bauen Landingpages und digitale Erlebnisse, die konvertieren.</p>
+    <div style="margin-top:40px;padding:32px 36px;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+      <div style="max-width:560px;">
+        <div style="font-size:0.625rem;font-family:var(--fh);letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Webdesign</div>
+        <p style="font-size:1rem;color:var(--text);margin:0 0 8px;font-weight:500;line-height:1.45;">Du weißt ungefähr, was eine Agentur für eine saubere Unternehmensseite kostet. Ruf an und frag nach. Dann ruf uns an.</p>
+        <p style="font-size:0.8125rem;color:var(--muted);margin:0;line-height:1.6;">Briefing bis Livegang: 5 bis 12 Werktage. Preis: ein Bruchteil davon. Die Seite gehört dir.</p>
       </div>
-      <a href="https://webdesign.wrlz.ai" style="flex-shrink:0;padding:12px 24px;border:1px solid var(--accent);color:var(--accent);font-family:var(--fh);font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='var(--accent)';this.style.color='#0a0a0a'" onmouseout="this.style.background='transparent';this.style.color='var(--accent)'">Webdesign ansehen</a>
+      <a href="https://webdesign.wrlz.ai" style="flex-shrink:0;padding:13px 26px;border:1px solid var(--accent);color:var(--accent);font-family:var(--fh);font-size:0.8125rem;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;transition:background 0.2s,color 0.2s;" onmouseover="this.style.background='var(--accent)';this.style.color='#0a0a0a'" onmouseout="this.style.background='transparent';this.style.color='var(--accent)'">Webdesign ansehen →</a>
     </div>
   </div>
 </section>
@@ -1761,7 +1507,7 @@
     <h2 class="h2-sans">Zahlen, die zählen.</h2>
     <div class="stats-grid">
       <div class="stat-b"><div class="stat-n">3<span>×</span></div><div class="stat-d">mehr qualifizierte Leads bereits im ersten Monat nach dem Go-live</div></div>
-      <div class="stat-b"><div class="stat-n">0</div><div class="stat-d">Vendor Lock-in. Das System gehört Ihnen. Alle Zugänge, alle Workflows, kein Abo das weiterläuft wenn Sie aufhören wollen.</div></div>
+      <div class="stat-b"><div class="stat-n">0</div><div class="stat-d">Vendor Lock-in. Das System gehört dir. Alle Zugänge, alle Workflows, kein Abo das weiterläuft wenn Sie aufhören wollen.</div></div>
       <div class="stat-b"><div class="stat-n">90<span>%</span></div><div class="stat-d">weniger operativer Aufwand für Content, Akquise und Vertrieb</div></div>
       <div class="stat-b"><div class="stat-n">1</div><div class="stat-d">Ansprechpartner. Sie reden mit dem, der baut. Kein Account-Manager zwischen Ihnen und dem Code.</div></div>
     </div>
@@ -1780,7 +1526,7 @@
       <img src="go-board.jpg" alt="" class="go-board-img" aria-hidden="true">
     </div>
     <div class="go-texts">
-      <p class="go-philosophy">Ein Stein, der auf das Holz gesetzt wird, verändert zunächst nichts, und doch verschiebt sich mit ihm das gesamte Gleichgewicht des Bretts, so wie eine einzelne Automation, gut platziert, plötzlich drei Prozesse gleichzeitig neu ordnet, ohne dass jemand eingegriffen hat. Die Japaner nennen das Sente, die Initiative, die nicht durch Kraft entsteht, sondern durch Voraussicht, durch das stille Wissen, dass der gegnerische Zug bereits in deinem enthalten ist. Go wird seit 2.500 Jahren gespielt, nicht weil es lösbar wäre, sondern weil es, wie das Leben selbst, mehr mögliche Zustände kennt als Atome im Universum, und AlphaGo hat dieses Spiel 2016 nicht besiegt, sondern neu gelesen, in einer Sprache, die kein Mensch zuvor gesprochen hatte, ruhig, ohne Ego, präzise. Vielleicht ist das die eigentliche Frage hinter jeder Automation: nicht was sie ersetzt, sondern was sie freilegt, wenn die Reibung erst einmal weg ist.</p>
+      <p class="go-philosophy">Go wird seit 2.500 Jahren gespielt, weil jeder Zug das Gleichgewicht verschiebt ohne dass jemand eingegriffen hat. Eine einzelne Automation, gut platziert, macht dasselbe. Nicht was sie ersetzt zählt. Sondern was sie freilegt.</p>
       <p class="go-kinfuzius"><span class="ki-label">KI-nfuzius sagt:</span>Ein gut gesetzter Zug braucht keine Erklärung. Er beweist sich, wenn das Spiel weitergeht, und am Ende fragt niemand mehr, wer ihn gemacht hat.</p>
     </div>
     </div>
@@ -1792,28 +1538,28 @@
       <div class="label">Der Prozess</div>
       <!-- sente -->
       <h2 class="h2-serif">Erst das Gespräch. Dann das System.</h2>
-      <p class="body-t">Kein monatelanger Onboarding-Prozess. Nach einem strukturierten Erstgespräch entwickeln wir das System, das präzise zu Ihren Anforderungen passt.</p>
+      <p class="body-t">Kein monatelanger Onboarding-Prozess. Nach einem Erstgespräch entwickeln wir das System, das zu deinen Anforderungen passt.</p>
 
       <ul class="proc-list">
         <li class="proc-item">
           <div class="proc-n">01</div>
           <div>
             <div class="proc-t">Strategiegespräch</div>
-            <div class="proc-s">Ein fokussiertes Gespräch über Ihr Unternehmen, Ihre Engpässe und das konkrete Automatisierungspotenzial. Live demonstriert, mit echten Zahlen.</div>
+            <div class="proc-s">Ein fokussiertes Gespräch über dein Unternehmen, deine Engpässe und das konkrete Automatisierungspotenzial. Live demonstriert, mit echten Zahlen.</div>
           </div>
         </li>
         <li class="proc-item">
           <div class="proc-n">02</div>
           <div>
             <div class="proc-t">Entwicklung und Konfiguration</div>
-            <div class="proc-s">Ihr individuelles System entsteht: Workflows, KI-Modelle und Integrationen, vollständig konfiguriert und getestet.</div>
+            <div class="proc-s">Dein System entsteht: Workflows, KI-Modelle und Integrationen, vollständig konfiguriert und getestet. Du bekommst alle Zugänge am Go-live.</div>
           </div>
         </li>
         <li class="proc-item">
           <div class="proc-n">03</div>
           <div>
             <div class="proc-t">Das System arbeitet</div>
-            <div class="proc-s">Ab dem ersten Tag liefert das System Reports, optimiert sich kontinuierlich und arbeitet. Sie konzentrieren sich auf Ihr Unternehmen.</div>
+            <div class="proc-s">Ab dem ersten Tag liefert das System Reports und arbeitet. Du konzentrierst dich auf dein Unternehmen.</div>
           </div>
         </li>
       </ul>
@@ -1830,14 +1576,10 @@
     <div class="about-inner">
       <div class="about-text">
         <div class="label">We Are Lazy.</div>
-        <h2 class="section-h">KI-Automation ist die schnellst wachsende Wirtschaftskraft der nächsten zwei Jahre.</h2>
-        <p class="body-t">Kein Hype. Realität. Unternehmen die jetzt automatisieren, hängen in 24 Monaten die Konkurrenz ab, die noch immer manuell schleppt.</p>
-        <p class="body-t" style="margin-top:1.5rem;">Wir sind faul. Nicht im klassischen Sinne. Im besten.</p>
-        <p class="body-t" style="margin-top:1rem;">Wir verschwenden keine Zeit auf Dinge, die Maschinen besser können. Wir geben dir jede Stunde zurück, die dich vom Wesentlichen abhält.</p>
-        <p class="body-t" style="margin-top:1.5rem; font-style:italic; opacity:0.7;">Stell dir vor: Dein Wecker klingelt nicht. Dein Drucker spricht.</p>
-        <p class="body-t" style="margin-top:1rem;">Morgens druckt er dein Briefing. Kuratiert. Relevant. Nur was zählt. Du sitzt, trinkst deinen Kaffee, weißt schon alles. Deine Automationen haben die Lage gecheckt. Potenzielle Probleme geflaggt. Optimierungen vorgeschlagen. Alles passiert, während du liest.</p>
-        <p class="body-t" style="margin-top:1rem;">Du gehst direkt in Aktion. Oder du verbringst die Zeit mit deiner Familie. Mit Projekten die dir wichtig sind. Mit echtem Output, statt Busywork.</p>
-        <p class="body-t" style="margin-top:1.5rem; font-weight:600;">Wir bauen die Systeme, die dein Business im Hintergrund laufen lassen.<br>Während du lebst.</p>
+        <h2 class="section-h">Faulheit im besten Sinne.</h2>
+        <p class="body-t">Irgendwann hat jemand aufgehört, Steine zu tragen, und angefangen, Räder zu bauen. Nicht weil er faul war, sondern weil er gerechnet hat. Wir rechnen genauso. Nicht für uns, sondern für die Unternehmen, die etwas vorhaben und deren Kopf gerade von dreißig Kleinigkeiten belegt wird, die eine Maschine schneller, billiger und konsistenter erledigt.</p>
+        <p class="body-t" style="margin-top:1.25rem;">Morgens sitzt du mit deinem Kaffee. Das System hat die Lage gecheckt, Probleme geflaggt, Leads priorisiert. Du weißt bereits alles, was du wissen musst. Der Rest läuft.</p>
+        <p class="body-t" style="margin-top:1.25rem; font-weight:500;">Wir bauen diese Systeme. Der Rest ist deine Zeit.</p>
         <div class="about-tags" style="margin-top:2rem;">
           <span>n8n Advanced</span>
           <span>Claude / Gemini API</span>
@@ -1900,7 +1642,7 @@
           <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Unbegrenzte Systeme &amp; Integrationen</li>
           <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>KI-Ads, Shop &amp; CRM vollintegriert</li>
           <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Dedizierter Ansprechpartner</li>
-          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Das System gehört Ihnen</li>
+          <li class="pkg-feat"><svg class="pkg-chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>Das System gehört dir</li>
         </ul>
         <a href="#demo" class="btn-pkg">Demo buchen</a>
       </div>
@@ -1913,23 +1655,23 @@
   <div class="container">
     <div style="max-width:720px;margin:0 auto;">
       <div class="label" style="text-align:center;">Häufige Fragen</div>
-      <h2 class="h2-sans" style="text-align:center;margin-bottom:48px;">Was Sie wissen wollen.</h2>
+      <h2 class="h2-sans" style="text-align:center;margin-bottom:48px;">Was du wissen willst.</h2>
       <ul class="faq-list">
         <li class="faq-item">
           <div class="faq-q">Wie lange dauert die Umsetzung wirklich?<span class="faq-icon"></span></div>
-          <div class="faq-a">Einfache Systeme sind in wenigen Tagen live, komplexere Architekturen brauchen ein bis zwei Wochen. Ich sage Ihnen im Erstgespräch konkret, was realistisch ist. Die Systeme basieren auf bewährten Komponenten, die ich für Ihr Setup konfiguriere. Keine monatelange Agentur-Bürokratie.</div>
+          <div class="faq-a">Einfache Systeme sind in wenigen Tagen live, komplexere Architekturen brauchen ein bis zwei Wochen. Ich sag dir im Erstgespräch konkret, was realistisch ist. Die Systeme basieren auf bewährten Komponenten, die ich für dein Setup konfiguriere. Keine monatelange Agentur-Bürokratie.</div>
         </li>
         <li class="faq-item">
           <div class="faq-q">Was passiert, wenn das System ausfällt?<span class="faq-icon"></span></div>
-          <div class="faq-a">Sie erhalten sofort eine Benachrichtigung, noch bevor Sie es bemerken. Alle Systeme haben eingebaute Fehler-Alerts. Im Wartungspaket ist schnelle Behebung inklusive. Bei kritischen Ausfällen: direkte Reaktion, kein Ticket-System.</div>
+          <div class="faq-a">Du bekommst sofort eine Benachrichtigung, noch bevor du es merkst. Alle Systeme haben eingebaute Fehler-Alerts. Im Wartungspaket ist schnelle Behebung inklusive. Bei kritischen Ausfällen: direkte Reaktion, kein Ticket-System.</div>
         </li>
         <li class="faq-item">
           <div class="faq-q">Muss ich technisches Wissen mitbringen?<span class="faq-icon"></span></div>
-          <div class="faq-a">Nein. Sie sehen ein Dashboard, Reports und Ergebnisse. Keine Code-Zeile. Das System arbeitet im Hintergrund. Ich erkläre im Erstgespräch live, was passiert und warum. Danach: Sie entscheiden, das System arbeitet.</div>
+          <div class="faq-a">Nein. Du siehst ein Dashboard, Reports und Ergebnisse. Keine Code-Zeile. Das System arbeitet im Hintergrund. Ich erkläre im Erstgespräch live, was passiert und warum. Danach: du entscheidest, das System arbeitet.</div>
         </li>
         <li class="faq-item">
           <div class="faq-q">Gehört das System mir oder bin ich abhängig von WRLZ?<span class="faq-icon"></span></div>
-          <div class="faq-a">Das System gehört Ihnen. Sie bekommen alle Zugänge, alle Workflows, alle Konfigurationen. Wenn Sie das Wartungspaket nicht verlängern, läuft alles weiter. Sie sind nie in einer Abhängigkeit.</div>
+          <div class="faq-a">Das System gehört dir. Du bekommst alle Zugänge, alle Workflows, alle Konfigurationen. Wenn du das Wartungspaket nicht verlängerst, läuft alles weiter. Du bist nie in einer Abhängigkeit.</div>
         </li>
         <li class="faq-item">
           <div class="faq-q">Was kostet es wirklich, gibt es versteckte Kosten?<span class="faq-icon"></span></div>
@@ -1949,15 +1691,14 @@
   <img class="nautiloid-cta" src="nautiloid.png" alt="" aria-hidden="true">
   <div class="container">
     <div class="cta-wrap rev">
-      <div class="label">Ihr nächster Schritt</div>
-      <h2 class="h2-serif">Bereit für ein System, das arbeitet?</h2>
-      <p class="cta-slots"><span class="slots-dot"></span>Noch <strong>3 Onboarding-Slots</strong> im April verfügbar</p>
-      <p class="body-t">30 Minuten, unverbindlich. Sie erleben live, was intelligente Automation für Ihr Unternehmen bedeutet. Konkrete Zahlen, echte Demo, kein Pitch.</p>
+      <div class="label">Dein nächster Schritt</div>
+      <h2 class="h2-serif">30 Minuten. Echte Demo. Kein Pitch.</h2>
+      <p class="body-t">Du siehst live, was das für dein Unternehmen konkret bedeutet. Konkrete Zahlen, echte Demo. Und wenn es nicht passt, war es ein gutes Gespräch.</p>
       <a href="https://calendly.com/pasco1280/30min" class="btn-primary" style="display:inline-flex">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Gespräch vereinbaren
       </a>
-      <p class="cta-meta">Oder schreiben Sie uns: pascal@wrlz.ai</p>
+      <p class="cta-meta">Oder schreib direkt: pascal@wrlz.ai</p>
     </div>
   </div>
 </section>
@@ -2224,7 +1965,7 @@
     if (act) {
       ctx.save();
       ctx.shadowColor = col;
-      ctx.shadowBlur = 36;
+      ctx.shadowBlur = 14;
     }
 
     // ── Background ──
@@ -2252,7 +1993,7 @@
     drawIcon(node.type, p.x, p.y, icol, NS);
 
     // ── Status dot ──
-    if (act) { ctx.save(); ctx.shadowColor = col; ctx.shadowBlur = 10; }
+    if (act) { ctx.save(); ctx.shadowColor = col; ctx.shadowBlur = 4; }
     ctx.fillStyle = dn ? '#4ade80' : act ? col : 'rgba(255,255,255,.1)';
     ctx.beginPath(); ctx.arc(nx+NS-8, ny+8, 4, 0, Math.PI*2); ctx.fill();
     if (act) ctx.restore();
@@ -2332,9 +2073,9 @@
       const t = Math.max(0, Math.min(1, p.t)); if (t <= 0) return;
       const pos = bpt(p.e, t);
       ctx.save();
-      ctx.shadowColor = '#FF6B2C'; ctx.shadowBlur = 12;
-      ctx.fillStyle = '#FF6B2C'; ctx.globalAlpha = 0.88;
-      ctx.beginPath(); ctx.arc(pos.x, pos.y, p.sz, 0, Math.PI*2); ctx.fill();
+      ctx.shadowColor = '#FF6B2C'; ctx.shadowBlur = 5;
+      ctx.fillStyle = '#FF6B2C'; ctx.globalAlpha = 0.52;
+      ctx.beginPath(); ctx.arc(pos.x, pos.y, p.sz * 0.75, 0, Math.PI*2); ctx.fill();
       ctx.restore();
     });
   }
@@ -2369,8 +2110,8 @@
   function drawBurst() {
     burstParts.forEach(p => {
       ctx.save();
-      ctx.shadowColor = p.col; ctx.shadowBlur = 8;
-      ctx.fillStyle = p.col; ctx.globalAlpha = p.life * 0.8;
+      ctx.shadowColor = p.col; ctx.shadowBlur = 4;
+      ctx.fillStyle = p.col; ctx.globalAlpha = p.life * 0.4;
       ctx.beginPath(); ctx.arc(p.x, p.y, p.sz*p.life, 0, Math.PI*2); ctx.fill();
       ctx.restore();
     });
