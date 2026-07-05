@@ -1,0 +1,254 @@
+{
+  "paper": {
+    "file": "assets/img/paper.jpg"
+  },
+  "borderTile": {
+    "file": "assets/img/border_tile.webp"
+  },
+  "layers": {
+    "mist": {
+      "file": "assets/img/mist_bg.jpg",
+      "opacity": 0.12
+    },
+    "foliage_left": {
+      "file": "assets/img/foliage_1.jpg",
+      "opacity": 0.26
+    },
+    "foliage_right": {
+      "file": "assets/img/foliage_2.jpg",
+      "opacity": 0.26
+    }
+  },
+  "scenes": {
+    "treeL": {
+      "file": "assets/img/scene_treeL.webp"
+    },
+    "treeL_alt": {
+      "file": "assets/img/scene_treeL_alt.webp"
+    },
+    "jaguar_walk": {
+      "file": "assets/img/scene_jaguar_walk.webp"
+    },
+    "treeR": {
+      "file": "assets/img/scene_treeR.webp"
+    },
+    "pano_temple": {
+      "file": "assets/img/scene_pano_temple.webp"
+    },
+    "jag_crouch": {
+      "file": "assets/img/scene_jag_crouch.webp"
+    },
+    "jag_leap": {
+      "file": "assets/img/scene_jag_leap.webp"
+    },
+    "jag_sit": {
+      "file": "assets/img/scene_jag_sit.webp"
+    },
+    "jag_walkaway": {
+      "file": "assets/img/scene_jag_walkaway.webp"
+    },
+    "toucan": {
+      "file": "assets/img/scene_toucan.webp"
+    },
+    "snake": {
+      "file": "assets/img/scene_snake.webp"
+    },
+    "hummingbird": {
+      "file": "assets/img/scene_hummingbird.webp"
+    },
+    "mist_live": {
+      "video": "assets/video/anim_mist.webm"
+    },
+    "jag_walkaway_live": {
+      "video": "assets/video/anim_jag_walkaway.webm"
+    },
+    "jag_family": {
+      "video": "assets/video/anim_jag_family.webm"
+    },
+    "hummingbird_live": {
+      "video": "assets/video/anim_hummingbird.webm"
+    },
+    "waterfall_live": {
+      "video": "assets/video/anim_waterfall.webm"
+    }
+  },
+  "branches": {
+    "top": {
+      "file": "assets/img/branch_2.webp",
+      "walkline": {
+        "from": [
+          0.3,
+          0.17
+        ],
+        "to": [
+          0.72,
+          0.4
+        ]
+      },
+      "dropPoint": [
+        0.3,
+        0.17
+      ]
+    },
+    "middle": {
+      "file": "assets/img/branch_1.webp",
+      "walkline": {
+        "from": [
+          0.25,
+          0.2
+        ],
+        "to": [
+          0.75,
+          0.5
+        ]
+      },
+      "dropPoint": [
+        0.25,
+        0.2
+      ]
+    },
+    "bottom": {
+      "file": "assets/img/branch_4.webp",
+      "walkline": {
+        "from": [
+          0.105,
+          0.12
+        ],
+        "to": [
+          0.59,
+          0.34
+        ]
+      },
+      "sitAt": 0.45,
+      "dropPoint": [
+        0.105,
+        0.12
+      ]
+    },
+    "spare": {
+      "file": "assets/img/branch_3.webp"
+    }
+  },
+  "sprites": {
+    "frameW": 640,
+    "frameH": 360,
+    "cols": 6,
+    "walk": {
+      "file": "assets/sprites/sheet_walk.webp",
+      "frames": 48,
+      "note": "Video-Frames 20-115 in 2er-Schritten, durchgehender Gang, kein Loop noetig: pro Walk-Segment einen Teilbereich mappen"
+    },
+    "jump_big": {
+      "file": "assets/sprites/sheet_jump_big.webp",
+      "frames": 40,
+      "phases": {
+        "crouch": [
+          0,
+          23
+        ],
+        "takeoff": [
+          24,
+          28
+        ],
+        "flight": [
+          29,
+          39
+        ]
+      },
+      "note": "keine Landung im Clip, Landung = Schnitt auf Walk-Frame + Splat-Burst als Cover"
+    },
+    "jump_down": {
+      "file": "assets/sprites/sheet_jump_down.webp",
+      "frames": 40,
+      "phases": {
+        "crouch": [
+          0,
+          27
+        ],
+        "takeoff": [
+          28,
+          31
+        ],
+        "flight": [
+          32,
+          36
+        ],
+        "landing": [
+          37,
+          39
+        ]
+      }
+    },
+    "sit": {
+      "file": "assets/sprites/sheet_sit.webp",
+      "frames": 40,
+      "phases": {
+        "sitdown": [
+          0,
+          30
+        ],
+        "idle": [
+          31,
+          39
+        ]
+      },
+      "note": "idle-Frames als langsamer Zeit-PingPong, nicht scroll-gebunden"
+    }
+  },
+  "splats": {
+    "jade": [
+      "assets/img/splat_jade_1.webp",
+      "assets/img/splat_jade_2.webp"
+    ],
+    "terra": [
+      "assets/img/splat_terra_1.webp",
+      "assets/img/splat_terra_2.webp"
+    ],
+    "gold": [
+      "assets/img/splat_gold_1.webp",
+      "assets/img/splat_gold_2.webp"
+    ],
+    "pink": [
+      "assets/img/splat_pink_1.webp",
+      "assets/img/splat_pink_2.webp"
+    ]
+  },
+  "splashes": {
+    "jade": {
+      "video": "assets/video/splash_jade.webm"
+    },
+    "jade2": {
+      "video": "assets/video/splash_jade2.webm"
+    },
+    "terra": {
+      "video": "assets/video/splash_terra.webm"
+    },
+    "terra2": {
+      "video": "assets/video/splash_terra2.webm"
+    },
+    "sumi": {
+      "video": "assets/video/splash_sumi.webm"
+    }
+  },
+  "tocapu": {
+    "file": "assets/img/tocapu.webp"
+  },
+  "leaves": [
+    "assets/img/leaf_1.png",
+    "assets/img/leaf_2.png",
+    "assets/img/leaf_3.png",
+    "assets/img/leaf_4.png",
+    "assets/img/leaf_5.png",
+    "assets/img/leaf_6.png",
+    "assets/img/leaf_7.png"
+  ],
+  "palette": {
+    "cream": "#F6EEDC",
+    "jade": "#8FBFAA",
+    "petrol": "#2E6E5E",
+    "terracotta": "#D9906F",
+    "gold": "#E2B75C",
+    "pink": "#D97C93",
+    "sumi": "#2B2723"
+  }
+}

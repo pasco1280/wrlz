@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JUNGL — Ein lebendes Gemälde</title>
+<meta name="description" content="JUNGL: ein Dschungel aus Tusche, der beim Scrollen aufblüht. Sumi-e-Bühnenshow im Browser, sieben Stationen, ein Panther als roter Faden. Eine Demo von WRLZ.ai.">
+<link rel="canonical" href="https://wrlz.ai/jungl/">
+<meta property="og:title" content="JUNGL — Ein lebendes Gemälde">
+<meta property="og:description" content="Ein Dschungel aus Tusche, der beim Scrollen aufblüht. Sumi-e trifft Inka, im Browser.">
+<meta property="og:image" content="https://wrlz.ai/jungl/og-jungl.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F6EEDC">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section class="hero">
+  <canvas id="paint"></canvas>
+  <canvas id="scene"></canvas>
+  <div id="hud">
+    <div>scroll: <span id="hud-scroll">0.000</span></div>
+    <div>fps: <span id="hud-fps">0</span></div>
+    <div>segment: <span id="hud-segment">-</span></div>
+  </div>
+  <div id="title-wrap" aria-hidden="true">
+    <div id="title-row">
+      <div id="title"></div>
+      <span id="title-tocapu">
+        <video id="tocapu-seal" src="assets/video/tocapu_live.webm" muted loop autoplay playsinline></video>
+        <video id="tocapu-head" src="assets/video/tocapu_head.webm" muted playsinline preload="auto"></video>
+      </span>
+      <div id="tocapu-joke">
+        <div id="tocapu-joke-inner">
+          <div id="tocapu-joke-frame">
+            <p id="tocapu-joke-q"></p>
+            <p id="tocapu-joke-a"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="title-subline">Ein lebendes Gemälde</div>
+  </div>
+  <div id="scroll-hint">
+    <span>scroll</span>
+    <div id="scroll-hint-arrow">&#8595;</div>
+  </div>
+  <nav id="site-nav">
+    <div id="site-nav-logo">JUNGL</div>
+    <div id="site-nav-links">
+      <a href="#">Feld</a>
+      <a href="#">Notizen</a>
+      <a href="#">Kontakt</a>
+    </div>
+  </nav>
+</section>
+
+<section class="content">
+  <p>Content folgt</p>
+</section>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="src/main.js"></script>
+<script src="src/choreo.js"></script>
+</body>
+</html>

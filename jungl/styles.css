@@ -1,0 +1,331 @@
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("vendor/fonts/cormorant-garamond-500.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("vendor/fonts/cormorant-garamond-600.woff2") format("woff2");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #F6EEDC url("assets/img/paper.jpg") center / cover no-repeat fixed;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #F6EEDC url("assets/img/paper.jpg") center / cover no-repeat;
+}
+
+#paint,
+#scene {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#paint {
+  display: none;
+}
+
+#scene {
+  pointer-events: none;
+}
+
+#hud {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 10px 14px;
+  font-family: monospace;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.5);
+  background: rgba(246, 238, 220, 0.4);
+  text-align: right;
+  line-height: 1.6;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.content {
+  min-height: 100vh;
+  background: #F6EEDC url("assets/img/paper.jpg") center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content p {
+  font-family: sans-serif;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+#title-wrap {
+  position: fixed;
+  top: 12%;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  pointer-events: none;
+  user-select: none;
+  text-align: center;
+}
+
+/* Weicher Creme-Schein hinter Titel+Subline, damit die Buchstaben auch ueber
+   dunklen Szenenbereichen (Tempel-Finale) lesbar bleiben, ohne wie ein
+   Kasten zu wirken -- generoes dimensioniert, radial auf 0 auslaufend. */
+#title-wrap::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140vw;
+  height: 34vw;
+  min-height: 320px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(246, 238, 220, 0.55) 0%, rgba(246, 238, 220, 0) 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Huellt NUR #title (die Buchstaben) shrink-to-fit ein -- #title-tocapu
+   haengt daran absolut positioniert und traegt NICHT zur Breite bei (siehe
+   #title-tocapu unten). Dadurch zentriert #title-wraps text-align:center
+   die Buchstaben unabhaengig vom Siegel, egal wie viele Buchstaben schon
+   gestempelt sind (Pascal 05.07.: Titel muss zentriert bleiben, Siegel darf
+   das nicht verschieben). */
+#title-row {
+  position: relative;
+  display: inline-block;
+}
+
+#title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  font-size: 7.5vw;
+  letter-spacing: 0.18em;
+  color: #2B2723;
+}
+
+#title span {
+  display: inline-block;
+  opacity: 0;
+}
+
+/* Absolut positioniert relativ zu #title-row (NICHT #title, das wird von
+   buildTitleDOM() per innerHTML="" neu aufgebaut und wuerde ein Kind sonst
+   loeschen) -- traegt dadurch nicht zur shrink-to-fit-Breite von #title-row
+   bei, die Buchstaben bleiben unabhaengig vom Siegel zentriert. Haengt
+   rechts am Titel, 50% groesser + weiter rechts als die alte In-Flow-
+   Position (Pascal 05.07.). Vertikale Zentrierung ueber negativen Margin
+   statt transform: translateY, damit GSAPs eigene scale/rotate-Tweens
+   (siehe showFinaleDecor) den Transform exklusiv verwalten koennen. */
+#title-tocapu {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 6.9vw;
+  height: 6.9vw;
+  margin-top: -3.45vw;
+  margin-left: 3.2vw;
+  opacity: 0;
+  transform: scale(0.4) rotate(-8deg);
+}
+
+/* Zwei gestapelte Siegel-Videos (Alpha-WebM): das geometrische Siegel
+   pulsiert endlos, alle paar Loops blendet einmal der Jaguar-Kopf ein
+   (Loop-Dirigent in main.js). */
+#title-tocapu video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.35s ease;
+}
+
+#tocapu-head {
+  opacity: 0;
+}
+
+/* Zweites, subtileres Easter Egg (Pascal 05.07.): ein Zettel mit einer
+   Scherzfrage+Antwort, der beim Klick aufs Tocapu-Siegel zusammen mit dem
+   Jaguarkopf erscheint. Sibling von #title-tocapu (NICHT Kind) -- sonst
+   wuerde der Zettel die Rotation/Skalierung der Siegel-Reveal-Animation
+   erben (siehe showFinaleDecor rotate:6).
+   LINKS vom Logo, ueber right:100% relativ zu #title-row (spiegelbildlich
+   zu #title-tocapus left:100%) -- vertikal auf Titelmitte zentriert
+   (translateY(-50%)), -10deg gekippt als Spiegel-Pendant zum Tocapu-Siegel
+   auf der anderen Logo-Seite (dessen Ruhe-Rotation ist +6deg).
+   Echtes Midjourney-Asset (jadeplate.png, sumi-e/Jade-Stil, ECHTE
+   Alpha-Transparenz -- kein Weiss-Wegrechnen noetig): das Ornament sitzt
+   oben links im Bild, Text deshalb unten rechts positioniert (siehe
+   justify-content/align-items). mix-blend-mode:multiply verschmilzt den
+   Stein trotzdem mit der Papiertextur darunter wie alle anderen Ebenen der
+   Seite. */
+/* Aeusserer Wrapper: NUR Position/Groesse/Zentrierung + Maus-Parallax
+   (--px/--py, staendig von main.js aktualisiert) -- bewusst OHNE
+   transition, sonst wuerde jedes Parallax-Update die 0.5s-Transition
+   erneut antriggern und der Maus-Bewegung 0.5s hinterherhinken. Die
+   Fade/Scale/Rotate-Entrance-Animation lebt eine Ebene tiefer in
+   #tocapu-joke-inner, die ihre eigene (unabhaengige) Transition hat. */
+#tocapu-joke {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 3.2vw);
+  width: 29.3vw;
+  min-width: 385px;
+  max-width: 524px;
+  pointer-events: none;
+  --px: 0px;
+  --py: 0px;
+  transform: translateY(-50%) translate(var(--px), var(--py));
+}
+
+#tocapu-joke-inner {
+  opacity: 0;
+  transform: translateY(-6px) scale(0.94) rotate(-10deg);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#tocapu-joke.is-visible #tocapu-joke-inner {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotate(-10deg);
+}
+
+#tocapu-joke-frame {
+  position: relative;
+  aspect-ratio: 2544 / 1904;
+  background-image: url("assets/img/jadeplate.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  mix-blend-mode: multiply;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  /* Text OBEN im dichten blauen Jade-Bereich statt unten (Pascal 05.07.) --
+     die untere Steinhaelfte ist heller/fleckiger, oben-rechts sitzt die
+     satte Teal-Flaeche, auf der die goldene Schrift am besten steht.
+     asymmetrisches Padding (oben/links viel, rechts weniger): rechtsbuendig
+     im Teal, links am geschnitzten Quadrat-Ornament vorbei, oben unter der
+     Kerbe der Steinoberkante -- alle Werte im Preview gegen die Steinform
+     ausgerichtet (Pascal-Feinschliff 05.07., zuletzt "3px links + 3px hoch"). */
+  justify-content: flex-start;
+  text-align: right;
+  padding: 26% 10.7% 13% 22%;
+}
+
+#tocapu-joke-q,
+#tocapu-joke-a {
+  margin: 0;
+  /* Natively fette, schwere Schnitte (Pascal 05.07.: "fettere Schriftart"):
+     Arial Black / Franklin Gothic Heavy sind auf Win/Mac breit vorhanden,
+     font-weight 900 zieht bei helferen Systemschnitten nach. Groesse als
+     vw-clamp, deren Grenzen die Platten-min/max-width (385/524px) nachbilden,
+     damit die Schrift proportional zur Platte mitwaechst. */
+  font-family: "Arial Black", "Arial Bold", "Franklin Gothic Heavy", Gadget, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: clamp(11.4px, 0.865vw, 15.5px);
+  line-height: 1.25;
+  color: #E2B75C;
+  white-space: pre-wrap;
+}
+
+#tocapu-joke-a {
+  margin-top: 0.5vw;
+  color: #EAC46E;
+}
+
+#title-subline {
+  margin-top: 0.8vw;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 1vw;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #2B2723;
+  opacity: 0;
+}
+
+#scroll-hint {
+  position: fixed;
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #2B2723;
+  opacity: 0;
+  z-index: 5;
+  pointer-events: none;
+  user-select: none;
+}
+
+#scroll-hint-arrow {
+  font-size: 16px;
+  font-style: normal;
+}
+
+#site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: #2B2723;
+  opacity: 0;
+  z-index: 6;
+  pointer-events: none;
+  user-select: none;
+}
+
+#site-nav-logo {
+  font-size: 0.95vw;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+}
+
+#site-nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+#site-nav-links a {
+  color: #2B2723;
+  text-decoration: none;
+  font-size: 0.95vw;
+  letter-spacing: 0.15em;
+  pointer-events: auto;
+}
