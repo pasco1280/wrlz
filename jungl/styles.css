@@ -175,7 +175,7 @@ body {
    zu #title-tocapus left:100%) -- vertikal auf Titelmitte zentriert
    (translateY(-50%)), -10deg gekippt als Spiegel-Pendant zum Tocapu-Siegel
    auf der anderen Logo-Seite (dessen Ruhe-Rotation ist +6deg).
-   Echtes Midjourney-Asset (jadeplate.png, sumi-e/Jade-Stil, ECHTE
+   Echtes Midjourney-Asset (jadeplate.webp, sumi-e/Jade-Stil, ECHTE
    Alpha-Transparenz -- kein Weiss-Wegrechnen noetig): das Ornament sitzt
    oben links im Bild, Text deshalb unten rechts positioniert (siehe
    justify-content/align-items). mix-blend-mode:multiply verschmilzt den
@@ -328,4 +328,24 @@ body {
   font-size: 0.95vw;
   letter-spacing: 0.15em;
   pointer-events: auto;
+}
+
+/* ============================================================
+   MOBILE / HOCHFORMAT — Portrait-Handy (Hochformat-Umbau 05.07.)
+   NUR Portrait-Handy trifft diesen Block (max-width 820px UND
+   orientation portrait, exakt gleich wie das JS-Gate isMobile()).
+   Desktop und Landscape-Handy ignorieren ihn komplett -- keine der
+   obigen Desktop-Regeln wird veraendert. Phasen 4/5 fuellen ihn;
+   vorerst leer = noch keine sichtbare Aenderung.
+   ============================================================ */
+@media (max-width: 820px) and (orientation: portrait) {
+  /* HUD (Debug-Overlay) auf dem Handy weg -- stoert am meisten auf kleinem
+     Screen und ist ohnehin nur Entwickler-Info. */
+  #hud { display: none; }
+
+  /* Deko-Nav (tote #-Links "Fell/Notizen/Kontakt" + zweites "JUNGL"-Logo)
+     quetscht sich auf dem schmalen Screen neben den zentrierten Titel und
+     dupliziert ihn -- auf dem Handy ausblenden (Pascal-Screenshot 05.07.:
+     gedraengte Titelzone). Auf Desktop bleibt es unveraendert. */
+  #site-nav { display: none; }
 }

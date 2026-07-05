@@ -53,17 +53,17 @@
   //   family: terra-Wash hinterm JUNGL-Titel (Pascal: "untermalt das Logo",
   //           NICHT verschieben; Szene reicht bis zum Boden, deshalb oben)
   var STATIONS = [
-    { p: 0.07, scene: "jaguar_walk",      placement: { side: "right",  vAlign: "center", widthVw: 0.66, flipX: true }, letter: "J", splash: { key: "sumi",   u: 0.482, v: 0.598, sizeVw: 0.34 } },
-    { p: 0.21, scene: "toucan",           placement: { side: "right",  vAlign: "top",    widthVw: 0.42 }, letter: null, splash: { key: "terra",  u: 0.43, v: 1.034, sizeVw: 0.31 } },
-    { p: 0.35, scene: "jag_crouch",       placement: { side: "left",   vAlign: "bottom", widthVw: 0.62 }, letter: "U", splash: { key: "sumi",   u: 0.598, v: 0.52, sizeVw: 0.30 } },
-    { p: 0.49, scene: "snake",            placement: { side: "left",   vAlign: "top",    widthVw: 0.46 }, letter: null, splash: { key: "jade2",  u: 0.33, v: 0.646, sizeVw: 0.26 } },
-    { p: 0.63, scene: "jag_leap",         placement: { side: "right",  vAlign: "center", widthVw: 0.66, flipX: true }, letter: "N", splash: { key: "sumi",   u: 0.45, v: 0.530, sizeVw: 0.34 } },
+    { p: 0.07, scene: "jaguar_walk",      placement: { side: "right",  vAlign: "center", widthVw: 0.66, mv: 0.12, flipX: true }, letter: "J", splash: { key: "sumi",   u: 0.482, v: 0.598, sizeVw: 0.34 } },
+    { p: 0.21, scene: "toucan",           placement: { side: "right",  vAlign: "top",    widthVw: 0.42, mv: 0.66 }, letter: null, splash: { key: "terra",  u: 0.43, v: 1.034, sizeVw: 0.31 } },
+    { p: 0.35, scene: "jag_crouch",       placement: { side: "left",   vAlign: "bottom", widthVw: 0.62, mv: 0.42 }, letter: "U", splash: { key: "sumi",   u: 0.598, v: 0.52, sizeVw: 0.30 } },
+    { p: 0.49, scene: "snake",            placement: { side: "left",   vAlign: "top",    widthVw: 0.46, mv: 0.12 }, letter: null, splash: { key: "jade2",  u: 0.33, v: 0.646, sizeVw: 0.26 } },
+    { p: 0.63, scene: "jag_leap",         placement: { side: "right",  vAlign: "center", widthVw: 0.66, mv: 0.66, flipX: true }, letter: "N", splash: { key: "sumi",   u: 0.45, v: 0.530, sizeVw: 0.34 } },
     // freeze=true (Kolibri + Finale): beide sollen im Finale-Bild dauerhaft
     // sichtbar bleiben (Pascal 05.07., Referenz-Screenshot "blau UND orange
     // in der Mitte"), nicht nach 2.8s wegfaden -- siehe splashAlphaAt/
     // updateSplashes. Position/Groesse NICHT anfassen (Pascal-Freigabe).
-    { p: 0.77, scene: "hummingbird_live", placement: { side: "left",   vAlign: "center", widthVw: 0.50 }, letter: "G", splash: { key: "jade",   u: 0.50, v: 0.700, sizeVw: 0.28, freeze: true } },
-    { p: 0.88, scene: "jag_family",       placement: { side: "center", vAlign: "bottom", widthVw: 0.95 }, letter: "L", finale: true, splash: { key: "terra",  u: 0.50, v: 0.07, sizeVw: 0.36, freeze: true } }
+    { p: 0.77, scene: "hummingbird_live", placement: { side: "left",   vAlign: "center", widthVw: 0.50, mv: 0.42 }, letter: "G", splash: { key: "jade",   u: 0.50, v: 0.700, sizeVw: 0.28, freeze: true } },
+    { p: 0.88, scene: "jag_family",       placement: { side: "center", vAlign: "bottom", widthVw: 0.95, mv: 0.62 }, letter: "L", finale: true, splash: { key: "terra",  u: 0.50, v: 0.07, sizeVw: 0.36, freeze: true } }
   ];
 
   // pano_temple ist derzeit keiner STATIONS-Eintrag (Szene existiert im
@@ -75,7 +75,7 @@
   // Rueckwaerts-Ziel unter Station 0 (VIRTUAL_STATION_PRE, Punkt 4a). Glied
   // -1 der Kollage-Kette: liegt links, bleibt bis Station 1 aufblueht.
   var INTRO_SCENE = "treeL";
-  var INTRO_PLACEMENT = { side: "left", vAlign: "center", widthVw: 0.62 };
+  var INTRO_PLACEMENT = { side: "left", vAlign: "center", widthVw: 0.62, mv: 0.42 };
   // Unterm Torbogen des Intro-Baums, oben an Moos/Wurzeln gestanzt --
   // die Tinte pool-t wie eine Quelle unter dem Tor (Papier-Maske s.o.).
   // u/v relativ zum treeL-Szenen-Rect, wie bei den STATIONS.
@@ -141,6 +141,58 @@
 
   function clamp01(v) {
     return Math.max(0, Math.min(1, v));
+  }
+
+  /* ============================================================
+     MOBILE-GATE (Hochformat-Umbau 05.07.)
+     Portrait-Handy bekommt eine eigene Hochformat-Choreografie;
+     Desktop UND Landscape-Handy bleiben komplett unberuehrt (Landscape
+     ist Querformat wie Desktop, da passt der bestehende Aufbau).
+     isMobile() ist der EINZIGE Schalter. effectivePlacement() ist auf
+     Desktop die Identitaet -- der Desktop-Codepfad bekommt exakt dieselben
+     placement-Werte wie bisher, kann also nicht brechen. Auf Mobile
+     zentriert/verbreitert es die Szenen (Transform folgt in Phase 4).
+     WICHTIG: Szene (desiredSceneSet) UND Splash-Anker (checkOneShots)
+     laufen beide durch DIESELBE Funktion -- dadurch koennen ihre
+     Positionen nie auseinanderdriften.
+  ============================================================ */
+  var mobileMedia = window.matchMedia("(max-width: 820px) and (orientation: portrait)");
+  // mobileSimSize: nur fuer den Test-Kanal (JUNGL.debug.simulateMobile) --
+  // erzwingt den Mobile-Modus bei einer simulierten Viewport-Groesse, damit
+  // die Hochformat-Komposition im Desktop-Browser (fixer Viewport) gerendert
+  // und per Screenshot geprueft werden kann. Auf echten Geraeten immer null
+  // -> isMobile() faellt auf die reine Media-Query zurueck, Desktop-Pfad
+  // voellig unberuehrt. Fliegt mit dem HUD in Phase 6 raus.
+  var mobileSimSize = null;
+  function isMobile() { return mobileSimSize !== null || mobileMedia.matches; }
+  // Merkt den zuletzt angewandten Modus, damit onResize einen echten Wechsel
+  // (Rotation Portrait<->Landscape) erkennt und die Szenen-Kette einmalig neu
+  // mit dem passenden placement aufbaut (siehe rebuildChainForModeSwitch).
+  var lastIsMobile = isMobile();
+
+  // Vertikale Position im Hochformat als Bruch vFrac (0 = Szene oben, 1 =
+  // unten). Jede Station hat eine BEWUSSTE Mobile-Hoehe (placement.mv).
+  // Pascal 05.07.: klares Wechselmuster MITTE -> OBEN -> UNTEN -> MITTE ...
+  // mit deutlicher Spreizung (nicht eng um die Mitte), damit die Tiere beim
+  // Scrollen sichtbar durchs Bild wandern statt am gleichen Fleck zu bluehen.
+  // Die drei Anker unten (mitte/oben/unten) sind die mv-Werte, die die
+  // STATIONS setzen. vAlign-Fallback nur wenn mv fehlt. sceneCollageRect
+  // wertet vFrac aus, wenn gesetzt.
+  var MOBILE_VFRAC = { top: 0.12, center: 0.42, bottom: 0.66 };
+  var MOBILE_SCENE_WIDTH_VW = 0.98;
+
+  function effectivePlacement(placement) {
+    if (!placement || !isMobile()) return placement;
+    var vFrac = placement.mv !== undefined
+      ? placement.mv
+      : MOBILE_VFRAC[placement.vAlign || "center"];
+    return {
+      side: "center",
+      vAlign: placement.vAlign,
+      vFrac: vFrac,
+      widthVw: MOBILE_SCENE_WIDTH_VW,
+      flipX: placement.flipX
+    };
   }
 
   function px(nx, ny) {
@@ -578,7 +630,12 @@
     var h = w * (srcH / srcW);
     var x = side === "left" ? 0 : side === "right" ? viewport.w - w : (viewport.w - w) / 2;
     var y;
-    if (vAlign === "top") y = 0;
+    // vFrac (nur Mobile, siehe effectivePlacement): freie vertikale Position
+    // als Bruch des Rest-Raums (0 = ganz oben, 1 = ganz unten). Desktop setzt
+    // NIE vFrac -> faellt in die unveraenderte vAlign-Logik, bleibt bit-gleich.
+    if (placement.vFrac !== undefined) {
+      y = placement.vFrac * (viewport.h - h);
+    } else if (vAlign === "top") y = 0;
     else if (vAlign === "bottom") y = viewport.h - h;
     else y = (viewport.h - h) / 2;
     return { x: x, y: y, w: w, h: h };
@@ -767,6 +824,36 @@
   // -- fuer Sichtpruefungen im Browser; fliegt mit dem HUD in Phase 6 raus.
   choreo.triggerSplash = triggerSplash;
   choreo.activeSplashes = activeSplashes;
+  // Mobile-Gate fuer Regressions-/Sichtpruefung exponiert (fliegt mit dem
+  // HUD in Phase 6 raus).
+  choreo.isMobile = isMobile;
+  choreo.effectivePlacement = effectivePlacement;
+  choreo.STATIONS = STATIONS;
+  choreo.INTRO_PLACEMENT = INTRO_PLACEMENT;
+  // Test-Kanal: erzwingt den Mobile-Modus bei simulierter Viewport-Groesse
+  // (w,h) und baut die Stage darauf um -- damit die Hochformat-Komposition
+  // im Desktop-Browser gerendert + gescreenshottet werden kann. Das
+  // scene-Canvas wird physisch auf w x h verkleinert und oben links fixiert,
+  // sodass der Screenshot exakt die simulierte Handy-Flaeche zeigt. Argument
+  // null hebt die Simulation wieder auf. Nur Debug (raus in Phase 6).
+  choreo.simulateMobile = function (w, h) {
+    mobileSimSize = (w && h) ? { w: w, h: h } : null;
+    var tw = mobileSimSize ? w : window.innerWidth;
+    var th = mobileSimSize ? h : window.innerHeight;
+    J.state.dpr = 1;
+    sceneCanvas.width = tw;
+    sceneCanvas.height = th;
+    sceneCanvas.style.width = tw + "px";
+    sceneCanvas.style.height = th + "px";
+    if (mobileSimSize) {
+      sceneCanvas.style.position = "fixed";
+      sceneCanvas.style.left = "0";
+      sceneCanvas.style.top = "0";
+      sceneCanvas.style.outline = "1px solid rgba(0,0,0,0.25)";
+    }
+    onResize(tw, th);
+    return { isMobile: isMobile(), vw: viewport.w, vh: viewport.h };
+  };
 
   function splashScaleAt(elapsed) {
     var t = clamp01(elapsed / SPLASH_GROW_DURATION);
@@ -1296,9 +1383,9 @@
     var prev = stationIndex > -1 ? stationAt(stationIndex - 1) : null;
     var out = [];
     if (prev && prev.scene !== cur.scene) {
-      out.push({ key: prev.scene, placement: prev.placement });
+      out.push({ key: prev.scene, placement: effectivePlacement(prev.placement) });
     }
-    out.push({ key: cur.scene, placement: cur.placement });
+    out.push({ key: cur.scene, placement: effectivePlacement(cur.placement) });
     return out;
   }
 
@@ -1621,7 +1708,7 @@
       choreo.firedOneShots[key] = true;
 
       if (station.letter) stampLetters([station.letter]);
-      if (station.splash) triggerSplash(station.splash, station.scene, station.placement);
+      if (station.splash) triggerSplash(station.splash, station.scene, effectivePlacement(station.placement));
       if (station.finale) gsap.delayedCall(0.3, showFinaleDecor);
     }
   }
@@ -1744,9 +1831,13 @@
     introTimeline.call(function () {
       dropTuscheAt(0.06, 0.5, function () {
         sceneRevealDir = 1;
-        bloomScene(INTRO_SCENE, 1, 2.0, INTRO_PLACEMENT);
-        sceneChain.push({ key: INTRO_SCENE, placement: INTRO_PLACEMENT });
-        triggerSplash(INTRO_SPLASH, INTRO_SCENE, INTRO_PLACEMENT);
+        // effectivePlacement einmal berechnen, damit Bloom, Ketten-Eintrag
+        // und Splash-Anker garantiert denselben Wert nutzen (Desktop: =
+        // INTRO_PLACEMENT).
+        var introPl = effectivePlacement(INTRO_PLACEMENT);
+        bloomScene(INTRO_SCENE, 1, 2.0, introPl);
+        sceneChain.push({ key: INTRO_SCENE, placement: introPl });
+        triggerSplash(INTRO_SPLASH, INTRO_SCENE, introPl);
       });
     }, null, 1.2);
 
@@ -1856,9 +1947,38 @@
       }
     });
 
+    // Modus-Wechsel (Rotation Portrait<->Landscape ueberquert das isMobile-
+    // Gate): die Szenen-Kette haelt noch das placement des alten Modus --
+    // einmalig mit dem neuen placement neu aufbauen. Nach dem obigen
+    // rebuildAllSceneContent, damit die Content-Offscreens schon auf die
+    // neue Viewport-Groesse gebaut sind.
+    var nowMobile = isMobile();
+    if (nowMobile !== lastIsMobile) {
+      lastIsMobile = nowMobile;
+      rebuildChainForModeSwitch();
+    }
+
     updateDebugLayout();
 
     if (window.ScrollTrigger) ScrollTrigger.refresh();
+  }
+
+  // Baut die sichtbare Szenen-Kette nach einem Modus-Wechsel neu: holt die
+  // fuer die aktuelle Station gewuenschten Szenen frisch (desiredSceneSet
+  // wendet effectivePlacement mit dem NEUEN isMobile-Wert an), setzt Kette +
+  // Content neu und blendet sie SOFORT voll ein (kein Reveal-Flackern -- eine
+  // Rotation ist eine harte Umschaltung, keine Choreografie-Station). Ein
+  // eventuell laufender Reveal/Erosion wird dabei ueberschrieben, das ist bei
+  // einer bewussten Geraetedrehung akzeptabel.
+  function rebuildChainForModeSwitch() {
+    if (!manifest) return;
+    var idx = choreo.currentStationIndex;
+    var target = desiredSceneSet(idx);
+    sceneChain = target.map(function (t) { return { key: t.key, placement: t.placement }; });
+    sceneChain.forEach(function (c) {
+      rebuildSceneContent(c.key, c.placement);
+      fullRevealMask(sceneLayerKey(c.key));
+    });
   }
 
   function updateDebugLayout() {

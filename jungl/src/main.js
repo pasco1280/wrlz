@@ -30,11 +30,30 @@
 
   var dpr = Math.min(window.devicePixelRatio || 1, 2);
 
+  // Mobile-Gate (identisch zu choreo.js): nur Portrait-Handy. Auf solchen
+  // Geraeten aendert die aufploppende Browser-Adresszeile beim Scrollen
+  // staendig die Viewport-HOEHE (nicht die Breite). Ohne Sonderbehandlung
+  // wuerde jede dieser Aenderungen ein komplettes Re-Layout ausloesen --
+  // die Szene "zieht auseinander" (Pascal 05.07.) und die Borduere am Boden
+  // rutscht hinter die Adresszeile. Desktop matcht nie -> unberuehrt.
+  var mobileMedia = window.matchMedia("(max-width: 820px) and (orientation: portrait)");
+  var lastW = 0, lastH = 0;
+
   function resize() {
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    state.dpr = dpr;
     var w = window.innerWidth;
     var h = window.innerHeight;
+
+    // Reine Hoehen-Wackler durch die Adresszeile auf dem Handy ignorieren:
+    // Breite unveraendert UND Hoehensprung kleiner als eine typische
+    // Adresszeile (~200px). Nur echte Aenderungen (Breite/Rotation) gehen
+    // durch. Der erste Aufruf (lastW=0) laeuft immer.
+    if (mobileMedia.matches && w === lastW && Math.abs(h - lastH) < 200) {
+      return;
+    }
+    lastW = w; lastH = h;
+
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    state.dpr = dpr;
 
     sceneCanvas.width = w * dpr;
     sceneCanvas.height = h * dpr;
@@ -49,6 +68,12 @@
   resize();
 
   gsap.registerPlugin(ScrollTrigger);
+
+  // GSAPs eingebaute Loesung fuer genau das Adresszeilen-Problem: auf Touch-
+  // Geraeten ignoriert ScrollTrigger die Viewport-Hoehenaenderung durch die
+  // ein-/ausfahrende Browser-UI bei seinen Pin-/Scrub-Berechnungen. Ergaenzt
+  // den eigenen resize-Skip oben (der Canvas/Szene stabil haelt).
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
   ScrollTrigger.create({
     trigger: ".hero",
